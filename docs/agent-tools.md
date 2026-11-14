@@ -47,6 +47,7 @@ Cite investigation IDs, source files, and NASA PSI URLs in the answer.
 | `score_investigations` | Rank investigations for an environment using existing scoring logic | `src/core/services/scoring.py`, reference metadata |
 | `find_data_gaps` | Report missing, partial, or planned-only data | `generated.json` |
 | `export_csv` | Write a filtered or comparison result as CSV with provenance | query result |
+| `search_psi_catalog` | Find NASA PSI investigations by free text across the full metadata catalog | `data/reference/psi_catalog.json` |
 
 Future tools, only after a row-level CSV loader exists:
 
@@ -449,7 +450,7 @@ exposed as HTTP endpoints. All responses are JSON except the CSV download.
 
 | Agent tool | Public endpoint |
 | --- | --- |
-| all 12 tools | `POST /api/agent` |
+| all 13 tools | `POST /api/agent` |
 | `get_schema` | `GET /api/schema` |
 | `search_investigations` | `GET /api/investigations` |
 | `get_investigation` | `GET /api/investigations/:id` |
@@ -1013,6 +1014,29 @@ Tool: `get_psi_record`. Not exposed as a public HTTP endpoint.
 Validate ID with `^PSI-\d+$`. Return the local PSI reference and investigation
 mapping. No external fetch is configured; the agent cannot fetch arbitrary URLs.
 
+### PSI catalog search tool (internal)
+
+Tool: `search_psi_catalog`. Not exposed as a public HTTP endpoint.
+
+Free-text BM25 search over `data/reference/psi_catalog.json`, built offline by
+`scripts/fetch_psi_catalog.py`. The script reads the public study list and each
+investigation record; the API never calls psi.nasa.gov at request time.
+
+Request:
+
+```json
+{ "q": "flame spread low oxygen", "limit": 10 }
+```
+
+`limit` is 1-50, default 10. Each item carries `psiId`, `title`, `acronym`,
+`researchArea`, `subResearchArea`, `snippet`, `url`, `curated`,
+`investigationIds`, `restricted`, `score`, `matchedTerms` and `modifiedDate`.
+
+`curated` is true only for PSI IDs mapped in `data/reference/psi.json`. Every
+other record is a metadata-only lead: it has no cleaned measured data in this
+project and must not be cited as evidence. When the request carries `psiIds`,
+results are limited to those mapped investigations.
+
 ### Response envelope
 
 All JSON endpoints return:
@@ -1103,7 +1127,7 @@ reference files.
 
 ## Build order
 
-All twelve tools are implemented in this repository:
+All thirteen tools are implemented in this repository:
 
 1. `get_schema`, `search_investigations`, `get_investigation`, `get_environments`.
 2. `find_data_gaps` and answer rules.

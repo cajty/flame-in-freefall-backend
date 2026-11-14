@@ -26,6 +26,10 @@ class Settings(BaseSettings):
     reference_dir: Path = Field(
         default=REPO_ROOT / "data" / "reference", validation_alias="FLAME_REFERENCE_DIR"
     )
+    psi_catalog_path: Path = Field(
+        default=REPO_ROOT / "data" / "reference" / "psi_catalog.json",
+        validation_alias="FLAME_PSI_CATALOG_PATH",
+    )
 
     cors_origins: str = Field(
         default="http://localhost:5173,http://127.0.0.1:5173",

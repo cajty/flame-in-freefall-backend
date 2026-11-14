@@ -8,6 +8,7 @@ Edit them here; the frontend no longer maintains its own copies:
 - `theme_weights.json` — pillar weights per environment
 - `psi.json` — NASA PSI accession numbers and URL template
 - `pillars.json` — pillar definitions, order and fuel phases
+- `psi_catalog.json` — generated offline NASA PSI investigation metadata catalog; do not hand-edit, run `npm run catalog`
 
 `scripts/build-dashboard.mjs` combines these files with the summaries derived from
 `data/processed` and writes `../flame-in-freefall/src/data/dashboard.json`. The

@@ -35,6 +35,7 @@ logs/
 # downloaded PSI files: keep folders and provenance, not the data
 data/raw/**/*.csv
 data/raw/**/*.xlsx
+data/raw/psi-catalog/
 
 # Personal Claude Code overrides - never commit
 CLAUDE.local.md

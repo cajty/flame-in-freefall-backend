@@ -18,6 +18,7 @@ from models import (
     ExportInput,
     GapsInput,
     GetInvestigationInput,
+    PsiCatalogSearchInput,
     PsiRecordInput,
     QueryFilter,
     QueryTestsInput,
@@ -31,6 +32,7 @@ from prompts import SYSTEM_PROMPT
 from tools.compare import compare_investigations as compare_tool
 from tools.exports import export_csv as export_tool
 from tools.psi import get_psi_record as psi_tool
+from tools.psi import search_psi_catalog as catalog_tool
 from tools.query import run_query as query_tool
 from tools.query import score_investigations as score_tool
 from tools.rows import aggregate_tests as aggregate_tool
@@ -425,6 +427,18 @@ def build_agent(model: Any) -> Agent[ToolDeps, AnalysisAnswer]:
             "get_psi_record",
             psi_tool,
             lambda: PsiRecordInput(id=psi_id),
+        )
+
+    @agent.tool(strict=True)
+    async def search_psi_catalog(
+        run_context: RunContext[ToolDeps], q: str, limit: int = 10
+    ) -> dict[str, Any]:
+        """Search the full NASA PSI investigation metadata catalog by free text. Use only to discover related PSI records outside the 15 curated investigations. Results are metadata-only leads, not measured evidence."""
+        return await _invoke(
+            run_context,
+            "search_psi_catalog",
+            catalog_tool,
+            lambda: PsiCatalogSearchInput(q=q, limit=limit),
         )
 
     return agent

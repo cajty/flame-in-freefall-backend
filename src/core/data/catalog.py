@@ -136,6 +136,10 @@ class ScopedCatalog:
         self._allowed = frozenset(allowed_ids)
 
     @property
+    def allowed_investigation_ids(self) -> frozenset[str]:
+        return self._allowed
+
+    @property
     def generated_at(self) -> str:
         return self._catalog.generated_at
 

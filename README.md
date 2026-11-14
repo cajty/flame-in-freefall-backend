@@ -18,6 +18,7 @@ flame-in-freefall-backend/
     build-data.mjs          reads data/processed, writes generated.json for the API
     build-dashboard.mjs     combines reference + processed into the frontend dashboard.json
     fetch-psi-metadata.mjs  downloads PSI investigation metadata ZIPs
+    fetch_psi_catalog.py    builds the offline PSI investigation catalog
     lib/csv.js              CSV parser
     lib/adapters.js         per-investigation column mapping
     lib/psi-metadata.js     metadata ZIP selection and ZIP validation
@@ -67,6 +68,24 @@ contain ISA-Tab files such as `i_Investigation.txt`; they do not contain measure
 CSV rows. Raw downloads are ignored by git. Do not scrape PSI at application
 runtime.
 
+## PSI catalog search
+
+```bash
+npm run catalog      # fetch every PSI investigation record into a local index
+```
+
+`scripts/fetch_psi_catalog.py` reads the public study list, fetches each
+investigation record at one request per second, and writes
+`data/reference/psi_catalog.json`. Raw responses are cached in
+`data/raw/psi-catalog/` (ignored by git), so a rerun resumes; `--force`
+refetches every record. The API reads only the local index; it never calls
+psi.nasa.gov at request time.
+
+The `search_psi_catalog` agent tool ranks the index with BM25 over title,
+acronym, research area, objective and related metadata. Results outside the 15
+curated investigations are metadata-only leads: they carry no cleaned measured
+data here and must not be cited as evidence.
+
 Generate the file the frontend imports:
 
 ```bash
@@ -101,7 +120,7 @@ uv run uvicorn api.main:app --host 127.0.0.1 --port 8000
 docker compose down      # stop Jaeger when done
 ```
 
-The public API is read-only. The agent calls the 12 tools from
+The public API is read-only. The agent calls the 13 tools from
 `docs/agent-tools.md` directly in Python; the tool wrappers are not exposed as
 HTTP endpoints.
 

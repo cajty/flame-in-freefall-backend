@@ -280,7 +280,7 @@ def test_agent_tool_errors_are_returned_to_model_and_cannot_ground(context):
     assert error.value.code == "UNGROUNDED_ANSWER"
 
 
-def test_test_model_registers_all_twelve_tools(context):
+def test_test_model_registers_all_thirteen_tools(context):
     deps = ToolDeps(ctx=context, timeout_seconds=5)
     agent = build_agent(TestModel(call_tools="all"))
     result = asyncio.run(agent.run("Compare.", deps=deps))
@@ -298,8 +298,9 @@ def test_test_model_registers_all_twelve_tools(context):
         "query_tests",
         "aggregate_tests",
         "get_psi_record",
+        "search_psi_catalog",
     }
-    assert len(deps.calls) == 12
+    assert len(deps.calls) == 13
     assert all(call.duration_ms is not None for call in deps.calls)
 
 

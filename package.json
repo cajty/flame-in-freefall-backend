@@ -8,6 +8,7 @@
     "data": "node scripts/build-data.mjs",
     "metadata": "node scripts/fetch-psi-metadata.mjs",
     "metadata:extract": "uv run python scripts/extract_psi_metadata.py",
+    "catalog": "uv run python scripts/fetch_psi_catalog.py",
     "test": "node --test tests/*.test.js"
   }
 }
