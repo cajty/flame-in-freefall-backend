@@ -180,6 +180,7 @@ class EnvironmentRecord(BaseSchema):
     gravity: Gravity
     o2: list[float]
     psi: str
+    p: list[float]
     src: str
     color: str
     glow: str

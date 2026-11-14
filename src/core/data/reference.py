@@ -35,6 +35,13 @@ def _validate_o2_window(value: list[float], label: str) -> None:
         raise ValueError(f"{label}: O2 window outside 0-100: {value}")
 
 
+def _validate_pressure_window(value: list[float], label: str) -> None:
+    if len(value) != 2 or value[0] > value[1]:
+        raise ValueError(f"{label}: invalid pressure window {value}")
+    if value[0] < 0:
+        raise ValueError(f"{label}: pressure window below 0 atm: {value}")
+
+
 def load_reference(reference_dir: Path) -> ReferenceData:
     investigations_raw = _read_json(reference_dir / "investigations.json")
     environments_raw = _read_json(reference_dir / "environments.json")
@@ -87,6 +94,7 @@ def load_reference(reference_dir: Path) -> ReferenceData:
         if missing:
             raise ValueError(f"environment {env_id} missing theme weights: {sorted(missing)}")
         _validate_o2_window(item["o2"], env_id)
+        _validate_pressure_window(item["p"], env_id)
         environments.append(
             EnvironmentRecord.model_validate({**item, "themeWeights": weights})
         )

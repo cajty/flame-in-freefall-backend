@@ -24,6 +24,7 @@ def test_reference_windows_and_weights_are_valid(context):
     for environment in context.reference.environments:
         assert set(environment.theme_weights) == set(context.reference.pillar_order)
         assert environment.gravity in {"microgravity", "partial"}
+        assert 0 <= environment.p[0] <= environment.p[1]
 
 
 def test_registry_covers_all_files_and_columns(context):
