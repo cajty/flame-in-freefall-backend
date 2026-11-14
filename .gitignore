@@ -1,0 +1,46 @@
+node_modules
+*.log
+.DS_Store
+generated.json
+
+# Editor / OS
+.idea/
+*.swp
+*~
+Thumbs.db
+Desktop.ini
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+artifacts/
+.mypy_cache/
+.hypothesis/
+.tox/
+.coverage
+coverage.xml
+htmlcov/
+
+# build output
+dist/
+build/
+*.egg-info/
+
+# runtime logs (dir rule; *.log above only matches files)
+logs/
+
+# downloaded PSI files: keep folders and provenance, not the data
+data/raw/**/*.csv
+data/raw/**/*.xlsx
+
+# Personal Claude Code overrides - never commit
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Environment files - never commit
+.env
+.env.*
+!.env.example

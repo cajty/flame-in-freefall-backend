@@ -1,0 +1,11 @@
+{
+  "investigationId": "cld",
+  "psiId": "PSI-21",
+  "fileName": "PSI-21_metadata_PSI-97_ACME CLD Flame.zip",
+  "version": null,
+  "bytes": 16071,
+  "sha256": "97af8292ac89f48cdf426f40522a8addac92f80b61edf75514999f59c8686504",
+  "fetchedAt": "2026-11-14T10:35:53.283Z",
+  "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-21",
+  "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-21"
+}

@@ -1,0 +1,1116 @@
+<title>Flame Atlas Console</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Layout: resource picker on the left, request composer and result table on the right. */
+  :root {
+    --bg: #f6f5f2;
+    --surface: #fffdfa;
+    --surface-2: #efede8;
+    --fg: #1c1917;
+    --muted: #57534e;
+    --line: #e2dfd9;
+    --accent: #b4400f;
+    --accent-ink: #ffffff;
+    --accent-soft: #fbeee5;
+    --code-bg: #17130f;
+    --code-fg: #f4ede4;
+    --ok: #15803d;
+    --warn: #a16207;
+    --shadow: 0 1px 2px rgba(28, 25, 23, 0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141210;
+      --surface: #1c1917;
+      --surface-2: #24201c;
+      --fg: #f5f1ea;
+      --muted: #b3a99c;
+      --line: #32302b;
+      --accent: #f59e4c;
+      --accent-ink: #1c1917;
+      --accent-soft: #2a1c10;
+      --code-bg: #0d0b09;
+      --code-fg: #f4ede4;
+      --ok: #4ade80;
+      --warn: #fbbf24;
+      --shadow: none;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141210;
+    --surface: #1c1917;
+    --surface-2: #24201c;
+    --fg: #f5f1ea;
+    --muted: #b3a99c;
+    --line: #32302b;
+    --accent: #f59e4c;
+    --accent-ink: #1c1917;
+    --accent-soft: #2a1c10;
+    --code-bg: #0d0b09;
+    --code-fg: #f4ede4;
+    --ok: #4ade80;
+    --warn: #fbbf24;
+    --shadow: none;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    font-family: "Space Grotesk", Inter, system-ui, sans-serif;
+    margin: 0;
+    text-wrap: balance;
+  }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  [hidden] { display: none !important; }
+  code, .mono { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  .muted { color: var(--muted); }
+
+  .shell { max-width: 1320px; margin: 0 auto; padding-block: 28px 56px; }
+
+  .top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand .eyebrow {
+    margin: 0 0 6px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .brand h1 { font-size: clamp(1.6rem, 3vw, 2.05rem); letter-spacing: -0.02em; }
+  .brand p { margin: 6px 0 0; color: var(--muted); font-size: 13.5px; max-width: 46ch; }
+
+  .conn-config { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px; }
+  .conn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: 12.5px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--warn); flex: none; }
+  .dot.ok { background: var(--ok); }
+  .dot.bad { background: var(--accent); }
+
+  .console {
+    display: grid;
+    grid-template-columns: 296px minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+    padding-top: 20px;
+  }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    min-width: 0;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 16px;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 32px);
+    overflow: hidden;
+  }
+  .side-head { padding: 15px 15px 13px; border-bottom: 1px solid var(--line); display: grid; gap: 10px; }
+  .side-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .side-title h2 { font-size: 15px; }
+  .side-title span { font-size: 11.5px; color: var(--muted); }
+
+  .search-row { display: flex; gap: 8px; }
+  .search-row input { flex: 1; }
+
+  input[type="text"], input[type="password"], input[type="number"], select, textarea {
+    width: 100%;
+    background: var(--surface);
+    color: var(--fg);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 8px 10px;
+    font: inherit;
+    font-size: 13.5px;
+  }
+  textarea { resize: vertical; min-height: 76px; line-height: 1.55; }
+  input::placeholder, textarea::placeholder { color: var(--muted); opacity: 0.85; }
+
+  .checkline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .checkline label, .toggle { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+  .toggle { font-size: 12.5px; color: var(--muted); }
+  input[type="checkbox"] { accent-color: var(--accent); width: 15px; height: 15px; }
+  .linkish {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: var(--accent);
+    font: inherit;
+    font-size: 12.5px;
+    cursor: pointer;
+  }
+  .linkish:hover { text-decoration: underline; }
+
+  .res-list { flex: 1; min-height: 120px; overflow-y: auto; padding: 7px; display: grid; gap: 1px; align-content: start; }
+  .res {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 8px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  .res:hover { background: var(--surface-2); }
+  .res input { margin-top: 3px; flex: none; }
+  .res-name { display: block; font-size: 13.5px; font-weight: 600; line-height: 1.35; }
+  .res-meta { display: block; font-size: 11.5px; color: var(--muted); text-transform: capitalize; }
+  .res-used {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    vertical-align: 1px;
+  }
+  .empty { padding: 22px 10px; text-align: center; color: var(--muted); font-size: 13px; }
+
+  .side-foot {
+    border-top: 1px solid var(--line);
+    padding: 9px 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .pager { display: inline-flex; align-items: center; gap: 4px; }
+  .pg {
+    width: 28px;
+    height: 28px;
+    display: inline-grid;
+    place-items: center;
+    background: var(--surface);
+    color: var(--fg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font: 15px/1 Inter, sans-serif;
+    cursor: pointer;
+  }
+  .pg:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .pg:disabled { opacity: 0.4; cursor: not-allowed; }
+  .pg-label { min-width: 44px; text-align: center; font-variant-numeric: tabular-nums; }
+
+  .main { display: flex; flex-direction: column; }
+  .compose { padding: 17px 18px 15px; display: grid; gap: 12px; border-bottom: 1px solid var(--line); }
+  .field { display: grid; gap: 5px; }
+  .lbl {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px; }
+  .controls .field { width: auto; }
+  .controls select { min-width: 168px; }
+  .controls input[type="number"] { width: 86px; }
+  .controls input[type="password"] { width: 170px; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 15px;
+    border-radius: 7px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--fg);
+    font: 600 13.5px Inter, system-ui, sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.primary:hover:not(:disabled) { color: var(--accent-ink); filter: brightness(1.06); }
+  .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+  .scope-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .scope-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 9px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+  }
+
+  details.auth { font-size: 12.5px; color: var(--muted); }
+  details.auth summary { cursor: pointer; width: max-content; }
+  details.auth .field { margin-top: 8px; }
+
+  .hint {
+    margin: 0;
+    padding: 11px 13px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--accent-soft);
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+  .hint code { background: transparent; border: 0; padding: 0; }
+
+  .result { padding: 17px 18px 20px; display: grid; gap: 15px; min-width: 0; }
+  .history { display: grid; gap: 9px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .history-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .history-head h2 {
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .history-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .turn { border: 1px solid var(--line); border-radius: 8px; background: var(--surface-2); }
+  .turn summary {
+    cursor: pointer;
+    padding: 9px 11px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .turn-q { font-weight: 500; overflow-wrap: anywhere; }
+  .turn-meta { color: var(--muted); font-size: 11.5px; white-space: nowrap; }
+  .turn-a { margin: 0; padding: 0 11px 11px; font-size: 13.5px; line-height: 1.65; white-space: pre-wrap; }
+  .turn-warn { margin: 0; padding: 0 11px 11px; font-size: 12px; color: var(--warn); }
+  .status-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 12.5px;
+    color: var(--muted);
+    min-height: 20px;
+  }
+  .status-line .mono { font-size: 12px; }
+
+  .answer { margin: 0; white-space: pre-wrap; max-width: 76ch; font-size: 14.5px; line-height: 1.7; }
+
+  .warn-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .warn-list li {
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface-2);
+    font-size: 12.5px;
+  }
+
+  .table-wrap { border: 1px solid var(--line); border-radius: 9px; overflow: auto; max-width: 100%; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 660px; }
+  th, td { padding: 9px 11px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--surface-2);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  tr:last-child td { border-bottom: 0; }
+  tbody tr:hover { background: var(--surface-2); }
+  th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.strong { font-weight: 700; }
+  .cell-name { display: block; font-weight: 600; line-height: 1.3; }
+  .cell-id { display: block; font-family: ui-monospace, Consolas, monospace; font-size: 10.5px; color: var(--muted); }
+  .table-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .error-box {
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--accent-soft);
+    padding: 14px 15px;
+  }
+  .error-code { font-family: ui-monospace, Consolas, monospace; font-weight: 700; color: var(--accent); font-size: 13px; }
+  .error-message { margin: 5px 0 0; font-size: 14px; }
+  .error-box ul { margin: 9px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--muted); }
+
+  details.raw summary { cursor: pointer; font-size: 12.5px; color: var(--muted); width: max-content; }
+  details.raw pre {
+    margin: 9px 0 0;
+    padding: 14px;
+    max-height: 380px;
+    overflow: auto;
+    background: var(--code-bg);
+    color: var(--code-fg);
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .download { font-size: 12.5px; }
+
+  @media (max-width: 880px) {
+    .shell { padding-block: 20px 40px; }
+    .console { grid-template-columns: 1fr; }
+    .sidebar { position: static; max-height: none; }
+    .res-list { max-height: 250px; }
+    .top { align-items: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; }
+  }
+</style>
+
+<div class="shell">
+  <header class="top">
+    <div class="brand">
+      <p class="eyebrow">Flame Atlas</p>
+      <h1>Agent Console</h1>
+      <p>Pick resources, set the habitat context, and run a real request against <span class="mono">POST /api/agent</span>.</p>
+    </div>
+    <div class="conn-config">
+      <span class="conn"><span class="dot" id="connDot"></span><span id="connText">Connecting…</span></span>
+      <div class="field">
+        <label class="lbl" for="baseUrl">API base</label>
+        <input type="text" id="baseUrl" value="http://localhost:8000" spellcheck="false" autocomplete="off">
+      </div>
+      <button class="btn" type="button" id="reloadBtn">Reload</button>
+    </div>
+  </header>
+
+  <div class="console">
+    <aside class="sidebar panel" aria-label="Resources">
+      <div class="side-head">
+        <div class="side-title">
+          <h2>Resources</h2>
+          <span id="resCount">loading</span>
+        </div>
+        <div class="search-row">
+          <input type="text" id="resSearch" placeholder="Filter investigations" aria-label="Filter investigations" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="checkline">
+          <label><input type="checkbox" id="selectAll"> Select all shown</label>
+          <button class="linkish" type="button" id="clearSel">Clear</button>
+        </div>
+        <label class="toggle"><input type="checkbox" id="showAll"> Show all investigations</label>
+      </div>
+      <div class="res-list" id="resList"></div>
+      <div class="side-foot">
+        <span id="resFoot">No selection = full catalog</span>
+        <div class="pager">
+          <button class="pg" type="button" id="resPrev" aria-label="Previous resources">‹</button>
+          <span class="pg-label" id="resPageLabel">1 / 1</span>
+          <button class="pg" type="button" id="resNext" aria-label="Next resources">›</button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="main panel" aria-label="Request and result">
+      <div class="compose">
+        <div class="field">
+          <label class="lbl" for="question">Question</label>
+          <textarea id="question" maxlength="2000">Rank investigations for this habitat and explain the top three.</textarea>
+        </div>
+
+        <div class="controls">
+          <div class="field">
+            <label class="lbl" for="environment">Environment</label>
+            <select id="environment">
+              <option value="iss">ISS · 21–25% O₂</option>
+              <option value="moon">Lunar base · 30–40% O₂</option>
+              <option value="mars">Mars base · 21–34% O₂</option>
+              <option value="rover">Pressurized rover · 30–40% O₂</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="lbl" for="o2">Probe O₂ %</label>
+            <input type="number" id="o2" min="0" max="100" step="0.1" value="30">
+          </div>
+          <div class="field" style="margin-left:auto">
+            <span class="lbl" aria-hidden="true">&nbsp;</span>
+            <button class="btn primary" type="button" id="runBtn">Run request</button>
+          </div>
+        </div>
+
+        <div class="scope-line">
+          <span><span class="scope-chip" id="scopeChip">Full catalog</span></span>
+          <span id="scopeDetail" class="mono"></span>
+        </div>
+
+        <details class="auth">
+          <summary>Authorization (optional)</summary>
+          <div class="field">
+            <label class="lbl" for="token">Bearer token</label>
+            <input type="password" id="token" placeholder="Only when FLAME_AUTH_ENABLED=true" autocomplete="off">
+          </div>
+        </details>
+
+        <p class="hint" id="corsHint" hidden></p>
+      </div>
+
+      <div class="result">
+        <section class="history" id="historyBox" hidden>
+          <div class="history-head">
+            <h2>Earlier messages</h2>
+            <button class="linkish" type="button" id="clearHistory">Clear</button>
+          </div>
+          <ol class="history-list" id="historyList"></ol>
+        </section>
+
+        <div class="status-line">
+          <span id="statusText">No request yet.</span>
+          <a class="download" id="downloadLink" hidden target="_blank" rel="noopener">Download CSV</a>
+        </div>
+
+        <p class="empty" id="emptyState">Choose resources, set the context, then run the request. Ranking, coverage, warnings, and the raw envelope appear here.</p>
+
+        <p class="answer" id="answerBox" hidden></p>
+        <ul class="warn-list" id="warnBox" hidden></ul>
+
+        <div id="tableBox" hidden>
+          <div class="table-wrap">
+            <table>
+              <thead id="tableHead"></thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+          <div class="table-foot">
+            <span id="tableFoot"></span>
+            <div class="pager">
+              <button class="pg" type="button" id="rowsPrev" aria-label="Previous rows">‹</button>
+              <span class="pg-label" id="rowsPageLabel">1 / 1</span>
+              <button class="pg" type="button" id="rowsNext" aria-label="Next rows">›</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="error-box" id="errorBox" hidden>
+          <div class="error-code" id="errorCode"></div>
+          <p class="error-message" id="errorMessage"></p>
+          <ul id="errorDetails" hidden></ul>
+        </div>
+
+        <details class="raw" id="rawBox" hidden>
+          <summary>Raw response</summary>
+          <pre id="rawJson"></pre>
+        </details>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var PAGE_RES = 8;
+  var PAGE_ROWS = 10;
+  var TIMEOUT_MS = 70000;
+  var DEFAULT_BASE = "http://localhost:8000";
+
+  var investigations = [];
+  var selected = new Set();
+  var resPage = 0;
+  var resQuery = "";
+  var resourcesLoading = true;
+  var loadFailed = false;
+  var showAllMode = false;
+
+  var rows = [];
+  var tableMode = "none";
+  var covers = new Set();
+  var usedIds = new Set();
+  var history = [];
+  var lastResult = null;
+  var activeQuestion = "";
+  var rowsPage = 0;
+  var busy = false;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var baseEl = $("baseUrl");
+  var tokenEl = $("token");
+  var questionEl = $("question");
+  var environmentEl = $("environment");
+  var o2El = $("o2");
+  var runBtn = $("runBtn");
+  var reloadBtn = $("reloadBtn");
+  var resSearch = $("resSearch");
+  var resList = $("resList");
+  var resCount = $("resCount");
+  var resFoot = $("resFoot");
+  var resPrev = $("resPrev");
+  var resNext = $("resNext");
+  var resPageLabel = $("resPageLabel");
+  var selectAll = $("selectAll");
+  var showAll = $("showAll");
+  var clearSel = $("clearSel");
+  var connDot = $("connDot");
+  var connText = $("connText");
+  var scopeChip = $("scopeChip");
+  var scopeDetail = $("scopeDetail");
+  var corsHint = $("corsHint");
+  var statusText = $("statusText");
+  var emptyState = $("emptyState");
+  var answerBox = $("answerBox");
+  var warnBox = $("warnBox");
+  var tableBox = $("tableBox");
+  var tableHead = $("tableHead");
+  var tableBody = $("tableBody");
+  var tableFoot = $("tableFoot");
+  var rowsPrev = $("rowsPrev");
+  var rowsNext = $("rowsNext");
+  var rowsPageLabel = $("rowsPageLabel");
+  var errorBox = $("errorBox");
+  var errorCode = $("errorCode");
+  var errorMessage = $("errorMessage");
+  var errorDetails = $("errorDetails");
+  var rawBox = $("rawBox");
+  var rawJson = $("rawJson");
+  var downloadLink = $("downloadLink");
+  var historyBox = $("historyBox");
+  var historyList = $("historyList");
+  var clearHistory = $("clearHistory");
+
+  var esc = function (value) {
+    return String(value == null ? "" : value).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  };
+
+  var fmt = function (n) {
+    if (typeof n !== "number" || !Number.isFinite(n)) return "—";
+    return Number.isInteger(n) ? String(n) : String(Number(n.toFixed(2)));
+  };
+
+  var formatTime = function (ms) {
+    return ms >= 1000 ? (ms / 1000).toFixed(1) + " s" : Math.round(ms) + " ms";
+  };
+
+  var apiBase = function () {
+    return (baseEl.value.trim() || DEFAULT_BASE).replace(/\/+$/, "");
+  };
+
+  var readPref = function (key, fallback) {
+    try { return localStorage.getItem(key) || fallback; } catch (e) { return fallback; }
+  };
+  var writePref = function (key, value) {
+    try { localStorage.setItem(key, value); } catch (e) { /* storage may be blocked */ }
+  };
+
+  function setConn(kind, text) {
+    connDot.className = "dot" + (kind === "ok" ? " ok" : kind === "bad" ? " bad" : "");
+    connText.textContent = text;
+  }
+
+  function showCorsHint() {
+    corsHint.innerHTML =
+      "<strong>Cannot reach the API.</strong> Start the backend and allow this page origin in CORS.<br>" +
+      "Origin: <code>" + esc(location.origin) + "</code><br>" +
+      "CORS: add <code>" + esc(location.origin) + "</code> to <code>FLAME_CORS_ORIGINS</code> in <code>.env</code>, then restart.<br>" +
+      "Start: <code>uv run uvicorn api.main:app --host 127.0.0.1 --port 8000</code>";
+    corsHint.hidden = false;
+  }
+
+  function scopeIds() {
+    var ids = new Set();
+    investigations.forEach(function (inv) {
+      if (!selected.has(inv.id)) return;
+      (inv.psi && inv.psi.ids ? inv.psi.ids : []).forEach(function (id) { ids.add(id); });
+    });
+    return Array.from(ids);
+  }
+
+  function updateScope() {
+    var scope = scopeIds();
+    if (selected.size === 0) {
+      scopeChip.textContent = "Full catalog";
+      scopeDetail.textContent = "psiIds omitted";
+      resFoot.textContent = "No selection = full catalog";
+    } else {
+      scopeChip.textContent = selected.size + " selected";
+      scopeDetail.textContent = scope.length + " PSI IDs in scope";
+      resFoot.textContent = selected.size + " of " + investigations.length + " selected";
+    }
+  }
+
+  function investigationName(id) {
+    for (var i = 0; i < investigations.length; i += 1) {
+      if (investigations[i].id === id) return investigations[i].name;
+    }
+    return id;
+  }
+
+  function filteredResources() {
+    var query = resQuery.trim().toLowerCase();
+    return investigations.filter(function (inv) {
+      if (!showAllMode && !usedIds.has(inv.id)) return false;
+      if (!query) return true;
+      var hay = [inv.id, inv.name, inv.full, inv.theme, inv.phase, inv.fuel].join(" ").toLowerCase();
+      return hay.indexOf(query) !== -1;
+    });
+  }
+
+  function renderResources() {
+    var list = filteredResources();
+    var pages = Math.max(1, Math.ceil(list.length / PAGE_RES));
+    if (resPage >= pages) resPage = pages - 1;
+    if (resPage < 0) resPage = 0;
+    var slice = list.slice(resPage * PAGE_RES, (resPage + 1) * PAGE_RES);
+
+    if (resourcesLoading) {
+      resList.innerHTML = '<p class="empty">Loading resources…</p>';
+    } else if (slice.length === 0) {
+      var message;
+      if (loadFailed && !showAllMode && usedIds.size === 0) {
+        message = 'Resources unavailable. <button class="linkish" type="button" id="resRetry">Retry</button>';
+      } else if (!showAllMode && usedIds.size === 0) {
+        message = "No resources used yet. Run a request, then the cited resources appear here.";
+      } else {
+        message = showAllMode ? "No investigation matches." : "No used resource matches.";
+      }
+      resList.innerHTML = '<p class="empty">' + message + "</p>";
+    } else {
+      resList.innerHTML = slice.map(function (inv) {
+        var cited = showAllMode && usedIds.has(inv.id) ? ' <span class="res-used">cited</span>' : "";
+        return '<label class="res">' +
+          '<input type="checkbox" data-id="' + esc(inv.id) + '"' + (selected.has(inv.id) ? " checked" : "") + ">" +
+          '<span><span class="res-name">' + esc(inv.name) + cited + "</span>" +
+          '<span class="res-meta">' + esc(inv.theme) + " · " + esc(inv.phase) + "</span></span>" +
+          "</label>";
+      }).join("");
+    }
+
+    resCount.textContent = resourcesLoading
+      ? "loading"
+      : list.length + (showAllMode ? (list.length === 1 ? " resource" : " resources") : " used");
+    resPageLabel.textContent = (resPage + 1) + " / " + pages;
+    resPrev.disabled = resPage === 0;
+    resNext.disabled = resPage >= pages - 1;
+    selectAll.checked = list.length > 0 && list.every(function (inv) { return selected.has(inv.id); });
+    updateScope();
+  }
+
+  async function loadResources() {
+    writePref("flame.agent.base", baseEl.value.trim());
+    resourcesLoading = true;
+    loadFailed = false;
+    renderResources();
+    setConn("wait", "Connecting…");
+    try {
+      var res = await fetch(apiBase() + "/api/investigations?limit=200");
+      var body = await res.json();
+      if (!body || !body.ok) {
+        throw new Error(body && body.error ? body.error.message : "Request failed");
+      }
+      investigations = body.data.items || [];
+      var known = new Set(investigations.map(function (inv) { return inv.id; }));
+      selected = new Set(Array.from(selected).filter(function (id) { return known.has(id); }));
+      resourcesLoading = false;
+      setConn("ok", investigations.length + " resources");
+      corsHint.hidden = true;
+    } catch (error) {
+      investigations = [];
+      selected.clear();
+      resourcesLoading = false;
+      loadFailed = true;
+      setConn("bad", "Backend unreachable");
+      showCorsHint();
+    }
+    renderResources();
+  }
+
+  function renderTable() {
+    var total = rows.length;
+    var pages = Math.max(1, Math.ceil(total / PAGE_ROWS));
+    if (rowsPage >= pages) rowsPage = pages - 1;
+    if (rowsPage < 0) rowsPage = 0;
+    var slice = rows.slice(rowsPage * PAGE_ROWS, (rowsPage + 1) * PAGE_ROWS);
+
+    if (tableMode === "ranking") {
+      tableHead.innerHTML = "<tr><th>Investigation</th><th>Theme</th><th class=\"num\">O₂ range</th><th class=\"num\">Overlap</th><th class=\"num\">Weight</th><th class=\"num\">Score</th><th>Probe</th></tr>";
+      tableBody.innerHTML = slice.map(function (row) {
+        var hit = covers.has(row.investigationId);
+        return "<tr>" +
+          '<td><span class="cell-name">' + esc(row.name) + '</span><span class="cell-id">' + esc(row.investigationId) + "</span></td>" +
+          "<td>" + esc(row.theme) + ' <span class="muted">' + esc(row.phase) + "</span></td>" +
+          '<td class="num">' + fmt(row.o2[0]) + "–" + fmt(row.o2[1]) + "%</td>" +
+          '<td class="num">' + Math.round((row.o2Overlap || 0) * 100) + "%</td>" +
+          '<td class="num">' + esc(row.themeWeight) + "</td>" +
+          '<td class="num strong">' + esc(row.score) + "</td>" +
+          "<td>" + (hit ? "covers" : "—") + "</td>" +
+          "</tr>";
+      }).join("");
+    } else {
+      tableHead.innerHTML = "<tr><th>Investigation</th><th>Tests</th><th class=\"num\">O₂ range</th><th class=\"num\">Airflow</th><th class=\"num\">Pressure</th><th>Fuels</th></tr>";
+      tableBody.innerHTML = slice.map(function (row) {
+        var s = row.summary || {};
+        var o2 = s.o2 ? fmt(s.o2.min) + "–" + fmt(s.o2.max) + "%" : "—";
+        var air = s.airflow ? fmt(s.airflow.min) + "–" + fmt(s.airflow.max) + " " + esc(s.airflow.unit) : "—";
+        var p = s.pressure ? fmt(s.pressure.min) + "–" + fmt(s.pressure.max) + " " + esc(s.pressure.unit) : "—";
+        return "<tr>" +
+          '<td><span class="cell-name">' + esc(investigationName(row.investigationId)) + '</span><span class="cell-id">' + esc(row.investigationId) + "</span></td>" +
+          '<td class="num">' + esc(s.tests == null ? "—" : s.tests) + "</td>" +
+          '<td class="num">' + o2 + "</td>" +
+          '<td class="num">' + air + "</td>" +
+          '<td class="num">' + p + "</td>" +
+          "<td>" + esc((s.fuels || []).join(", ")) + "</td>" +
+          "</tr>";
+      }).join("");
+    }
+
+    if (slice.length === 0) {
+      var cols = tableMode === "ranking" ? 7 : 6;
+      tableBody.innerHTML = '<tr><td colspan="' + cols + '" class="muted">No rows.</td></tr>';
+    }
+
+    tableFoot.textContent = total + (total === 1 ? " row" : " rows") + (tableMode === "ranking" ? " ranked by score" : " from generated");
+    rowsPageLabel.textContent = (rowsPage + 1) + " / " + pages;
+    rowsPrev.disabled = rowsPage === 0;
+    rowsNext.disabled = rowsPage >= pages - 1;
+  }
+
+  function renderHistory() {
+    if (history.length === 0) {
+      historyBox.hidden = true;
+      historyList.innerHTML = "";
+      return;
+    }
+    historyBox.hidden = false;
+    historyList.innerHTML = history.map(function (turn) {
+      var warning = turn.warnings && turn.warnings.length
+        ? '<p class="turn-warn">' + esc(turn.warnings.join(" ")) + "</p>"
+        : "";
+      return "<li><details class=\"turn\">" +
+        '<summary><span class="turn-q">' + esc(turn.question) + "</span>" +
+        '<span class="turn-meta">HTTP ' + esc(turn.status) + " · " + formatTime(turn.elapsed) + "</span></summary>" +
+        '<p class="turn-a">' + esc(turn.answer || "No answer text.") + "</p>" +
+        warning +
+        "</details></li>";
+    }).join("");
+  }
+
+  function resetResultViews() {
+    emptyState.hidden = true;
+    answerBox.hidden = true;
+    warnBox.hidden = true;
+    warnBox.innerHTML = "";
+    tableBox.hidden = true;
+    errorBox.hidden = true;
+    rawBox.hidden = true;
+    rawJson.textContent = "";
+    downloadLink.hidden = true;
+  }
+
+  function showError(error, status, elapsed) {
+    resetResultViews();
+    errorBox.hidden = false;
+    errorCode.textContent = (error && error.code) || "ERROR";
+    errorMessage.textContent = (error && error.message) || "Request failed.";
+    var details = (error && error.details) || [];
+    errorDetails.innerHTML = details.map(function (d) { return "<li>" + esc(d) + "</li>"; }).join("");
+    errorDetails.hidden = details.length === 0;
+    statusText.textContent = (status ? "HTTP " + status : "Network error") + " · " + formatTime(elapsed);
+    if (error && error.code === "NETWORK_ERROR") showCorsHint();
+  }
+
+  function showResult(body, status, elapsed) {
+    resetResultViews();
+    var data = body.data || {};
+    rows = Array.isArray(data.ranking)
+      ? data.ranking
+      : Object.keys(data.generated || {}).map(function (id) {
+          return { investigationId: id, summary: data.generated[id] };
+        });
+    tableMode = Array.isArray(data.ranking) ? "ranking" : "summary";
+    covers = new Set(data.covers || []);
+    (data.citations || []).forEach(function (citation) {
+      usedIds.add(citation.investigationId);
+      var known = investigations.some(function (inv) { return inv.id === citation.investigationId; });
+      if (known) return;
+      var ranked = (data.ranking || []).find(function (item) {
+        return item.investigationId === citation.investigationId;
+      });
+      investigations.push({
+        id: citation.investigationId,
+        name: ranked ? ranked.name : citation.investigationId,
+        full: "",
+        theme: ranked ? ranked.theme : "",
+        phase: ranked ? ranked.phase : "",
+        fuel: "",
+        psi: {
+          ids: ranked ? ranked.psiIds : [citation.psiId],
+          urls: ranked ? ranked.psiUrls : [citation.url],
+        },
+        data: null,
+      });
+    });
+    renderResources();
+    rowsPage = 0;
+
+    var tools = data.plan && Array.isArray(data.plan.tools) ? data.plan.tools : [];
+    var toolText = tools.length ? tools.join(", ") : "none";
+    var reachText = data.reach == null ? "—" : String(data.reach);
+    statusText.textContent = "HTTP " + status + " · " + formatTime(elapsed) + " · tools: " + toolText + " · reach: " + reachText;
+
+    answerBox.textContent = data.answer || "";
+    answerBox.hidden = !data.answer;
+
+    var warnings = data.warnings || [];
+    warnBox.innerHTML = warnings.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("");
+    warnBox.hidden = warnings.length === 0;
+
+    tableBox.hidden = false;
+    renderTable();
+
+    if (data.download && data.download.downloadUrl) {
+      downloadLink.href = apiBase() + data.download.downloadUrl;
+      downloadLink.hidden = false;
+    }
+
+    lastResult = {
+      question: activeQuestion,
+      answer: data.answer || "",
+      warnings: warnings,
+      tools: tools,
+      status: status,
+      elapsed: elapsed,
+    };
+
+    rawJson.textContent = JSON.stringify(body, null, 2);
+    rawBox.hidden = false;
+  }
+
+  async function runRequest() {
+    if (busy) return;
+    var question = questionEl.value.trim();
+    if (!question) {
+      showError({ code: "INVALID_REQUEST", message: "Enter a question." }, null, 0);
+      return;
+    }
+    var o2 = Number(o2El.value);
+    if (!Number.isFinite(o2) || o2 < 0 || o2 > 100) {
+      showError({ code: "INVALID_REQUEST", message: "Probe O₂ must be between 0 and 100." }, null, 0);
+      return;
+    }
+
+    busy = true;
+    runBtn.disabled = true;
+    runBtn.textContent = "Running…";
+    statusText.textContent = "Waiting for the agent…";
+    corsHint.hidden = true;
+
+    if (lastResult) {
+      history.push(lastResult);
+      if (history.length > 20) history.shift();
+      lastResult = null;
+      renderHistory();
+    }
+    activeQuestion = question;
+
+    var payload = {
+      question: question,
+      environmentId: environmentEl.value,
+      o2: o2,
+    };
+    var psiIds = scopeIds();
+    if (selected.size > 0 && psiIds.length > 0) payload.psiIds = psiIds;
+
+    var headers = { "Content-Type": "application/json" };
+    if (tokenEl.value.trim()) headers.Authorization = "Bearer " + tokenEl.value.trim();
+
+    var started = performance.now();
+    var timeout = typeof AbortSignal !== "undefined" && AbortSignal.timeout
+      ? AbortSignal.timeout(TIMEOUT_MS)
+      : undefined;
+
+    try {
+      var res = await fetch(apiBase() + "/api/agent", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(payload),
+        signal: timeout,
+      });
+      var elapsed = performance.now() - started;
+      var body = null;
+      try { body = await res.json(); } catch (e) { body = null; }
+
+      if (!body) {
+        showError({ code: "BAD_RESPONSE", message: "The server did not return JSON." }, res.status, elapsed);
+        return;
+      }
+      if (!body.ok) {
+        showError(body.error || { code: "ERROR", message: "Request failed." }, res.status, elapsed);
+        return;
+      }
+      showResult(body, res.status, elapsed);
+    } catch (error) {
+      var elapsedMs = performance.now() - started;
+      var timedOut = error && (error.name === "TimeoutError" || error.name === "AbortError");
+      showError(
+        timedOut
+          ? { code: "CLIENT_TIMEOUT", message: "No response within 70 seconds." }
+          : {
+              code: "NETWORK_ERROR",
+              message: "Cannot reach the API. Check the base URL and CORS.",
+              details: [
+                "Origin: " + location.origin,
+                "FLAME_CORS_ORIGINS must include " + location.origin,
+                "Start: uv run uvicorn api.main:app --host 127.0.0.1 --port 8000",
+              ],
+            },
+        null,
+        elapsedMs
+      );
+    } finally {
+      busy = false;
+      runBtn.disabled = false;
+      runBtn.textContent = "Run request";
+    }
+  }
+
+  resList.addEventListener("change", function (event) {
+    var input = event.target;
+    if (!input || input.type !== "checkbox" || !input.dataset.id) return;
+    if (input.checked) selected.add(input.dataset.id);
+    else selected.delete(input.dataset.id);
+    updateScope();
+    renderResources();
+  });
+
+  resList.addEventListener("click", function (event) {
+    if (event.target && event.target.id === "resRetry") loadResources();
+  });
+
+  resSearch.addEventListener("input", function () {
+    resQuery = resSearch.value;
+    resPage = 0;
+    renderResources();
+  });
+
+  selectAll.addEventListener("change", function () {
+    filteredResources().forEach(function (inv) {
+      if (selectAll.checked) selected.add(inv.id);
+      else selected.delete(inv.id);
+    });
+    renderResources();
+  });
+
+  showAll.addEventListener("change", function () {
+    showAllMode = showAll.checked;
+    resPage = 0;
+    renderResources();
+  });
+
+  clearSel.addEventListener("click", function () {
+    selected.clear();
+    renderResources();
+  });
+
+  resPrev.addEventListener("click", function () {
+    if (resPage > 0) { resPage -= 1; renderResources(); }
+  });
+  resNext.addEventListener("click", function () {
+    resPage += 1;
+    renderResources();
+  });
+
+  rowsPrev.addEventListener("click", function () {
+    if (rowsPage > 0) { rowsPage -= 1; renderTable(); }
+  });
+  rowsNext.addEventListener("click", function () {
+    rowsPage += 1;
+    renderTable();
+  });
+
+  runBtn.addEventListener("click", runRequest);
+  questionEl.addEventListener("keydown", function (event) {
+    if ((event.ctrlKey || event.metaKey) && event.key === "Enter") runRequest();
+  });
+
+  clearHistory.addEventListener("click", function () {
+    history = [];
+    renderHistory();
+  });
+
+  baseEl.value = readPref("flame.agent.base", DEFAULT_BASE);
+  baseEl.addEventListener("change", function () {
+    writePref("flame.agent.base", baseEl.value.trim());
+    loadResources();
+  });
+  reloadBtn.addEventListener("click", loadResources);
+
+  renderResources();
+  loadResources();
+})();
+</script>

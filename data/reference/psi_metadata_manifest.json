@@ -1,0 +1,188 @@
+[
+  {
+    "investigationId": "flamedesign",
+    "psiId": "PSI-10",
+    "fileName": "PSI-10_metadata_PSI-10-ISA.zip",
+    "version": null,
+    "bytes": 17047,
+    "sha256": "611b404c92125223ae099f086727ba1f5f031abf22d31eaa58d066a825f87b56",
+    "fetchedAt": "2026-11-14T10:36:33.143Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-10",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-10"
+  },
+  {
+    "investigationId": "saffire",
+    "psiId": "PSI-100",
+    "fileName": "PSI-100_metadata_PSI-168_SAFFIRE-III.zip",
+    "version": null,
+    "bytes": 8384,
+    "sha256": "663cfdec4feffed118edd8f4435ed189f1f76464c7bc289cee33c37039fc94c3",
+    "fetchedAt": "2026-11-14T10:29:23.040Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-100",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-100"
+  },
+  {
+    "investigationId": "samer",
+    "psiId": "PSI-101",
+    "fileName": "PSI-101_metadata_PSI-169_SAME-R.zip",
+    "version": 1,
+    "bytes": 6739,
+    "sha256": "a875484ee3394427a6d782256204c79441d611a9d465a76a0bd7a785639de876",
+    "fetchedAt": "2026-11-14T10:30:30.681Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-101"
+  },
+  {
+    "investigationId": "same",
+    "psiId": "PSI-102",
+    "fileName": "PSI-102_metadata_PSI-170_SAME.zip",
+    "version": null,
+    "bytes": 13127,
+    "sha256": "809127b7c6578263dc829d8ef8b15fa98fd1626dcf9c9d44d832a48974e146c6",
+    "fetchedAt": "2026-11-14T10:30:14.398Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-102"
+  },
+  {
+    "investigationId": "spice",
+    "psiId": "PSI-107",
+    "fileName": "PSI-107_metadata_PSI-176_SPICE.zip",
+    "version": null,
+    "bytes": 9313,
+    "sha256": "2ebc6e168e4f2614e205addfb9d0643b18d0c3f019109e8a75cda73dac935995",
+    "fetchedAt": "2026-11-14T10:36:48.843Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-107",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-107"
+  },
+  {
+    "investigationId": "cfig",
+    "psiId": "PSI-159",
+    "fileName": "PSI-159_metadata_PSI-159-ISA.zip",
+    "version": null,
+    "bytes": 8404,
+    "sha256": "0ef60d1ee8d4d53bbe58139d56fa99e9500ca48dd7913b25ac85dc853d6710ab",
+    "fetchedAt": "2026-11-14T10:30:08.644Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-159",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-159"
+  },
+  {
+    "investigationId": "bre",
+    "psiId": "PSI-20",
+    "fileName": "PSI-20_metadata_PSI-96_ACME BRE.zip",
+    "version": null,
+    "bytes": 15061,
+    "sha256": "f3e85d8acff7a83de65f0974fa60e8b6b9fb07591c56b9749503517280ce0ff9",
+    "fetchedAt": "2026-11-14T10:30:12.216Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-20",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-20"
+  },
+  {
+    "investigationId": "cld",
+    "psiId": "PSI-21",
+    "fileName": "PSI-21_metadata_PSI-97_ACME CLD Flame.zip",
+    "version": null,
+    "bytes": 16071,
+    "sha256": "97af8292ac89f48cdf426f40522a8addac92f80b61edf75514999f59c8686504",
+    "fetchedAt": "2026-11-14T10:35:53.283Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-21",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-21"
+  },
+  {
+    "investigationId": "efield",
+    "psiId": "PSI-22",
+    "fileName": "PSI-22_metadata_ACME E-FIELD Flames.zip",
+    "version": null,
+    "bytes": 15166,
+    "sha256": "af6f1a4473fce0677cf6861ad265d4040f8c3c674da21b277f354cdea68fcdbb",
+    "fetchedAt": "2026-11-14T10:34:07.195Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-22",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-22"
+  },
+  {
+    "investigationId": "sflame",
+    "psiId": "PSI-23",
+    "fileName": "PSI-23_metadata_PSI-99_ACME s-Flame.zip",
+    "bytes": 20061,
+    "sha256": "f27e04049fdabd83421e189b8ed12366adcb000723cf4e00cd9fa5f4d0d3ee2f",
+    "fetchedAt": "2026-11-14T10:18:28.811Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-23",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-23"
+  },
+  {
+    "investigationId": "bass2",
+    "psiId": "PSI-25",
+    "fileName": "PSI-25_metadata_PSI_metadata_PSI-101_BASS-II.zip",
+    "version": null,
+    "bytes": 13439,
+    "sha256": "629faf104a8ff0e8d335f2527c019e740380163ea7f74b8ad754ae71f7da2559",
+    "fetchedAt": "2026-11-14T10:29:17.535Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-25"
+  },
+  {
+    "investigationId": "bass",
+    "psiId": "PSI-26",
+    "fileName": "PSI-26_metadata_PSI-102_BASS.zip",
+    "version": null,
+    "bytes": 11647,
+    "sha256": "1167ee239db24e7d73508b2d472e9bab9382211b596312167a2a6d24b4bcfc59",
+    "fetchedAt": "2026-11-14T10:29:12.492Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-26"
+  },
+  {
+    "investigationId": "cfi",
+    "psiId": "PSI-39",
+    "fileName": "PSI-39_metadata_PSI-118_CFI.zip",
+    "version": null,
+    "bytes": 10237,
+    "sha256": "9fbb9b18160e36dcdd930eb0f19db1f764e7c9d44d804da4fe5c8a8fd936650f",
+    "fetchedAt": "2026-11-14T10:34:03.196Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-39",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-39"
+  },
+  {
+    "investigationId": "flex2",
+    "psiId": "PSI-68",
+    "fileName": "PSI-68_metadata_PSI-132_FLEX-2.zip",
+    "version": 1,
+    "bytes": 18724,
+    "sha256": "6d9ec2a877c0c6ea445319ff76d2026519ce69ab083eb5fafe16382fda2998c4",
+    "fetchedAt": "2026-11-14T10:33:17.956Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-68",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-68"
+  },
+  {
+    "investigationId": "flex",
+    "psiId": "PSI-69",
+    "fileName": "PSI-69_metadata_PSI-133_FLEX.zip",
+    "version": 1,
+    "bytes": 19658,
+    "sha256": "5c635ff40b4cddcc5cae4aa7a20bafeec19a85daa34fdc5cc3000e20b3fc1b1c",
+    "fetchedAt": "2026-11-14T10:28:57.015Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-69"
+  },
+  {
+    "investigationId": "saffire",
+    "psiId": "PSI-98",
+    "fileName": "PSI-98_metadata_PSI-166_SAFFIRE-I.zip",
+    "version": null,
+    "bytes": 10031,
+    "sha256": "ac398e9688f2b003fdbcdcc754d0d7703a006b6fb8b7a6afa598447bb5d72d0e",
+    "fetchedAt": "2026-11-14T10:29:19.709Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-98",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-98"
+  },
+  {
+    "investigationId": "saffire",
+    "psiId": "PSI-99",
+    "fileName": "PSI-99_metadata_PSI-167_SAFFIRE-II.zip",
+    "version": null,
+    "bytes": 10539,
+    "sha256": "eb9f705d758daa14658fdf8e289031e08badd62f8c4bedf7bb5bfe3ac7688cd2",
+    "fetchedAt": "2026-11-14T10:29:21.099Z",
+    "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-99",
+    "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-99"
+  }
+]

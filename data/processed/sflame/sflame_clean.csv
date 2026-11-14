@@ -1,0 +1,19 @@
+investigation,psi_id,hardware,gravity_regime,test_id,test_day_yyddd,test_date,day_of_year,test_round,round_diluent,atm_diluent,round_diluent_mismatch,o2_levels_pct,o2_min_pct,o2_max_pct,n_o2_levels,o2_is_approx,covers_o2_30pct,fuel_bottle,fuel_mix_id,fuel_class,fuel_list,n_fuels,fuel_h2_pct,fuel_ch4_pct,fuel_c2h4_pct,bottle_inert_gas,bottle_inert_pct,flames_ignited,typo_fixed
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,19254,19254,2019-09-11,254,1,N2,N2,False,21,21.0,21.0,1,True,False,50% C2H4 with N2,C2H4_50+N2_50,diluted,C2H4,1,0.0,0.0,50.0,N2,50.0,13,False
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,19256,19256,2019-09-13,256,1,N2,N2,False,21,21.0,21.0,1,True,False,50% C2H4 with N2,C2H4_50+N2_50,diluted,C2H4,1,0.0,0.0,50.0,N2,50.0,16,True
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,19304,19304,2019-10-31,304,1,N2,N2,False,21,21.0,21.0,1,True,False,45% CH4 with N2,CH4_45+N2_55,diluted,CH4,1,0.0,45.0,0.0,N2,55.0,9,True
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,19308,19308,2019-11-04,308,1,N2,N2,False,30,30.0,30.0,1,True,True,45% CH4 with N2,CH4_45+N2_55,diluted,CH4,1,0.0,45.0,0.0,N2,55.0,21,True
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,19352,19352,2019-12-18,352,1,N2,N2,False,21,21.0,21.0,1,True,False,100% H2,H2_100,neat,H2,1,100.0,0.0,0.0,none,0.0,10,False
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20006,20006,2020-01-06,6,1,N2,N2,False,21,21.0,21.0,1,True,False,44.4% H2 with CH4,H2_44.4+CH4_55.6,fuel_blend,H2;CH4,2,44.4,55.6,0.0,none,0.0,17,True
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20013,20013,2020-01-13,13,1,N2,N2,False,21,21.0,21.0,1,True,False,66.7% H2 with CH4,H2_66.7+CH4_33.3,fuel_blend,H2;CH4,2,66.7,33.3,0.0,none,0.0,22,True
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20024,20024,2020-01-24,24,1,N2,N2,False,21,21.0,21.0,1,True,False,100% H2,H2_100,neat,H2,1,100.0,0.0,0.0,none,0.0,16,True
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20029,20029,2020-01-29,29,1,N2,N2,False,21,21.0,21.0,1,True,False,50% C2H4 with N2,C2H4_50+N2_50,diluted,C2H4,1,0.0,0.0,50.0,N2,50.0,21,True
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20132,20132,2020-05-11,132,1,N2,He,True,21,21.0,21.0,1,True,False,"25% H2, 20% CH4, with He",H2_25+CH4_20+He_55,diluted_blend,H2;CH4,2,25.0,20.0,0.0,He,55.0,7,False
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20136,20136,2020-05-15,136,2,He,He,False,21,21.0,21.0,1,True,False,"20% H2, 25% CH4, with He",H2_20+CH4_25+He_55,diluted_blend,H2;CH4,2,20.0,25.0,0.0,He,55.0,11,False
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20142,20142,2020-05-21,142,2,He,He,False,30,30.0,30.0,1,True,True,"30% H2, 15% CH4, with He",H2_30+CH4_15+He_55,diluted_blend,H2;CH4,2,30.0,15.0,0.0,He,55.0,17,False
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20155,20155,2020-06-03,155,2,He,He,False,21;30,21.0,30.0,2,True,True,45% H2 with He,H2_45+He_55,diluted,H2,1,45.0,0.0,0.0,He,55.0,9,False
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20160,20160,2020-06-08,160,2,He,He,False,21;30,21.0,30.0,2,True,True,45% CH4 with He,CH4_45+He_55,diluted,CH4,1,0.0,45.0,0.0,He,55.0,12,False
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20164,20164,2020-06-12,164,2,He,He,False,30,30.0,30.0,1,True,True,20% C2H4 with He,C2H4_20+He_80,diluted,C2H4,1,0.0,0.0,20.0,He,80.0,11,False
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20170,20170,2020-06-18,170,2,He,He,False,21;30,21.0,30.0,2,True,True,25% C2H4 with He,C2H4_25+He_75,diluted,C2H4,1,0.0,0.0,25.0,He,75.0,20,False
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20176,20176,2020-06-24,176,2,He,He,False,21;30,21.0,30.0,2,True,True,30% C2H4 with He,C2H4_30+He_70,diluted,C2H4,1,0.0,0.0,30.0,He,70.0,23,False
+ACME s-Flame,PSI-23,ACME / CIR (ISS),microgravity,20190,20190,2020-07-08,190,2,He,He,False,21;30,21.0,30.0,2,True,True,35% H2 with He,H2_35+He_65,diluted,H2,1,35.0,0.0,0.0,He,65.0,21,False

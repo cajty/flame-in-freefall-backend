@@ -1,0 +1,5 @@
+# Dependencies are defined in pyproject.toml (PEP 621).
+# Supported setup:
+#   uv sync --extra dev
+# Or with pip:
+#   pip install -e ".[dev]"

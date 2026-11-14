@@ -1,0 +1,11 @@
+{
+  "investigationId": "samer",
+  "psiId": "PSI-101",
+  "fileName": "PSI-101_metadata_PSI-169_SAME-R.zip",
+  "version": 1,
+  "bytes": 6739,
+  "sha256": "a875484ee3394427a6d782256204c79441d611a9d465a76a0bd7a785639de876",
+  "fetchedAt": "2026-11-14T10:30:30.681Z",
+  "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+  "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-101"
+}

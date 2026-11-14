@@ -1,0 +1,110 @@
+material,test_id,test_label,test_no,test_suffix,is_aged_followup,parent_test_id,shared_test_number,row_order,date_raw,month,day,date_md,campaign_day,description_raw,description,temp_class,is_baseline,is_aging_run,is_sts_test,ptrak_off,is_repeat_or_reburn,inlet_velocity_cms,flow_regime,rt_r0,duration_s,primary_aging_s,primary_mixing_s,has_primary_params,net_aging_s,net_aging_min,aging_class,net_aging_not_reported,rt_r0_suspect,primary_aging_suspect
+Silicone,silicone_48,48,48,,False,,False,30,16-Jul,7,16,07-16,1,Low Temp,Low Temp,low,False,False,False,False,False,8.0,nominal_flow,1.304,60.0,11.0,8.0,True,62.0,1.03,fresh,False,False,False
+Lampwick,lampwick_49,49,49,,False,,False,52,19-Jul,7,19,07-19,4,B.L. High RT/R0,B.L. High RT/R0,high,True,False,False,False,False,8.0,nominal_flow,1.251,60.0,11.0,8.0,True,51.0,0.85,fresh,False,False,False
+Teflon,teflon_50,50,50,,False,,False,72,20-Jul,7,20,07-20,5,B.L. High RT/R0,B.L. High RT/R0,high,True,False,False,False,False,8.1,nominal_flow,1.452,60.0,11.0,8.0,True,33.0,0.55,fresh,False,False,False
+Kapton,kapton_51,51,51,,False,,False,1,21-Jul,7,21,07-21,6,B.L. new formula,B.L. new formula,baseline,True,False,False,False,False,8.1,nominal_flow,1.38,60.0,11.0,8.0,True,38.0,0.63,fresh,False,False,False
+Kapton,kapton_51a,51a,51,a,True,kapton_51,False,2,22-Jul,7,22,07-22,7,B.L. new formula,B.L. new formula,baseline,True,False,False,False,False,8.1,nominal_flow,1.38,60.0,,,False,261.0,4.35,aged,False,False,False
+Pyrell,pyrell_52,52,52,,False,,False,90,22-Jul,7,22,07-22,7,Baseline,Baseline,baseline,True,False,False,False,False,8.1,nominal_flow,1.22,60.0,11.0,8.0,True,,,,True,False,False
+Silicone,silicone_53,53,53,,False,,False,31,22-Jul,7,22,07-22,7,HighTemp,HighTemp,high,False,False,False,False,False,8.1,nominal_flow,1.35,60.0,1.0,8.0,True,52.0,0.87,fresh,False,False,True
+Lampwick,lampwick_54,54,54,,False,,False,53,29-Jul,7,29,07-29,14,Baseline,Baseline,baseline,True,False,False,False,False,8.1,nominal_flow,1.245,60.0,11.0,8.0,True,57.0,0.95,fresh,False,False,False
+Lampwick,lampwick_55,55,55,,False,,False,54,29-Jul,7,29,07-29,14,High RT/R0 test aging,High RT/R0 test aging,high,False,True,False,False,False,8.1,nominal_flow,1.245,60.0,11.0,8.0,True,47.0,0.78,fresh,False,False,False
+Lampwick,lampwick_55a,55a,55,a,True,lampwick_55,False,55,29-Jul,7,29,07-29,14,aged,aged,high,False,False,False,False,False,8.1,nominal_flow,1.245,,,,False,218.0,3.63,aged,False,False,False
+Teflon,teflon_56,56,56,,False,,False,73,29-Jul,7,29,07-29,14,Baseline,Baseline,baseline,True,False,False,False,False,8.1,nominal_flow,1.445,60.0,11.0,8.0,True,41.0,0.68,fresh,False,False,False
+Lampwick,lampwick_57,57,57,,False,,True,56,29-Jul,7,29,07-29,14,High RT/R0 reburn sample,High RT/R0 reburn sample,high,False,False,False,False,True,8.1,nominal_flow,1.253,60.0,11.0,8.0,True,,,,True,False,False
+Teflon,teflon_57,57,57,,False,,True,74,29-Jul,7,29,07-29,14,High RT/R0 reburn sample,High RT/R0 reburn sample,high,False,False,False,False,True,8.1,nominal_flow,1.253,60.0,11.0,8.0,True,,,,True,True,False
+Teflon,teflon_58,58,58,,False,,False,75,30-Jul,7,30,07-30,15,Baseline aging,Baseline aging,baseline,True,True,False,False,False,8.1,nominal_flow,1.445,60.0,11.0,8.0,True,34.0,0.57,fresh,False,False,False
+Teflon,teflon_58a,58a,58,a,True,teflon_58,False,76,30-Jul,7,30,07-30,15,aged,aged,baseline,False,False,False,False,False,8.1,nominal_flow,1.445,,,,False,805.0,13.42,aged,False,False,False
+Silicone,silicone_59,59,59,,False,,False,32,30-Jul,7,30,07-30,15,baseline aged,baseline aged,baseline,True,True,False,False,False,8.1,nominal_flow,1.327,60.0,11.0,8.0,True,24.0,0.4,fresh,False,False,False
+Silicone,silicone_59a,59a,59,a,True,silicone_59,False,33,30-Jul,7,30,07-30,15,aged,aged,baseline,False,False,False,False,False,8.1,nominal_flow,1.327,,,,False,856.0,14.27,aged,False,False,False
+Silicone,silicone_60,60,60,,False,,False,34,30-Jul,7,30,07-30,15,Htemp ageing,Htemp ageing,high,False,True,False,False,False,8.1,nominal_flow,1.35,60.0,11.0,8.0,True,49.0,0.82,fresh,False,False,False
+Silicone,silicone_60a,60a,60,a,True,silicone_60,False,35,30-Jul,7,30,07-30,15,aged,aged,high,False,False,False,False,False,8.1,nominal_flow,1.35,,,,False,856.0,14.27,aged,False,False,False
+Kapton,kapton_61,61,61,,False,,False,3,2-Aug,8,2,08-02,18,Baseline Aging,Baseline Aging,baseline,True,True,False,False,False,8.1,nominal_flow,1.38,60.0,11.0,8.0,True,38.0,0.63,fresh,False,False,False
+Kapton,kapton_61a,61a,61,a,True,kapton_61,False,4,2-Aug,8,2,08-02,18,aged,aged,baseline,False,False,False,False,False,8.1,nominal_flow,1.38,,,,False,807.0,13.45,aged,False,False,False
+Kapton,kapton_62,62,62,,False,,False,5,2-Aug,8,2,08-02,18,High Temp aging,High Temp aging,high,False,True,False,False,False,8.1,nominal_flow,1.48,60.0,11.0,8.0,True,39.0,0.65,fresh,False,False,False
+Kapton,kapton_62a,62a,62,a,True,kapton_62,False,6,2-Aug,8,2,08-02,18,aged,aged,high,False,False,False,False,False,8.1,nominal_flow,1.48,,,,False,808.0,13.47,aged,False,False,False
+Pyrell,pyrell_63,63,63,,False,,False,91,23-Aug,8,23,08-23,39,Baseline Aging,Baseline Aging,baseline,True,True,False,False,False,8.1,nominal_flow,1.22,60.0,11.0,8.0,True,56.0,0.93,fresh,False,False,False
+Pyrell,pyrell_63a,63a,63,a,True,pyrell_63,False,92,23-Aug,8,23,08-23,39,aged,aged,baseline,False,False,False,False,False,8.1,nominal_flow,1.22,,,,False,840.0,14.0,aged,False,False,False
+Pyrell,pyrell_64,64,64,,False,,False,93,23-Aug,8,23,08-23,39,High Temp aging,High Temp aging,high,False,True,False,False,False,8.1,nominal_flow,1.23,60.0,11.0,8.0,True,47.0,0.78,fresh,False,False,False
+Pyrell,pyrell_64a,64a,64,a,True,pyrell_64,False,94,23-Aug,8,23,08-23,39,aged,aged,high,False,False,False,False,False,8.1,nominal_flow,1.23,,,,False,842.0,14.03,aged,False,False,False
+Silicone,silicone_65,65,65,,False,,False,36,23-Aug,8,23,08-23,39,Baseline long aging,Baseline long aging,baseline,True,True,False,False,False,8.1,nominal_flow,1.327,60.0,11.0,8.0,True,50.0,0.83,fresh,False,False,False
+Silicone,silicone_65a,65a,65,a,True,silicone_65,False,37,23-Aug,8,23,08-23,39,aged,aged,baseline,False,False,False,False,False,8.1,nominal_flow,1.327,,,,False,1923.0,32.05,aged,False,False,False
+Silicone,silicone_66,66,66,,False,,False,38,23-Aug,8,23,08-23,39,High T aging,High T aging,high,False,True,False,False,False,8.1,nominal_flow,1.36,60.0,11.0,8.0,True,42.0,0.7,fresh,False,False,False
+Silicone,silicone_66a,66a,66,a,True,silicone_66,False,39,23-Aug,8,23,08-23,39,aged,aged,high,False,False,False,False,False,8.1,nominal_flow,1.36,,,,False,837.0,13.95,aged,False,False,False
+Silicone,silicone_67,67,67,,False,,False,40,24-Aug,8,24,08-24,40,High temp aged,High temp aged,high,False,True,False,False,False,8.1,nominal_flow,1.35,60.0,720.0,8.0,True,751.0,12.52,aged,False,False,False
+Lampwick,lampwick_68,68,68,,False,,False,57,24-Aug,8,24,08-24,40,High temp aged STS det,High temp aged STS det,high,False,True,True,False,False,8.1,nominal_flow,1.28,60.0,720.0,8.0,True,747.0,12.45,aged,False,False,False
+Teflon,teflon_69,69,69,,False,,False,77,24-Aug,8,24,08-24,40,High temp aged STS det,High temp aged STS det,high,False,True,True,False,False,8.1,nominal_flow,1.45,60.0,720.0,8.0,True,745.0,12.42,aged,False,False,False
+Kapton,kapton_70,70,70,,False,,False,7,24-Aug,8,24,08-24,40,High temp aged STS det,High temp aged STS det,high,False,True,True,False,False,8.1,nominal_flow,1.48,60.0,720.0,8.0,True,747.0,12.45,aged,False,False,False
+Pyrell,pyrell_71,71,71,,False,,False,95,24-Aug,8,24,08-24,40,High temp aged STS det,High temp aged STS det,high,False,True,True,False,False,8.1,nominal_flow,1.23,60.0,720.0,8.0,True,750.0,12.5,aged,False,False,False
+Silicone,silicone_72,72,72,,False,,False,41,25-Aug,8,25,08-25,41,Baseline STS det,Baseline STS det,baseline,True,False,True,False,False,8.1,nominal_flow,1.327,60.0,11.0,8.0,True,42.0,0.7,fresh,False,False,False
+Kapton,kapton_73,73,73,,False,,False,8,26-Aug,8,26,08-26,42,Baseline Aging,Baseline Aging,baseline,True,True,False,False,False,8.1,nominal_flow,1.38,60.0,11.0,8.0,True,33.0,0.55,fresh,False,False,False
+Kapton,kapton_73a,73a,73,a,True,kapton_73,False,9,26-Aug,8,26,08-26,42,aged,aged,baseline,False,False,False,False,False,8.1,nominal_flow,1.38,,,,False,560.0,9.33,aged,False,False,False
+Pyrell,pyrell_74,74,74,,False,,False,96,26-Aug,8,26,08-26,42,Baseline Aging,Baseline Aging,baseline,True,True,False,False,False,8.1,nominal_flow,1.22,60.0,11.0,8.0,True,48.0,0.8,fresh,False,False,False
+Pyrell,pyrell_74a,74a,74,a,True,pyrell_74,False,97,26-Aug,8,26,08-26,42,aged,aged,baseline,False,False,False,False,False,8.1,nominal_flow,1.22,,,,False,623.0,10.38,aged,False,False,False
+Kapton,kapton_75,75,75,,False,,False,10,26-Aug,8,26,08-26,42,Mid Temp aging (no Ptrak),Mid Temp aging (no Ptrak),mid,False,True,False,True,False,8.1,nominal_flow,1.43,60.0,11.0,8.0,True,32.0,0.53,fresh,False,False,False
+Kapton,kapton_75a,75a,75,a,True,kapton_75,False,11,26-Aug,8,26,08-26,42,aged,aged,mid,False,False,False,False,False,8.1,nominal_flow,1.43,,,,False,563.0,9.38,aged,False,False,False
+Pyrell,pyrell_76,76,76,,False,,False,98,26-Aug,8,26,08-26,42,High Temp aging,High Temp aging,high,False,True,False,False,False,8.1,nominal_flow,1.23,60.0,11.0,8.0,True,51.0,0.85,fresh,False,False,False
+Pyrell,pyrell_76a,76a,76,a,True,pyrell_76,False,99,26-Aug,8,26,08-26,42,aged,aged,high,False,False,False,False,False,8.1,nominal_flow,1.23,,,,False,625.0,10.42,aged,False,False,False
+Kapton,kapton_77,77,77,,False,,False,12,26-Aug,8,26,08-26,42,High Temp aging,High Temp aging,high,False,True,False,False,False,8.1,nominal_flow,1.48,60.0,11.0,8.0,True,31.0,0.52,fresh,False,False,False
+Kapton,kapton_77a,77a,77,a,True,kapton_77,False,13,26-Aug,8,26,08-26,42,aged,aged,high,False,False,False,False,False,8.1,nominal_flow,1.48,,,,False,559.0,9.32,aged,False,False,False
+Lampwick,lampwick_78,78,78,,False,,False,58,26-Aug,8,26,08-26,42,Baseline aging,Baseline aging,baseline,True,True,False,False,False,8.1,nominal_flow,1.245,60.0,11.0,8.0,True,37.0,0.62,fresh,False,False,False
+Lampwick,lampwick_78a,78a,78,a,True,lampwick_78,False,59,26-Aug,8,26,08-26,42,aged,aged,baseline,False,False,False,False,False,8.1,nominal_flow,1.245,,,,False,581.0,9.68,aged,False,False,False
+Teflon,teflon_79,79,79,,False,,False,78,26-Aug,8,26,08-26,42,Baseline aging,Baseline aging,baseline,True,True,False,False,False,8.1,nominal_flow,1.445,60.0,11.0,8.0,True,33.0,0.55,fresh,False,False,False
+Teflon,teflon_79a,79a,79,a,True,teflon_79,False,79,26-Aug,8,26,08-26,42,aged,aged,baseline,False,False,False,False,False,8.1,nominal_flow,1.445,,,,False,560.0,9.33,aged,False,False,False
+Lampwick,lampwick_80,80,80,,False,,False,60,26-Aug,8,26,08-26,42,High temp aging,High temp aging,high,False,True,False,False,False,8.1,nominal_flow,1.28,60.0,11.0,8.0,True,40.0,0.67,fresh,False,False,False
+Lampwick,lampwick_80a,80a,80,a,True,lampwick_80,False,61,26-Aug,8,26,08-26,42,aged,aged,high,False,False,False,False,False,8.1,nominal_flow,1.28,,,,False,580.0,9.67,aged,False,False,False
+Teflon,teflon_81,81,81,,False,,False,80,26-Aug,8,26,08-26,42,High temp aging,High temp aging,high,False,True,False,False,False,8.1,nominal_flow,1.45,60.0,11.0,8.0,True,30.0,0.5,fresh,False,False,False
+Lampwick,lampwick_82,82,82,,False,,False,62,26-Aug,8,26,08-26,42,Mid temp aging,Mid temp aging,mid,False,True,False,False,False,8.1,nominal_flow,1.265,60.0,11.0,8.0,True,39.0,0.65,fresh,False,False,False
+Teflon,teflon_83,83,83,,False,,False,82,26-Aug,8,26,08-26,42,Mid temp aging,Mid temp aging,mid,False,True,False,False,False,8.1,nominal_flow,1.448,60.0,11.0,8.0,True,30.0,0.5,fresh,False,False,False
+Teflon,teflon_81a,81a,81,a,True,teflon_81,False,81,27-Aug,8,27,08-27,43,aged,aged,high,False,False,False,False,False,8.1,nominal_flow,1.45,,,,False,559.0,9.32,aged,False,False,False
+Lampwick,lampwick_82a,82a,82,a,True,lampwick_82,False,63,27-Aug,8,27,08-27,43,aged,aged,mid,False,False,False,False,False,8.1,nominal_flow,1.265,,,,False,579.0,9.65,aged,False,False,False
+Teflon,teflon_83a,83a,83,a,True,teflon_83,False,83,27-Aug,8,27,08-27,43,aged,aged,mid,False,False,False,False,False,8.1,nominal_flow,1.448,,,,False,557.0,9.28,aged,False,False,False
+Pyrell,pyrell_84,84,84,,False,,False,100,30-Aug,8,30,08-30,46,Mid Temp aging retry,Mid Temp aging retry,mid,False,True,False,False,True,8.1,nominal_flow,1.225,60.0,11.0,8.0,True,53.0,0.88,fresh,False,False,False
+Pyrell,pyrell_84a,84a,84,a,True,pyrell_84,False,101,30-Aug,8,30,08-30,46,aged,aged,mid,False,False,False,False,False,8.1,nominal_flow,1.225,,,,False,632.0,10.53,aged,False,False,False
+Kapton,kapton_85,85,85,,False,,False,14,30-Aug,8,30,08-30,46,Mid Temp aging run. Repeat 75,Mid Temp aging run. Repeat 75,mid,False,True,False,False,True,8.1,nominal_flow,1.43,60.0,11.0,8.0,True,33.0,0.55,fresh,False,False,False
+Kapton,kapton_85a,85a,85,a,True,kapton_85,False,15,30-Aug,8,30,08-30,46,aged,aged,mid,False,False,False,False,False,8.1,nominal_flow,1.43,,,,False,563.0,9.38,aged,False,False,False
+Silicone,silicone_86,86,86,,False,,False,42,30-Aug,8,30,08-30,46,Mid temp aging,Mid temp aging,mid,False,True,False,False,False,8.1,nominal_flow,1.345,60.0,11.0,8.0,True,50.0,0.83,fresh,False,False,False
+Silicone,silicone_86a,86a,86,a,True,silicone_86,False,43,30-Aug,8,30,08-30,46,aged,aged,mid,False,False,False,False,False,8.1,nominal_flow,1.345,,,,False,628.0,10.47,aged,False,False,False
+Pyrell,pyrell_87,87,87,,False,,False,102,30-Aug,8,30,08-30,46,Baseline STS det,Baseline STS det,baseline,True,False,True,False,False,8.1,nominal_flow,1.22,60.0,11.0,8.0,True,45.0,0.75,fresh,False,False,False
+Lampwick,lampwick_88,88,88,,False,,False,64,30-Aug,8,30,08-30,46,Baseline STS det,Baseline STS det,baseline,True,False,True,False,False,8.1,nominal_flow,1.245,60.0,11.0,8.0,True,,,,True,False,False
+Teflon,teflon_89,89,89,,False,,False,84,30-Aug,8,30,08-30,46,Baseline STS det,Baseline STS det,baseline,True,False,True,False,False,8.1,nominal_flow,1.445,60.0,11.0,8.0,True,31.0,0.52,fresh,False,False,False
+Kapton,kapton_90,90,90,,False,,False,16,30-Aug,8,30,08-30,46,Mid Temp aging reburn 85,Mid Temp aging reburn 85,mid,False,True,False,False,True,8.1,nominal_flow,1.43,60.0,11.0,8.0,True,38.0,0.63,fresh,False,False,False
+Kapton,kapton_90a,90a,90,a,True,kapton_90,False,17,30-Aug,8,30,08-30,46,aged,aged,mid,False,False,False,False,False,8.1,nominal_flow,1.43,,,,False,569.0,9.48,aged,False,False,False
+Silicone,silicone_91,91,91,,False,,False,44,7-Sep,9,7,09-07,54,Baseline STS det,Baseline STS det,baseline,True,False,True,False,False,8.1,nominal_flow,1.327,60.0,11.0,8.0,True,46.0,0.77,fresh,False,False,False
+Kapton,kapton_92,92,92,,False,,False,18,7-Sep,9,7,09-07,54,Baseline STS det,Baseline STS det,baseline,True,False,True,False,False,8.1,nominal_flow,1.38,60.0,11.0,8.0,True,35.0,0.58,fresh,False,False,False
+Kapton,kapton_93,93,93,,False,,False,19,7-Sep,9,7,09-07,54,Mid Temp aging run 75 repeat,Mid Temp aging run 75 repeat,mid,False,True,False,False,True,8.1,nominal_flow,1.43,60.0,11.0,8.0,True,36.0,0.6,fresh,False,False,False
+Kapton,kapton_93a,93a,93,a,True,kapton_93,False,20,7-Sep,9,7,09-07,54,aged,aged,mid,False,False,False,False,False,8.1,nominal_flow,1.43,,,,False,568.0,9.47,aged,False,False,False
+Kapton,kapton_94,94,94,,False,,False,21,7-Sep,9,7,09-07,54,Mid Temp aging run mid high,Mid Temp aging run mid high,mid_high,False,True,False,False,False,8.1,nominal_flow,1.45,60.0,11.0,8.0,True,42.0,0.7,fresh,False,False,False
+Kapton,kapton_94a,94a,94,a,True,kapton_94,False,22,7-Sep,9,7,09-07,54,aged,aged,mid_high,False,False,False,False,False,8.1,nominal_flow,1.45,,,,False,567.0,9.45,aged,False,False,False
+Pyrell,pyrell_95,95,95,,False,,False,103,7-Sep,9,7,09-07,54,No flow run w/ aging,No flow run w/ aging,,False,True,False,False,False,0.0,no_flow,1.22,60.0,11.0,8.0,True,38.0,0.63,fresh,False,False,False
+Pyrell,pyrell_95a,95a,95,a,True,pyrell_95,False,104,7-Sep,9,7,09-07,54,aged,aged,,False,False,False,False,False,0.0,no_flow,1.22,,,,False,,,,True,False,False
+Lampwick,lampwick_96,96,96,,False,,False,65,7-Sep,9,7,09-07,54,No flow run w/aging,No flow run w/aging,,False,True,False,False,False,0.0,no_flow,1.245,60.0,11.0,8.0,True,34.0,0.57,fresh,False,False,False
+Lampwick,lampwick_96a,96a,96,a,True,lampwick_96,False,66,7-Sep,9,7,09-07,54,aged,aged,,False,False,False,False,False,0.0,no_flow,1.245,,,,False,582.0,9.7,aged,False,False,False
+Pyrell,pyrell_97,97,97,,False,,False,105,8-Sep,9,8,09-08,55,No flow run w/aging,No flow run w/aging,,False,True,False,False,False,0.0,no_flow,1.23,60.0,11.0,8.0,True,48.0,0.8,fresh,False,False,False
+Pyrell,pyrell_97a,97a,97,a,True,pyrell_97,False,106,8-Sep,9,8,09-08,55,aged,aged,,False,False,False,False,False,0.0,no_flow,1.23,,,,False,624.0,10.4,aged,False,False,False
+Lampwick,lampwick_98,98,98,,False,,False,67,8-Sep,9,8,09-08,55,No flow run w/aging,No flow run w/aging,,False,True,False,False,False,0.0,no_flow,1.28,60.0,11.0,8.0,True,37.0,0.62,fresh,False,False,False
+Lampwick,lampwick_98a,98a,98,a,True,lampwick_98,False,68,8-Sep,9,8,09-08,55,aged,aged,,False,False,False,False,False,0.0,no_flow,1.28,,,,False,585.0,9.75,aged,False,False,False
+Silicone,silicone_99,99,99,,False,,False,45,8-Sep,9,8,09-08,55,No flow run w/aging,No flow run w/aging,,False,True,False,False,False,0.0,no_flow,1.35,60.0,11.0,8.0,True,48.0,0.8,fresh,False,False,False
+Silicone,silicone_99a,99a,99,a,True,silicone_99,False,46,8-Sep,9,8,09-08,55,aged,aged,,False,False,False,False,False,0.0,no_flow,1.35,,,,False,627.0,10.45,aged,False,False,False
+Teflon,teflon_100,100,100,,False,,False,85,8-Sep,9,8,09-08,55,No flow run w/ aging,No flow run w/ aging,,False,True,False,False,False,0.0,no_flow,1.45,60.0,11.0,8.0,True,29.0,0.48,fresh,False,False,False
+Teflon,teflon_100a,100a,100,a,True,teflon_100,False,86,8-Sep,9,8,09-08,55,aged,aged,,False,False,False,False,False,0.0,no_flow,1.45,,,,False,560.0,9.33,aged,False,False,False
+Kapton,kapton_101,101,101,,False,,False,23,8-Sep,9,8,09-08,55,No flow run w/ aging,No flow run w/ aging,,False,True,False,False,False,0.0,no_flow,1.48,60.0,11.0,8.0,True,29.0,0.48,fresh,False,False,False
+Kapton,kapton_101a,101a,101,a,True,kapton_101,False,24,8-Sep,9,8,09-08,55,aged,aged,,False,False,False,False,False,0.0,no_flow,1.48,,,,False,561.0,9.35,aged,False,False,False
+Kapton,kapton_102,102,102,,False,,False,25,8-Sep,9,8,09-08,55,No flow run w/ aging,No flow run w/ aging,,False,True,False,False,False,0.0,no_flow,1.48,120.0,11.0,8.0,True,28.0,0.47,fresh,False,False,False
+Kapton,kapton_102a,102a,102,a,True,kapton_102,False,26,8-Sep,9,8,09-08,55,aged,aged,,False,False,False,False,False,0.0,no_flow,1.48,,,,False,563.0,9.38,aged,False,False,False
+Silicone,silicone_103,103,103,,False,,False,47,9-Sep,9,9,09-09,56,low flow run w/ aging,low flow run w/ aging,,False,True,False,False,False,1.0,low_flow,1.35,60.0,11.0,8.0,True,48.0,0.8,fresh,False,False,False
+Silicone,silicone_103a,103a,103,a,True,silicone_103,False,48,9-Sep,9,9,09-09,56,aged,aged,,False,False,False,False,False,1.0,low_flow,1.35,,,,False,619.0,10.32,aged,False,False,False
+Silicone,silicone_104,104,104,,False,,False,49,9-Sep,9,9,09-09,56,No flow run w/ aging,No flow run w/ aging,,False,True,False,False,False,0.0,no_flow,1.35,60.0,11.0,8.0,True,51.0,0.85,fresh,False,False,False
+Silicone,silicone_104a,104a,104,a,True,silicone_104,False,50,9-Sep,9,9,09-09,56,aged,aged,,False,False,False,False,False,0.0,no_flow,1.35,,,,False,636.0,10.6,aged,False,False,False
+Teflon,teflon_105,105,105,,False,,False,87,9-Sep,9,9,09-09,56,No flow run w/ aging,No flow run w/ aging,,False,True,False,False,False,0.0,no_flow,1.45,60.0,11.0,8.0,True,24.0,0.4,fresh,False,False,False
+Teflon,teflon_105a,105a,105,a,True,teflon_105,False,88,9-Sep,9,9,09-09,56,aged,aged,,False,False,False,False,False,0.0,no_flow,1.45,,,,False,559.0,9.32,aged,False,False,False
+Lampwick,lampwick_106,106,106,,False,,False,69,9-Sep,9,9,09-09,56,No flow run w/aging,No flow run w/aging,,False,True,False,False,False,0.0,no_flow,1.28,60.0,11.0,8.0,True,30.0,0.5,fresh,False,False,False
+Lampwick,lampwick_106a,106a,106,a,True,lampwick_106,False,70,9-Sep,9,9,09-09,56,aged,aged,,False,False,False,False,False,0.0,no_flow,1.28,,,,False,558.0,9.3,aged,False,False,False
+Pyrell,pyrell_107,107,107,,False,,False,107,9-Sep,9,9,09-09,56,Low flow run w/aging,Low flow run w/aging,,False,True,False,False,False,1.0,low_flow,1.23,60.0,11.0,8.0,True,32.0,0.53,fresh,False,False,False
+Pyrell,pyrell_107a,107a,107,a,True,pyrell_107,False,108,9-Sep,9,9,09-09,56,aged,aged,,False,False,False,False,False,1.0,low_flow,1.23,,,,False,559.0,9.32,aged,False,False,False
+Kapton,kapton_108,108,108,,False,,False,27,9-Sep,9,9,09-09,56,Low flow run w/aging,Low flow run w/aging,,False,True,False,False,False,1.0,low_flow,1.48,60.0,11.0,8.0,True,30.0,0.5,fresh,False,False,False
+Kapton,kapton_108a,108a,108,a,True,kapton_108,False,28,9-Sep,9,9,09-09,56,aged,aged,,False,False,False,False,False,1.0,low_flow,1.48,,,,False,560.0,9.33,aged,False,False,False
+Silicone,silicone_109,109,109,,False,,False,51,9-Sep,9,9,09-09,56,low flow run w STS,low flow run w STS,,False,False,True,False,False,2.0,low_flow,1.35,60.0,11.0,8.0,True,28.0,0.47,fresh,False,False,False
+Lampwick,lampwick_110,110,110,,False,,False,71,9-Sep,9,9,09-09,56,low flow run w/STS,low flow run w/STS,,False,False,True,False,False,2.0,low_flow,1.28,60.0,11.0,8.0,True,21.0,0.35,fresh,False,False,False
+Teflon,teflon_111,111,111,,False,,False,89,9-Sep,9,9,09-09,56,low flow run w/ STS,low flow run w/ STS,,False,False,True,False,False,2.0,low_flow,1.45,60.0,11.0,8.0,True,43.0,0.72,fresh,False,False,False
+Pyrell,pyrell_113,113,113,,False,,False,109,9-Sep,9,9,09-09,56,low flow run w STS,low flow run w STS,,False,False,True,False,False,2.0,low_flow,1.23,60.0,11.0,8.0,True,31.0,0.52,fresh,False,False,False
+Kapton,kapton_114,114,114,,False,,False,29,9-Sep,9,9,09-09,56,low flow run w STS no Ptrak,low flow run w STS no Ptrak,,False,False,True,True,False,2.0,low_flow,1.43,60.0,11.0,8.0,True,28.0,0.47,fresh,False,False,False

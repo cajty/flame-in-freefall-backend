@@ -1,0 +1,5 @@
+field,definition
+Test Day,includes the year as the first two digits followed by the 3-digit day of the year (where any late-hour transition to the next day is neglected).
+MFC,identifies the maximum flow rate of the specified ACME Mass Flow Controller (MFC) in slpm on a nitrogen basis.
+Fuel conc.,"(as diluted with nitrogen on a volume basis) was varied between tests and sometimes during tests where the listing here accounts for both. However, it does not account for extinction that sometimes occurred before the flame fully reached the lowest concentration."
+Flames ignited,the number ignited on that test day.

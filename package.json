@@ -1,0 +1,13 @@
+{
+  "name": "flame-in-freefall-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Data pipeline and backend foundation for Flame Atlas, built on NASA PSI microgravity combustion data",
+  "scripts": {
+    "data": "node scripts/build-data.mjs",
+    "metadata": "node scripts/fetch-psi-metadata.mjs",
+    "metadata:extract": "uv run python scripts/extract_psi_metadata.py",
+    "test": "node --test tests/*.test.js"
+  }
+}

@@ -1,0 +1,123 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name
+Term Source File
+Term Source Version
+Term Source Description
+INVESTIGATION
+Investigation Identifier	
+Investigation Title	
+Investigation Description	
+Investigation Submission Date	
+Investigation Public Release Date	
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	PSI-101
+Study Title	Smoke Aerosol Measurement Experiment-Reflight
+Study Description	
+Study Submission Date	18-Sep-2024
+Study Public Release Date	18-Sep-2024
+Study File Name	s_PSI-101.txt
+Comment[Acknowledgments]	
+Comment[Approach]	Flight Data is from the rack instrumentation during testing.  This is identified by a GMT date number based on day of the calendar year during which the test was run, material used and a unique run number.Ops images were taken within ISS during operations and include astronaut and hardware images.Flight TEM data is images of soot samples collected on thin film TEM grids.  These are in folders separated by material and subfolders identified with a run number corresponding to those used in the flight data and whether the sample has been aged or not.  Each .tif specifies the grid coordinate of the image and magnification.Videos show the resistive heater coil on the far right and the smoke (if visible) trailing to the left.  <br>
+Comment[DOI]	10.60555/2np7-jv14
+Comment[Data Source Accession]	
+Comment[Data Source Link]	
+Comment[Experiment Hardware]	
+Comment[Experiment Hardware Link]	
+Comment[Flight Platform]	ISS
+Comment[Funding]	
+Comment[Hypothesis]	
+Comment[Identifiers]	
+Comment[Investigation Acronym]	SAME-R
+Comment[Investigation End Date]	
+Comment[Investigation Start Date]	
+Comment[Managing NASA Center]	Glenn Research Center (GRC)
+Comment[Mission End]	
+Comment[Mission Link]	
+Comment[Mission Name]	
+Comment[Mission Start]	
+Comment[Objective]	
+Comment[Project Identifier]	
+Comment[Project Link]	
+Comment[Project Title]	
+Comment[Project Type]	Microgravity Investigation
+Comment[Proposal Title]	
+Comment[Research Area]	Combustion Science
+Comment[Research Impacts]	
+Comment[Space Program]	National Aeronautics and Space Administration (NASA)
+Comment[Study Grant Number]	
+Comment[SubResearch Area]	
+STUDY DESIGN DESCRIPTORS
+Study Design Type
+Study Design Type Term Accession Number
+Study Design Type Term Source REF
+STUDY PUBLICATIONS
+Study PubMed ID						
+Study Publication DOI						
+Study Publication Author List	ME Meyer, DL Urban, GA Ruff, GW Mulholland, ZG Yuan, V Bryg, TG Cleary, J Yang	D Urban, G Ruff, G Mulholland, M Meyer, ZG Yuan, T Cleary, J Yang, P Greenberg, V Bryg	D Urban, G Ruff, P Greenberg, G Mulholland, T Cleary, J Yang, ZG Yuan, V Bryg, M Meyer	D Urban, G Ruff, P Greenberg, G Mulholland, T Cleary, J Yang, Z Yuan, V Bryg, M Meyer	D Urban, G Ruff, M Meyer, T Cleary, J Yang, G Mulholland, ZG Yuan, V Bryg	DL Urban, D Griffin, G Ruff, T Cleary, J Yang, G Mulholland, ZG Yuan
+Study Publication Title	Smoke Aerosol Measurement Experiment-2: Comparison of Flight Experiment Results with Ground Test Results	Evaluation of Low-Gravity Smoke Particulate for Spacecraft Fire Detection	Particle Morphology and Size Results from the Smoke Aerosol Measurement Experiment-2	Particle Morphology Results from the Smoke Aerosol Measurement Experiment-Reflight	Preliminary Results from the Smoke Aerosol Measurement Experiment - Reflight	Detection of Smoke from Microgravity Fires
+Study Publication Status	published	published	published	published	published	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF						
+Comment[Study Publication Link]	http://arc.aiaa.org/doi/abs/10.2514/6.2013-3433		http://ntrs.nasa.gov/search.jsp?R=20130000422	https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20150010172.pdf	http://adsabs.harvard.edu/abs/2012ESASP.699E..82U	
+STUDY FACTORS
+Study Factor Name
+Study Factor Type
+Study Factor Type Term Accession Number
+Study Factor Type Term Source REF
+STUDY ASSAYS
+Study Assay File Name
+Study Assay Measurement Type
+Study Assay Measurement Type Term Accession Number
+Study Assay Measurement Type Term Source REF
+Study Assay Technology Type
+Study Assay Technology Type Term Accession Number
+Study Assay Technology Type Term Source REF
+Study Assay Technology Platform
+STUDY PROTOCOLS
+Study Protocol Name
+Study Protocol Type
+Study Protocol Type Term Accession Number
+Study Protocol Type Term Source REF
+Study Protocol Description
+Study Protocol URI
+Study Protocol Version
+Study Protocol Parameters Name
+Study Protocol Parameters Name Term Accession Number
+Study Protocol Parameters Name Term Source REF
+Study Protocol Components Name
+Study Protocol Components Type
+Study Protocol Components Type Term Accession Number
+Study Protocol Components Type Term Source REF
+STUDY CONTACTS
+Study Person Last Name	Mulholland	Cleary	CYang	Yuan	Urban	Claire
+Study Person First Name	George W.	Thomas G.	Jiann	Zeng-guang	David L.	Fortenberry
+Study Person Mid Initials						
+Study Person Email	georgewm@umd.edu; george.mulholland@nist.gov	thomas.cleary@nist.gov			durban@sas.upenn.edu; david.urban@nasa.gov	claire.fortenberry@nasa.gov
+Study Person Phone						
+Study Person Fax						
+Study Person Address						
+Study Person Affiliation						GRC
+Study Person Roles	Principal Investigator (PI)	Co-Investigator (Co-I)	Co-Investigator (Co-I)	Co-Investigator (Co-I)	Co-Investigator (Co-I)	Project Scientist
+Study Person Roles Term Accession Number	https://www.psi.nasa.gov	https://www.psi.nasa.gov	https://www.psi.nasa.gov	https://www.psi.nasa.gov	https://www.psi.nasa.gov	https://www.psi.nasa.gov
+Study Person Roles Term Source REF						
+Comment[Study Person REF]						

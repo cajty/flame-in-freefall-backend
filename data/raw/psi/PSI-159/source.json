@@ -1,0 +1,11 @@
+{
+  "investigationId": "cfig",
+  "psiId": "PSI-159",
+  "fileName": "PSI-159_metadata_PSI-159-ISA.zip",
+  "version": null,
+  "bytes": 8404,
+  "sha256": "0ef60d1ee8d4d53bbe58139d56fa99e9500ca48dd7913b25ac85dc853d6710ab",
+  "fetchedAt": "2026-11-14T10:30:08.644Z",
+  "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-159",
+  "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-159"
+}

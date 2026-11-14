@@ -1,0 +1,11 @@
+{
+  "investigationId": "flex",
+  "psiId": "PSI-69",
+  "fileName": "PSI-69_metadata_PSI-133_FLEX.zip",
+  "version": 1,
+  "bytes": 19658,
+  "sha256": "5c635ff40b4cddcc5cae4aa7a20bafeec19a85daa34fdc5cc3000e20b3fc1b1c",
+  "fetchedAt": "2026-11-14T10:28:57.015Z",
+  "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69",
+  "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-69"
+}

@@ -1,0 +1,11 @@
+{
+  "investigationId": "flamedesign",
+  "psiId": "PSI-10",
+  "fileName": "PSI-10_metadata_PSI-10-ISA.zip",
+  "version": null,
+  "bytes": 17047,
+  "sha256": "611b404c92125223ae099f086727ba1f5f031abf22d31eaa58d066a825f87b56",
+  "fetchedAt": "2026-11-14T10:36:33.143Z",
+  "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-10",
+  "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-10"
+}

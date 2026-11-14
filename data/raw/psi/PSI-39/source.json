@@ -1,0 +1,11 @@
+{
+  "investigationId": "cfi",
+  "psiId": "PSI-39",
+  "fileName": "PSI-39_metadata_PSI-118_CFI.zip",
+  "version": null,
+  "bytes": 10237,
+  "sha256": "9fbb9b18160e36dcdd930eb0f19db1f764e7c9d44d804da4fe5c8a8fd936650f",
+  "fetchedAt": "2026-11-14T10:34:03.196Z",
+  "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-39",
+  "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-39"
+}

@@ -1,0 +1,123 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name
+Term Source File
+Term Source Version
+Term Source Description
+INVESTIGATION
+Investigation Identifier	
+Investigation Title	
+Investigation Description	
+Investigation Submission Date	
+Investigation Public Release Date	
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	PSI-69
+Study Title	Flame Extinguishment Experiment
+Study Description	
+Study Submission Date	31-Jul-2016
+Study Public Release Date	31-Jul-2016
+Study File Name	s_PSI-69.txt
+Comment[Acknowledgments]	
+Comment[Approach]	The combustion and extinction characteristics of liquid fuel droplets in microgravity are determined by the complex interaction of fuel vapor and oxidizer transport, fuel vaporization, conductive, convective and radiative heat loss and chemical kinetics. All of these phenomena are critical in real fire scenarios and thus in understanding the complex issues involved in the design of an effective fire suppression system.The simplicity of the droplet geometry lends itself to detailed theoretical and numerical studies. By comparing the results of the experiments to these detailed treatments it is possible to develop validated chemical kinetic and heat and mass transport mechanisms for liquid fuels. From these fundamental mechanisms it becomes possible to develop validated, predictive, reduced-scale mechanisms that are appropriate for modeling real fire suppression scenarios aboard future spacecraft.The Multi-User Droplet Combustion Apparatus - Flame Extinguishment Experiment (MDCA-FLEX) investigation will yield both a quantitative measure of the effectiveness of various suppression agents and more importantly a set of predictive tools that will allow the effective, efficient design of future spacecraft fire suppression systems.
+Comment[DOI]	10.60555/mbq8-0451
+Comment[Data Source Accession]	
+Comment[Data Source Link]	
+Comment[Experiment Hardware]	
+Comment[Experiment Hardware Link]	
+Comment[Flight Platform]	ISS
+Comment[Funding]	
+Comment[Hypothesis]	
+Comment[Identifiers]	
+Comment[Investigation Acronym]	FLEX
+Comment[Investigation End Date]	31-Jul-2016
+Comment[Investigation Start Date]	01-Aug-2007
+Comment[Managing NASA Center]	
+Comment[Mission End]	
+Comment[Mission Link]	
+Comment[Mission Name]	
+Comment[Mission Start]	
+Comment[Objective]	FLEX will assess the effectiveness of fire suppressants in microgravity and quantify the effect of different possible crew exploration atmospheres on fire suppression. The goal of this research is to provide definition and direction for large scale fire suppression tests and selection of the fire suppressant for next generation crew exploration vehicles.
+Comment[Project Identifier]	
+Comment[Project Link]	
+Comment[Project Title]	
+Comment[Project Type]	Microgravity Investigation
+Comment[Proposal Title]	
+Comment[Research Area]	Combustion Science
+Comment[Research Impacts]	FLEX will help us develop more efficient energy production and propulsion systems on Earth and in space. FLEX will help in the understanding to deal better with combustion generated pollution, and address fire hazards associated with using liquid combustibles on Earth.
+Comment[Space Program]	National Aeronautics and Space Administration (NASA)
+Comment[Study Grant Number]	
+Comment[SubResearch Area]	
+STUDY DESIGN DESCRIPTORS
+Study Design Type
+Study Design Type Term Accession Number
+Study Design Type Term Source REF
+STUDY PUBLICATIONS
+Study PubMed ID																																																								
+Study Publication DOI																																																								
+Study Publication Author List	V Nayagam, DL Dietrich, MC Hicks, FA Williams	V Nayagam, DL Dietrich, PV Ferkul, MC Hicks, FA Williams		TI Farouk, FL Dryer	T Farouk, FL Dryer	JM Hickman, DL Dietrich, MC Hicks, V Nayagam, D Stocker	MC Hicks, DL Dietrich, V Nayagam, FA Williams	DL Dietrich, PV Ferkul, VM Bryg, V Nayagam, MC Hicks, FA Williams, FL Dryer, MY Choi, BD Shaw, CT Avedisian	T Farouk, FL Dryer	YC Liu, KN Trenou, J Rah, MC Hicks, CT Avedisian	V Nayagam	V Nayagam, DL Dietrich, MC Hicks, FA Williams	YC Liu, CT Avedisian, KN Trenou, JK Rah, MC Hicks	TI Farouk, FL Dryer	J Urzay, V Nayagam, FA Williams	V Nayagam, FA Williams	V Nayagam, DL Dietrich, FA Williams	K Seshadri, N Peters, FA Williams, V Nayagam, G Paczko	FE Alam, YC Liu, CT Avedisian, FL Dryer, TI Farouk	DL Dietrich, V Nayagam, MC Hicks, PV Ferkul, FL Dryer, T Farouk, BD Shaw, HK Suh, MY Choi, YC Liu, CT Avedisian, FA Williams	N Ghata, BD Shaw	BD Shaw, CL Vang	BD Shaw	Y Xu, CT Avedisian	N Ghata, BD Shaw	YC Liu, Y Xu, CT Avedisian, MC Hicks	V Nayagam, DL Dietrich, MC Hicks, FA Williams	JC Prince, FA Williams, GE Ovando	G Paczko, N Peters, K Seshadri, FA Williams	I Aharon, VK Tam, BD Shaw	TI Farouk, YC Liu, AJ Savas, CT Avedisian, FL Dryer	YC Liu, T Farouk, AJ Savas, FL Dryer, CT Avedisian	YC Liu, AJ Savas, CT Avedisian	YC Liu, AJ Savas, CT Avedisian	CL Dembia, YC Liu, CT Avedisian	TI Farouk, FL Dryer	YC Liu, CT Avedisian	YC Liu, AJ Savas, CT Avedisian	V Nayagam, DL Dietrich, PV Ferkul, MC Hicks, FA Williams	BD Shaw, DF Wang	D Shringi, HA Dwyer, BD Shaw	D Shringi, HA Dwyer, BD Shaw	F Yu, BD Shaw	BD Shaw, J Wei	T Farouk, FL Dryer	BD Shaw, JB Wei	J Dzik, V Nayagam, FA Williams	Y Jin, BD Shaw	J Yan, BD Shaw	JH Bae, CT Avedisian	JS Xiao, JB Wei, BD Shaw, Z Peng	DS Shringi, BD Shaw, HA Dwyer	JB Wei, BD Shaw	BD Shaw, JB Wei	CT Avedisian	DL Dietrich, VM Bryg, PV Ferkul, FA Williams, FL Dryer, BD Shaw, MY Choi, MV Nayagam, MC Hicks, CT Avedisian
+Study Publication Title	Methanol Droplet Combustion in Oxygen-Inert Environments in Microgravity	Methanol droplet extinction in carbon-dioxide-enriched environments in microgravity	Methanol Droplet Extinction in Oxygen&#x2F;Carbon-dioxide&#x2F;Nitrogen Mixtures in Microgravity: Results from the International Space Station Experiments	A Numerical Study on the Extinction Characteristics of Droplet Combustion Under Microgravity Conditions	Tethered methanol droplet combustion in carbon-dioxide enriched environment under microgravity conditions	FLEX: A Decisive Step Forward in NASA&#x27;s Combustion Research Program	Dynamics of Water Absorption and Evaporation During Methanol Droplet Combustion in Microgravity	Detailed results from the flame extinguishment experiment (FLEX)	Isolated Alkane Droplet Combustion in Microgravity: Cool Flames	Effect of Varying the Initial Diameter of n-Octane and n-Decane Droplets over a Wide Range on the Spherically Symmetric Combustion Process: International Space Station and Ground-based Experiments	Activation energy asymptotics for methanol droplet extinction in microgravity	Cool-flame Extinction During N-Alkane Droplet Combustion in Microgravity	Experimental Study of Initial Diameter Effects on Convection-free Droplet Combustion in the Standard Atmosphere for n-Heptane, n-Octane, and n-Decane: International Space Station and Ground-based Experiments	Isolated n-heptane droplet combustion in microgravity: &quot;Cool Flames&quot; - Two-stage combustion	Theory of the propagation dynamics of spiral edges of diffusion flames in von Kármán swirling flows	Analysis of the melt phase of a rotating polymer disc supporting a diffusion flame	Partial-Burning Regime for Quasi-Steady Droplet Combustion Supported by Cool Flames	Asymptotic analysis of quasi-steady n-heptane droplet combustion supported by cool-flame chemistry	n-Butanol droplet combustion: Numerical modeling and reduced gravity experiments	Droplet Combustion Experiments Aboard the International Space Station	Computational modeling of the effects of support fibers on evaporation of fiber-supported droplets in reduced gravity	Oxygen Lewis Number Effects on Reduced Gravity Combustion of Methanol and n-Heptane Droplets	ISS Droplet Combustion Experiments - Uncertainties in Droplet Sizes and Burning Rates	Combustion of n-Butanol, Gasoline, and n-Butanol&#x2F;Gasoline Mixture Droplets	Computational Modeling of Unsupported and Fiber-Supported n-Heptane Droplet Combustion in Reduced Gravity: A Study of Fiber Effects	The effect of support fibers on micro-convection in droplet combustion experiments	Cool-flame extinction during n-alkane droplet combustion in microgravity	A short mechanism for the low-temperature ignition of n-heptane at high pressures	The role of cool-flame chemistry in quasi-steady combustion and extinction of n-heptane droplets	Combustion of Submillimeter Heptane&#x2F;Methanol and Heptane&#x2F;Ethanol Droplets in Reduced Gravity	Sub-millimeter sized methyl butanoate droplet combustion: Microgravity experiments and detailed numerical modeling	On the spherically symmetrical combustion of methyl decanoate droplets and comparisons with detailed numerical modeling	The spherically symmetric droplet burning characteristics of Jet-A and biofuels derived from camelina and tallow	Spherically symmetric droplet combustion of three and four component miscible mixtures as surrogates for Jet-A	Automated Data Analysis for Consecutive Images From Droplet Combustion Experiments	On the extinction characteristics of alcohol droplet combustion under microgravity conditions - A numerical study	A comparison of the spherical flame characteristics of sub-millimeter droplets of binary mixtures of n-heptane&#x2F;iso-octane and n-heptane&#x2F;toluene with a commercial unleaded gasoline	Comparison of the Burning Characteristics of Indolene and Commercial Grade Gasoline Droplets without Convection	Can cool flames support quasi-steady alkane droplet burning?	Experiments on Submillimeter Free Droplet Flame Extinction	Influences of support fibers on vaporizing fuel droplets	Numerical studies of flows over liquid droplets on cylindrical fibers	Interpretation of Backlit Droplet Images from ISS Droplet Combustion Experiments	Combustion of Methanol Droplets in Air-Diluent Environments with Reduced and Normal Gravity	Microgravity droplet combustion: effect of tethering fiber on burning rate and flame structure	Influence of Gravity and Ambient Pressure on Combustion and Flammability of n-Heptane and 1-Propanol Droplets in Air-Diluent Environments	Ignition and combustion of n-heptane droplets in carbon dioxide enriched environments	Computational modeling of n-heptane droplet combustion in air-diluent environments under reduced-gravity	Numerical Simulation of Unsteady Flows and Shape Oscillations in Liquid Droplets Induced by Deployment Needle Retraction	Nonane droplet combustion with and without buoyant convection: Flame structure, burning rate and extinction in air and helium	Temperature and fiber optic spectroscopy composition measurement of heated propanol-acetone droplets	Laser-induced fluorescence imaging of acetone inside evaporating and burning fuel droplets	Reduced Gravity Combustion of Propanol Droplets in Oxygen-Inert Environments	Propanol Droplet Flammability and Combustion in Air-Diluent Environments Under Normal and Reduced Gravity	Developing Surrogates for Liquid Transportation Fuels: The Role of Spherically Symmetric Droplet Combustion	Detailed results from the flame extinugishment experiment (FLEX) - March 2009 to December 2011
+Study Publication Status	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF																																																								
+Comment[Study Publication Link]	http://ntrs.nasa.gov/search.jsp?R=20130014061			http://arc.aiaa.org/doi/abs/10.2514/6.2012-1252	http://www.sciencedirect.com/science/article/pii/S0010218011001945		https://ntrs.nasa.gov/search.jsp?R=20130010979				http://www.sciencedirect.com/science/article/pii/S0010218013001867		http://arc.aiaa.org/doi/abs/10.2514/6.2014-1019	http://www.sciencedirect.com/science/article/pii/S001021801300343X	https://www.sciencedirect.com/science/article/abs/pii/S0010218010002415?via%3Dihub	http://dx.doi.org/10.1017/jfm.2011.349	http://dx.doi.org/10.2514/1.J054437	http://dx.doi.org/10.1080/13647830.2016.1248494	http://www.sciencedirect.com/science/article/pii/S1540748914002016	http://link.springer.com/article/10.1007%2Fs12217-014-9372-2	http://www.sciencedirect.com/science/article/pii/S0017931014003925	http://www.tandfonline.com/doi/full/10.1080/00102202.2015.1072176	http://link.springer.com/article/10.1007%2Fs12217-014-9377-x	http://pubs.acs.org/doi/abs/10.1021/acs.energyfuels.5b00158	http://www.tandfonline.com/doi/abs/10.1080/00102202.2014.971950	http://www.sciencedirect.com/science/article/pii/S1540748914003320	http://www.sciencedirect.com/science/article/pii/S0010218015000152	http://www.sciencedirect.com/science/article/pii/S0016236114008412	http://www.tandfonline.com/doi/abs/10.1080/13647830.2014.934296		http://www.sciencedirect.com/science/article/pii/S1540748912003665	http://www.sciencedirect.com/science/article/pii/S0010218012003471	http://www.sciencedirect.com/science/article/pii/S0016236113001130	http://www.sciencedirect.com/science/article/pii/S1540748912000661	https://www.ias-iss.org/ojs/IAS/article/view/926	http://www.sciencedirect.com/science/article/pii/S0010218012001241	http://www.sciencedirect.com/science/article/pii/S0010218011002641	http://pubs.acs.org/doi/abs/10.1021/ef3007849	http://www.sciencedirect.com/science/article/pii/S0010218012002131	http://www.tandfonline.com/doi/abs/10.1080/00102202.2012.759946	http://www.sciencedirect.com/science/article/pii/S0045793013000595	http://www.sciencedirect.com/science/article/pii/S004579301300073X	https://www.researchgate.net/publication/290697881_Interpretation_of_backlit_droplet_images_from_iss_droplet_combustion_experiments	http://www.hindawi.com/journals/jc/2012/587987/	http://www.tandfonline.com/doi/abs/10.1080/13647830.2010.547601	http://www.tandfonline.com/doi/abs/10.1080/00102202.2010.498798	http://www.sciencedirect.com/science/article/pii/S0735193309002516	http://www.sciencedirect.com/science/article/pii/S0017931010004503	http://link.springer.com/article/10.1007%2Fs12217-008-9096-2	http://www.sciencedirect.com/science/article/pii/S1540748908003362	http://www.sciencedirect.com/science/article/pii/S0143816609001195	http://www.sciencedirect.com/science/article/pii/S0143816608001838	http://www.tandfonline.com/doi/abs/10.1080/00102200903190851	http://www.tandfonline.com/doi/abs/10.1080/00102200601057394	http://link.springer.com/chapter/10.1007%2F978-81-322-2211-8_16	https://ntrs.nasa.gov/citations/20150023456
+STUDY FACTORS
+Study Factor Name
+Study Factor Type
+Study Factor Type Term Accession Number
+Study Factor Type Term Source REF
+STUDY ASSAYS
+Study Assay File Name
+Study Assay Measurement Type
+Study Assay Measurement Type Term Accession Number
+Study Assay Measurement Type Term Source REF
+Study Assay Technology Type
+Study Assay Technology Type Term Accession Number
+Study Assay Technology Type Term Source REF
+Study Assay Technology Platform
+STUDY PROTOCOLS
+Study Protocol Name
+Study Protocol Type
+Study Protocol Type Term Accession Number
+Study Protocol Type Term Source REF
+Study Protocol Description
+Study Protocol URI
+Study Protocol Version
+Study Protocol Parameters Name
+Study Protocol Parameters Name Term Accession Number
+Study Protocol Parameters Name Term Source REF
+Study Protocol Components Name
+Study Protocol Components Type
+Study Protocol Components Type Term Accession Number
+Study Protocol Components Type Term Source REF
+STUDY CONTACTS
+Study Person Last Name	Dryer	Shaw	Choi	Vedha	Hicks	ArthurWilliams
+Study Person First Name	Frederick L.	Benjamin D.	Mun Y.	Nayagam,	Michael C	Forman
+Study Person Mid Initials						
+Study Person Email	fldryer@princeton.edu	bdshaw@ucdavis.edu	mun.choi@uconn.edu	vedha.nayagam-1@nasa.gov	mhicks@nasa.gov	fwilliams@ucsd.edu; faw@ucsd.edu
+Study Person Phone						
+Study Person Fax						
+Study Person Address						
+Study Person Affiliation						
+Study Person Roles	Principal Investigator (PI)	Co-Investigator (Co-I)	Co-Investigator (Co-I)	Co-Investigator (Co-I)	Co-Investigator (Co-I)	Co-Investigator (Co-I)
+Study Person Roles Term Accession Number	https://www.psi.nasa.gov	https://www.psi.nasa.gov	https://www.psi.nasa.gov	https://www.psi.nasa.gov	https://www.psi.nasa.gov	https://www.psi.nasa.gov
+Study Person Roles Term Source REF						
+Comment[Study Person REF]						

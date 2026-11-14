@@ -1,0 +1,30 @@
+{
+  "pillars": {
+    "prevention": {
+      "name": "Prevention",
+      "what": "Control ignition sources and choose materials. That depends on knowing flammability limits.",
+      "equip": "Material selection and ignition-source control"
+    },
+    "detection": {
+      "name": "Detection",
+      "what": "Spot smoke and aerosols early. SAME and SAME-R tested detection in microgravity.",
+      "equip": "Smoke and aerosol detectors"
+    },
+    "suppression": {
+      "name": "Suppression",
+      "what": "Put the fire out. FLEX diluted the chamber atmosphere with CO₂ and helium, both of which suppress fire.",
+      "equip": "Extinguishing systems and atmosphere dilution"
+    },
+    "fundamentals": {
+      "name": "Modeling foundations",
+      "what": "Flame physics and gaseous-fuel studies that feed predictive models of flammability.",
+      "equip": "Predictive flammability and fire-scenario models"
+    }
+  },
+  "pillarOrder": ["prevention", "detection", "suppression", "fundamentals"],
+  "phases": {
+    "solid": { "label": "Solid", "c": "var(--solid)" },
+    "liquid": { "label": "Liquid", "c": "var(--liquid)" },
+    "gas": { "label": "Gas", "c": "var(--gas)" }
+  }
+}

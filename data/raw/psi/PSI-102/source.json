@@ -1,0 +1,11 @@
+{
+  "investigationId": "same",
+  "psiId": "PSI-102",
+  "fileName": "PSI-102_metadata_PSI-170_SAME.zip",
+  "version": null,
+  "bytes": 13127,
+  "sha256": "809127b7c6578263dc829d8ef8b15fa98fd1626dcf9c9d44d832a48974e146c6",
+  "fetchedAt": "2026-11-14T10:30:14.398Z",
+  "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-102",
+  "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-102"
+}

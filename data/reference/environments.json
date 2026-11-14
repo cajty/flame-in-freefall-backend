@@ -1,0 +1,50 @@
+[
+  {
+    "id": "iss",
+    "name": "Spacecraft & stations",
+    "short": "Spacecraft",
+    "gravity": "microgravity",
+    "o2": [21, 25],
+    "psi": "~14.7 psi",
+    "src": "assumed near Earth air",
+    "color": "#5CC8FF",
+    "glow": "rgba(92,200,255,.45)",
+    "blurb": "Crewed vehicles and orbiting stations. The atmosphere is assumed to be close to Earth air."
+  },
+  {
+    "id": "moon",
+    "name": "Lunar base",
+    "short": "Lunar base",
+    "gravity": "partial",
+    "o2": [30, 40],
+    "psi": "≤ 10.2 psi",
+    "src": "30%+ expected, upper end assumed",
+    "color": "#C9D2FF",
+    "glow": "rgba(201,210,255,.4)",
+    "blurb": "Expected air of 30% O₂ or more at 10.2 psi or less. That is over 40% more oxygen than Earth air, so materials burn much more readily."
+  },
+  {
+    "id": "mars",
+    "name": "Mars base",
+    "short": "Mars base",
+    "gravity": "partial",
+    "o2": [21, 34],
+    "psi": "≤ 14.7 psi",
+    "src": "placeholder window",
+    "color": "#FF8B5A",
+    "glow": "rgba(255,139,90,.45)",
+    "blurb": "A surface base on Mars. Its atmosphere is not defined yet, so the window shown is a placeholder."
+  },
+  {
+    "id": "rover",
+    "name": "Pressurized rover",
+    "short": "Rover",
+    "gravity": "partial",
+    "o2": [30, 40],
+    "psi": "≤ 10.2 psi",
+    "src": "expected like the lunar base",
+    "color": "#F5B73D",
+    "glow": "rgba(245,183,61,.45)",
+    "blurb": "Pressurized rovers are expected to run at the same intermediate pressure and oxygen level as the Moon base."
+  }
+]

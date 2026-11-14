@@ -1,0 +1,122 @@
+date,gmt_doy,as_run_no,test_id,sample_no,sample_raw,row_order,campaign_year,test_num,test_suffix,material,form,size_cm,config,material_inferred,material_class,doy_from_date,date_doy_mismatch,dup_as_run_no,dup_test_id
+2012-03-30,90,1,1,4,SIBAL 2 cm,0,2012,1,,sibal,,2.0,unspecified,False,fabric,90,False,False,False
+2012-03-30,90,2,42,24,PMMA sphere 2 cm,1,2012,42,,pmma,sphere,2.0,unspecified,False,polymer,90,False,False,False
+2012-03-30,90,3,18,19,PMMA sphere 1 cm,2,2012,18,,pmma,sphere,1.0,unspecified,False,polymer,90,False,False,False
+2012-04-05,96,4,7,10,SIBAL 2 cm,3,2012,7,,sibal,,2.0,unspecified,False,fabric,96,False,False,False
+2012-04-05,96,5,8,11,SIBAL 2 cm,4,2012,8,,sibal,,2.0,unspecified,False,fabric,96,False,False,False
+2012-04-09,100,6,43,24,PMMA sphere 2 cm,5,2012,43,,pmma,sphere,2.0,unspecified,False,polymer,100,False,False,False
+2012-04-09,100,7,44,24,PMMA sphere 2 cm,6,2012,44,,pmma,sphere,2.0,unspecified,False,polymer,100,False,False,False
+2012-04-09,100,8,45,24,PMMA sphere 2 cm,7,2012,45,,pmma,sphere,2.0,unspecified,False,polymer,100,False,False,False
+2012-05-02,123,9,19,19,PMMA sphere 1 cm,8,2012,19,,pmma,sphere,1.0,unspecified,False,polymer,123,False,False,False
+2012-05-02,123,10,20,19,PMMA sphere 1 cm,9,2012,20,,pmma,sphere,1.0,unspecified,False,polymer,123,False,False,False
+2012-05-02,123,11,21,19,PMMA sphere 1 cm,10,2012,21,,pmma,sphere,1.0,unspecified,False,polymer,123,False,False,False
+2012-05-10,131,12,4,12,SIBAL 2 cm,11,2012,4,,sibal,,2.0,unspecified,False,fabric,131,False,False,False
+2012-05-10,131,13,10,2,SIBAL 1 cm,12,2012,10,,sibal,,1.0,unspecified,False,fabric,131,False,False,False
+2012-05-10,131,14,12,27,Nomex blend 2 cm,13,2012,12,,nomex_blend,,2.0,unspecified,False,fabric,131,False,False,False
+2012-05-11,132,15,54,21,PMMA 2 cm,14,2012,54,,pmma,sphere,2.0,unspecified,False,polymer,132,False,False,False
+2012-05-11,132,16,55,21,PMMA 2 cm,15,2012,55,,pmma,sphere,2.0,unspecified,False,polymer,132,False,False,False
+2012-05-11,132,17,56,21,PMMA 2 cm,16,2012,56,,pmma,sphere,2.0,unspecified,False,polymer,132,False,False,False
+2012-05-11,132,18,57,21,PMMA 2 cm,17,2012,57,,pmma,sphere,2.0,unspecified,False,polymer,132,False,False,False
+2012-05-11,132,19,110,21,PMMA 2 cm,18,2012,110,,pmma,sphere,2.0,unspecified,False,polymer,132,False,False,False
+2012-06-05,157,20,30,15,PMMA 1 cm,19,2012,30,,pmma,,1.0,unspecified,False,polymer,157,False,False,False
+2012-06-05,157,21,31,15,PMMA 1 cm,20,2012,31,,pmma,,1.0,unspecified,False,polymer,157,False,False,False
+2012-06-05,157,22,32,15,PMMA 1 cm,21,2012,32,,pmma,,1.0,unspecified,False,polymer,157,False,False,False
+2012-06-05,157,23,33,15,PMMA 1 cm,22,2012,33,,pmma,,1.0,unspecified,False,polymer,157,False,False,False
+2012-06-05,157,24,12-R,27,Nomex blend 2 cm,23,2012,12,R,nomex_blend,,2.0,unspecified,False,fabric,157,False,True,False
+2012-06-05,157,24,12-R2,27,Nomex blend 2 cm,24,2012,12,R2,nomex_blend,,2.0,unspecified,False,fabric,157,False,True,False
+2012-06-11,163,25,46,22,2 cm sphere,25,2012,46,,pmma,sphere,2.0,unspecified,True,polymer,163,False,False,False
+2012-06-11,163,26,47,22,2 cm sphere,26,2012,47,,pmma,sphere,2.0,unspecified,True,polymer,163,False,False,False
+2012-06-11,163,27,48,22,2 cm sphere,27,2012,48,,pmma,sphere,2.0,unspecified,True,polymer,163,False,False,False
+2012-06-11,163,28,49,22,2 cm sphere,28,2012,49,,pmma,sphere,2.0,unspecified,True,polymer,163,False,False,False
+2012-06-14,166,29,22,18,1 cm sphere,29,2012,22,,pmma,sphere,1.0,unspecified,True,polymer,166,False,False,False
+2012-06-14,166,30,23,18,1 cm sphere,30,2012,23,,pmma,sphere,1.0,unspecified,True,polymer,166,False,False,False
+2012-06-14,166,31,24,18,1 cm sphere,31,2012,24,,pmma,sphere,1.0,unspecified,True,polymer,166,False,False,False
+2012-06-14,166,32,25,18,1 cm sphere,32,2012,25,,pmma,sphere,1.0,unspecified,True,polymer,166,False,False,False
+2012-06-18,170,33,58,25,2 cm sphere,33,2012,58,,pmma,sphere,2.0,unspecified,True,polymer,170,False,False,False
+2012-06-18,170,34,59,25,2 cm sphere,34,2012,59,,pmma,sphere,2.0,unspecified,True,polymer,170,False,False,False
+2012-06-18,170,35,60,25,2 cm sphere,35,2012,60,,pmma,sphere,2.0,unspecified,True,polymer,170,False,False,False
+2012-06-18,170,36,61,25,2 cm sphere,36,2012,61,,pmma,sphere,2.0,unspecified,True,polymer,170,False,False,False
+2012-06-28,180,37,5,9,SIBAL 2 cm,37,2012,5,,sibal,,2.0,unspecified,False,fabric,180,False,False,False
+2012-06-28,180,38,14,29,Nomex III Natural,38,2012,14,,nomex_iii_natural,,,unspecified,False,fabric,180,False,False,False
+2012-06-28,180,39,66,33,PMMA slab,39,2012,66,,pmma,slab,,unspecified,False,polymer,180,False,False,False
+2012-06-28,180,40,67,33,PMMA slab,40,2012,67,,pmma,slab,,unspecified,False,polymer,180,False,False,False
+2012-06-29,181,41,34,16,1 cm sphere,41,2012,34,,pmma,sphere,1.0,unspecified,True,polymer,181,False,False,False
+2012-06-29,181,42,35,16,1 cm sphere,42,2012,35,,pmma,sphere,1.0,unspecified,True,polymer,181,False,False,False
+2012-06-29,181,43,16,31,ultem sheet,43,2012,16,,ultem,sheet,,unspecified,False,polymer,181,False,False,False
+2012-06-29,181,44,5b,9,SIBAL 2 cm   opposed flow,44,2012,5,b,sibal,,2.0,opposed_flow,False,fabric,181,False,False,False
+2012-07-03,185,45,6,8,SIBAL 2 cm,45,2012,6,,sibal,,2.0,unspecified,False,fabric,185,False,False,False
+2012-07-03,185,46,82,35,candle,46,2012,82,,wax_unspecified,candle,,unspecified,False,wax,185,False,False,False
+2012-07-03,185,47,82a,35,candle,47,2012,82,a,wax_unspecified,candle,,unspecified,False,wax,185,False,False,False
+2012-07-03,185,48,82b,35,candle,48,2012,82,b,wax_unspecified,candle,,unspecified,False,wax,185,False,False,False
+2012-07-03,185,49,68,33,pmma slab,49,2012,68,,pmma,slab,,unspecified,False,polymer,185,False,False,False
+2012-07-12,194,50,69,33,pmma slab,50,2012,69,,pmma,slab,,unspecified,False,polymer,194,False,False,False
+2012-07-12,194,51,111,21,2 cm sphere   wake ign,51,2012,111,,pmma,sphere,2.0,wake_ignition,True,polymer,194,False,False,False
+2012-07-12,194,52,112,21,2 cm sphere   wake ign,52,2012,112,,pmma,sphere,2.0,wake_ignition,True,polymer,194,False,False,False
+2012-07-12,194,53,113,21,2 cm sphere   wake ign,53,2012,113,,pmma,sphere,2.0,wake_ignition,True,polymer,194,False,False,False
+2012-07-19,201,54,2,5,SIBAL 2 cm,54,2012,2,,sibal,,2.0,unspecified,False,fabric,201,False,False,False
+2012-07-19,201,55,3,6,SIBAL 2 cm,55,2012,3,,sibal,,2.0,unspecified,False,fabric,201,False,False,False
+2012-07-19,201,56,15,30,nomex natural III,56,2012,15,,nomex_iii_natural,,,unspecified,False,fabric,201,False,False,False
+2012-07-19,201,57,13,28,Nomex blend 2 cm,57,2012,13,,nomex_blend,,2.0,unspecified,False,fabric,201,False,False,False
+2012-07-19,201,58,17,32,ultem sheet,58,2012,17,,ultem,sheet,,unspecified,False,polymer,201,False,False,False
+2012-07-19,201,59,114,25,pmma sphere,59,2012,114,,pmma,sphere,2.0,unspecified,False,polymer,201,False,False,True
+2012-07-23,205,60,62,23,PMMA sphere 2 cm,60,2012,62,,pmma,sphere,2.0,unspecified,False,polymer,205,False,False,False
+2012-07-23,205,61,63,23,PMMA sphere 2 cm,61,2012,63,,pmma,sphere,2.0,unspecified,False,polymer,205,False,False,False
+2012-07-23,205,62,64,23,PMMA sphere 2 cm,62,2012,64,,pmma,sphere,2.0,unspecified,False,polymer,205,False,False,False
+2012-07-23,205,63,65,23,PMMA sphere 2 cm,63,2012,65,,pmma,sphere,2.0,unspecified,False,polymer,205,False,False,False
+2012-07-23,205,64,118,23,PMMA sphere 2 cm,64,2012,118,,pmma,sphere,2.0,unspecified,False,polymer,205,False,False,True
+2012-08-09,222,65,11,3,SIBAL 1 cm,66,2012,11,,sibal,,1.0,unspecified,False,fabric,222,False,False,False
+2012-08-09,222,66,9,7,SIBAL 2 cm,67,2012,9,,sibal,,2.0,unspecified,False,fabric,222,False,False,False
+2012-08-09,222,67,102,22,PMMA sphere 2 cm,68,2012,102,,pmma,sphere,2.0,unspecified,False,polymer,222,False,False,False
+2012-08-16,229,68,83a,36,Japan Wax Candle   wake,69,2012,83,a,japan_wax,candle,,wake,False,wax,229,False,False,False
+2012-08-16,229,69,83b,36,Japan Wax Candle   wake,70,2012,83,b,japan_wax,candle,,wake,False,wax,229,False,False,False
+2012-08-16,229,70,83c,36,Japan Wax Candle   wake,71,2012,83,c,japan_wax,candle,,wake,False,wax,229,False,False,False
+2012-08-16,229,71,84a,37,Japan Wax Candle   wake,72,2012,84,a,japan_wax,candle,,wake,False,wax,229,False,False,False
+2012-08-16,229,72,84b,37,Japan Wax Candle   wake,73,2012,84,b,japan_wax,candle,,wake,False,wax,229,False,False,False
+2012-08-16,229,73,86a,38,Japan Wax Candle   wake,74,2012,86,a,japan_wax,candle,,wake,False,wax,229,False,False,False
+2012-08-16,229,74,86b,38,Japan Wax Candle   wake,75,2012,86,b,japan_wax,candle,,wake,False,wax,229,False,False,False
+2012-08-16,229,75,86c,38,Japan Wax Candle   wake,76,2012,86,c,japan_wax,candle,,wake,False,wax,229,False,False,False
+2012-08-21,234,76,70,34,PMMA slab,77,2012,70,,pmma,slab,,unspecified,False,polymer,234,False,False,False
+2012-08-21,234,77,71,34,PMMA slab,78,2012,71,,pmma,slab,,unspecified,False,polymer,234,False,False,False
+2012-08-21,234,78,74,41,paraffin wax slab,79,2012,74,,paraffin_wax,slab,,unspecified,False,wax,234,False,False,False
+2012-08-21,234,79,75,41,parrafin wax slab,80,2012,75,,paraffin_wax,slab,,unspecified,False,wax,234,False,False,True
+2013-04-05,95,80,98,24,PMMA 2 cm,81,2013,98,,pmma,sphere,2.0,unspecified,False,polymer,95,False,False,False
+2013-04-05,95,81,99,24,PMMA 2 cm,82,2013,99,,pmma,sphere,2.0,unspecified,False,polymer,95,False,False,False
+2013-04-09,99,82,114,25,PMMA 2 cm,83,2013,114,,pmma,sphere,2.0,unspecified,False,polymer,99,False,False,True
+2013-04-09,99,83,115,25,pmma 2 cm,84,2013,115,,pmma,sphere,2.0,unspecified,False,polymer,99,False,False,False
+2013-04-09,99,84,116,25,pmma 2 cm,85,2013,116,,pmma,sphere,2.0,unspecified,False,polymer,99,False,False,False
+2013-04-09,99,85,117,25,pmma 2 cm,86,2013,117,,pmma,sphere,2.0,unspecified,False,polymer,99,False,True,False
+2013-04-09,99,85,117a,25,pmma 2 cm,87,2013,117,a,pmma,sphere,2.0,unspecified,False,polymer,99,False,True,False
+2013-04-12,102,86,100,24,pmma 2 cm,88,2013,100,,pmma,sphere,2.0,unspecified,False,polymer,102,False,False,False
+2013-04-12,102,87,85,43,candle    paraffin   wake,89,2013,85,,paraffin_wax,candle,,wake,False,wax,102,False,False,False
+2013-04-12,102,88,93,43,candle    paraffin   wake,90,2013,93,,paraffin_wax,candle,,wake,False,wax,102,False,False,False
+2013-04-16,106,89,26,17,pmma 1 cm,91,2013,26,,pmma,,1.0,unspecified,False,polymer,106,False,True,False
+2013-04-16,106,90,27,17,pmma 1 cm,92,2013,27,,pmma,,1.0,unspecified,False,polymer,106,False,True,False
+2013-04-16,106,91,28,17,pmma 1 cm,93,2013,28,,pmma,,1.0,unspecified,False,polymer,106,False,True,False
+2013-04-23,113,89,87,40,candle   Japan wax,94,2013,87,,japan_wax,candle,,unspecified,False,wax,113,False,True,False
+2013-04-23,113,90,103,22,2 cm sphere,95,2013,103,,pmma,sphere,2.0,unspecified,True,polymer,113,False,True,False
+2013-04-23,113,91,104,22,2 cm sphere,96,2013,104,,pmma,sphere,2.0,unspecified,True,polymer,113,False,True,False
+2013-04-23,113,92,105,22,2 cm sphere,97,2013,105,,pmma,sphere,2.0,unspecified,True,polymer,113,False,False,False
+2013-04-26,113,93,38,20,1 cm sphere   wake,98,2013,38,,pmma,sphere,1.0,wake,True,polymer,116,True,False,False
+2013-04-26,116,94,39,20,1 cm wake sphere,99,2013,39,,pmma,sphere,1.0,wake,True,polymer,116,False,False,False
+2013-04-26,116,95,40,20,1 cm wake sphere,100,2013,40,,pmma,sphere,1.0,wake,True,polymer,116,False,False,False
+2013-04-26,116,96,72,34,pmma slab opposed,101,2013,72,,pmma,slab,,opposed_flow,False,polymer,116,False,False,False
+2013-04-26,116,97,73,34,pmma slab   oppsed,102,2013,73,,pmma,slab,,opposed_flow,False,polymer,116,False,False,False
+2013-04-29,119,98,118,23,2 cm pmma sphere,103,2013,118,,pmma,sphere,2.0,unspecified,False,polymer,119,False,False,True
+2013-04-29,119,99,119,23,2 cm pmma sphere,104,2013,119,,pmma,sphere,2.0,unspecified,False,polymer,119,False,False,False
+2013-05-02,122,100,89,44,parrafin wax candle,105,2013,89,,paraffin_wax,candle,,unspecified,False,wax,122,False,False,False
+2013-05-02,122,101,95,44,paraffin wax candle,106,2013,95,,paraffin_wax,candle,,unspecified,False,wax,122,False,False,False
+2013-05-02,122,102,92,40,candle   Japan wax,107,2013,92,,japan_wax,candle,,unspecified,False,wax,122,False,False,False
+2013-05-02,122,103,78,42,paraffin wax slab,108,2013,78,,paraffin_wax,slab,,unspecified,False,wax,122,False,False,False
+2013-05-15,135,104,50,26,2 cm pmma sphere,109,2013,50,,pmma,sphere,2.0,unspecified,False,polymer,135,False,False,False
+2013-05-15,135,105,51,26,2 cm sphere,110,2013,51,,pmma,sphere,2.0,unspecified,True,polymer,135,False,False,False
+2013-05-15,135,106,52,26,2 cm sphere,111,2013,52,,pmma,sphere,2.0,unspecified,True,polymer,135,False,False,False
+2013-05-15,135,107,53,26,2 cm sphere,112,2013,53,,pmma,sphere,2.0,unspecified,True,polymer,135,False,False,True
+2013-05-17,137,108,106,26,2 cm sphere,113,2013,106,,pmma,sphere,2.0,unspecified,True,polymer,137,False,False,False
+2013-05-17,137,109,107,26,2 cm sphere,114,2013,107,,pmma,sphere,2.0,unspecified,True,polymer,137,False,False,False
+2013-05-17,137,110,108,26,2 cm sphere,115,2013,108,,pmma,sphere,2.0,unspecified,True,polymer,137,False,False,False
+2013-06-01,137,111,109,26,2 cm sphere,116,2013,109,,pmma,sphere,2.0,unspecified,True,polymer,152,True,False,False
+2013-06-01,150,112,79,42,flat wax slab,117,2013,79,,paraffin_wax,slab,,unspecified,False,wax,152,True,False,False
+2013-06-01,150,113,80,42,flat wax slab,118,2013,80,,paraffin_wax,slab,,unspecified,False,wax,152,True,False,False
+2013-06-01,150,114,75,41,flat wax slab,119,2013,75,,paraffin_wax,slab,,unspecified,False,wax,152,True,False,True
+2013-06-01,150,115,53,26,pmma sphere,120,2013,53,,pmma,sphere,2.0,unspecified,False,polymer,152,True,False,True
+2013-06-01,150,116,53a,26,pmma sphere,121,2013,53,a,pmma,sphere,2.0,unspecified,False,polymer,152,True,False,False

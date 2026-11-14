@@ -1,0 +1,11 @@
+{
+  "investigationId": "bass",
+  "psiId": "PSI-26",
+  "fileName": "PSI-26_metadata_PSI-102_BASS.zip",
+  "version": null,
+  "bytes": 11647,
+  "sha256": "1167ee239db24e7d73508b2d472e9bab9382211b596312167a2a6d24b4bcfc59",
+  "fetchedAt": "2026-11-14T10:29:12.492Z",
+  "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-26",
+  "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-26"
+}

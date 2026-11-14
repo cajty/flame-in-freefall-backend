@@ -1,0 +1,10 @@
+{
+  "investigationId": "sflame",
+  "psiId": "PSI-23",
+  "fileName": "PSI-23_metadata_PSI-99_ACME s-Flame.zip",
+  "bytes": 20061,
+  "sha256": "f27e04049fdabd83421e189b8ed12366adcb000723cf4e00cd9fa5f4d0d3ee2f",
+  "fetchedAt": "2026-11-14T10:18:28.811Z",
+  "sourcePage": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-23",
+  "recordUrl": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-23"
+}

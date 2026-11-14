@@ -1,0 +1,20 @@
+{
+  "ids": {
+    "bass": ["PSI-26"],
+    "bass2": ["PSI-25"],
+    "saffire": ["PSI-98", "PSI-99", "PSI-100"],
+    "cfig": ["PSI-159"],
+    "bre": ["PSI-20"],
+    "same": ["PSI-102"],
+    "samer": ["PSI-101"],
+    "flex": ["PSI-69"],
+    "flex2": ["PSI-68"],
+    "cfi": ["PSI-39"],
+    "efield": ["PSI-22"],
+    "sflame": ["PSI-23"],
+    "cld": ["PSI-21"],
+    "flamedesign": ["PSI-10"],
+    "spice": ["PSI-107"]
+  },
+  "urlTemplate": "https://psi.nasa.gov/physci/repo/data/investigations/{id}"
+}

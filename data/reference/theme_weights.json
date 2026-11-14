@@ -1,0 +1,6 @@
+{
+  "iss": { "prevention": 20, "detection": 30, "suppression": 25, "fundamentals": 8 },
+  "moon": { "prevention": 30, "detection": 18, "suppression": 22, "fundamentals": 8 },
+  "rover": { "prevention": 30, "detection": 18, "suppression": 22, "fundamentals": 8 },
+  "mars": { "prevention": 28, "detection": 20, "suppression": 22, "fundamentals": 10 }
+}

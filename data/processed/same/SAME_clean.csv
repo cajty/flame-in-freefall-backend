@@ -1,0 +1,21 @@
+test_id,material,sample_no,template_sample_no,conditions_source,is_inferred,air_flow_cms,weight_loss_rate_mg_min,aging_min,varied_factor,is_baseline_condition,material_raw
+teflon_1,Teflon,1,1,listed,False,5.0,2.0,1.0,baseline,True,Teflon
+teflon_2,Teflon,2,2,listed,False,5.0,1.0,1.0,weight_loss_rate,False,Teflon
+teflon_3,Teflon,3,3,listed,False,5.0,2.0,20.0,aging_duration,False,Teflon
+teflon_4,Teflon,4,4,listed,False,10.0,2.0,1.0,air_flow,False,Teflon
+kapton_1,Kapton,5,1,same_as_1-4,True,5.0,2.0,1.0,baseline,True,Kapton: same conditions as 1-4
+kapton_2,Kapton,5,2,same_as_1-4,True,5.0,1.0,1.0,weight_loss_rate,False,Kapton: same conditions as 1-4
+kapton_3,Kapton,5,3,same_as_1-4,True,5.0,2.0,20.0,aging_duration,False,Kapton: same conditions as 1-4
+kapton_4,Kapton,5,4,same_as_1-4,True,10.0,2.0,1.0,air_flow,False,Kapton: same conditions as 1-4
+silicone_rubber_1,Silicone Rubber,6,1,same_as_1-4,True,5.0,2.0,1.0,baseline,True,Silicone Rubber: same conditions as 1-4
+silicone_rubber_2,Silicone Rubber,6,2,same_as_1-4,True,5.0,1.0,1.0,weight_loss_rate,False,Silicone Rubber: same conditions as 1-4
+silicone_rubber_3,Silicone Rubber,6,3,same_as_1-4,True,5.0,2.0,20.0,aging_duration,False,Silicone Rubber: same conditions as 1-4
+silicone_rubber_4,Silicone Rubber,6,4,same_as_1-4,True,10.0,2.0,1.0,air_flow,False,Silicone Rubber: same conditions as 1-4
+lampwick_1,Lampwick,7,1,same_as_1-4,True,5.0,2.0,1.0,baseline,True,Lampwick: same conditions as 1-4
+lampwick_2,Lampwick,7,2,same_as_1-4,True,5.0,1.0,1.0,weight_loss_rate,False,Lampwick: same conditions as 1-4
+lampwick_3,Lampwick,7,3,same_as_1-4,True,5.0,2.0,20.0,aging_duration,False,Lampwick: same conditions as 1-4
+lampwick_4,Lampwick,7,4,same_as_1-4,True,10.0,2.0,1.0,air_flow,False,Lampwick: same conditions as 1-4
+dibutyl_phthalate_1,Dibutyl Phthalate,8,1,same_as_1-4,True,5.0,2.0,1.0,baseline,True,Dibutyl Phthalate: same conditions as 1-4
+dibutyl_phthalate_2,Dibutyl Phthalate,8,2,same_as_1-4,True,5.0,1.0,1.0,weight_loss_rate,False,Dibutyl Phthalate: same conditions as 1-4
+dibutyl_phthalate_3,Dibutyl Phthalate,8,3,same_as_1-4,True,5.0,2.0,20.0,aging_duration,False,Dibutyl Phthalate: same conditions as 1-4
+dibutyl_phthalate_4,Dibutyl Phthalate,8,4,same_as_1-4,True,10.0,2.0,1.0,air_flow,False,Dibutyl Phthalate: same conditions as 1-4
