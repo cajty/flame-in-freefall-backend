@@ -6,7 +6,8 @@ from pathlib import Path
 
 import pytest
 
-from core.data.psi_catalog import load_psi_catalog
+from core.data.psi_catalog import load_psi_catalog, rerank_matches
+from core.data.reranker import load_reranker
 from core.errors import ToolFault
 from models import PsiCatalogSearchInput
 from tools.context import with_scope
@@ -211,6 +212,109 @@ def test_query_without_searchable_words_is_rejected(context, catalog_path):
         search_psi_catalog(context, PsiCatalogSearchInput(q="a the of"))
 
     assert error.value.code == "INVALID_QUERY"
+
+
+class _FakeReranker:
+    def __init__(self, error: Exception | None = None) -> None:
+        self._error = error
+
+    def score(self, query: str, documents: list[str]) -> list[float]:
+        if self._error is not None:
+            raise self._error
+        return [1.0 if "Suppression" in document else 0.1 for document in documents]
+
+
+def test_reranker_reorders_matches_and_keeps_bm25_score(
+    context, catalog_path, monkeypatch
+):
+    _use_catalog(context, catalog_path)
+    context.settings.reranker_enabled = True
+    context.settings.reranker_pool_size = 10
+    monkeypatch.setattr(
+        "tools.psi.load_reranker", lambda model_dir: _FakeReranker()
+    )
+
+    result = search_psi_catalog(
+        context, PsiCatalogSearchInput(q="flame spread oxygen")
+    )
+
+    assert [item.psi_id for item in result.data.items] == ["PSI-25", "PSI-902"]
+    assert result.data.items[0].rerank_score == 1.0
+    assert result.data.items[0].score > 0
+
+
+def test_reranker_runs_after_scope_filter(context, catalog_path, monkeypatch):
+    _use_catalog(context, catalog_path)
+    context.settings.reranker_enabled = True
+    context.settings.reranker_pool_size = 1
+    monkeypatch.setattr(
+        "tools.psi.load_reranker", lambda model_dir: _FakeReranker()
+    )
+    scoped = with_scope(context, ["bass2"])
+
+    result = search_psi_catalog(
+        scoped, PsiCatalogSearchInput(q="flame spread oxygen")
+    )
+
+    assert [item.psi_id for item in result.data.items] == ["PSI-25"]
+    assert result.data.items[0].rerank_score == 1.0
+
+
+def test_reranker_disabled_keeps_bm25_order(context, catalog_path):
+    _use_catalog(context, catalog_path)
+
+    result = search_psi_catalog(
+        context, PsiCatalogSearchInput(q="flame spread oxygen")
+    )
+
+    assert result.data.items[0].psi_id == "PSI-902"
+    assert all(item.rerank_score is None for item in result.data.items)
+
+
+def test_missing_reranker_falls_back_to_bm25(context, catalog_path, monkeypatch):
+    _use_catalog(context, catalog_path)
+    context.settings.reranker_enabled = True
+    monkeypatch.setattr("tools.psi.load_reranker", lambda model_dir: None)
+
+    result = search_psi_catalog(
+        context, PsiCatalogSearchInput(q="flame spread oxygen")
+    )
+
+    assert result.data.items[0].psi_id == "PSI-902"
+    assert any("BM25 order" in warning for warning in result.warnings)
+
+
+def test_reranker_failure_falls_back_to_bm25(context, catalog_path, monkeypatch):
+    _use_catalog(context, catalog_path)
+    context.settings.reranker_enabled = True
+    monkeypatch.setattr(
+        "tools.psi.load_reranker",
+        lambda model_dir: _FakeReranker(RuntimeError("inference failed")),
+    )
+
+    result = search_psi_catalog(
+        context, PsiCatalogSearchInput(q="flame spread oxygen")
+    )
+
+    assert result.data.items[0].psi_id == "PSI-902"
+    assert any("Reranker failed" in warning for warning in result.warnings)
+
+
+class _ShortReranker:
+    def score(self, query: str, documents: list[str]) -> list[float]:
+        return [1.0]
+
+
+def test_reranker_rejects_wrong_score_count(catalog_path):
+    index = load_psi_catalog(catalog_path)
+    matches = index.search("flame spread oxygen")
+
+    with pytest.raises(ValueError, match="returned 1 scores"):
+        rerank_matches("flame spread oxygen", matches, _ShortReranker(), pool_size=2)
+
+
+def test_load_reranker_returns_none_for_missing_model(tmp_path):
+    assert load_reranker(tmp_path / "missing-model") is None
 
 
 @pytest.mark.skipif(

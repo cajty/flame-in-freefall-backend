@@ -10,6 +10,7 @@ from core.data.generated import load_generated
 from core.data.loader import CsvRepository
 from core.data.reference import ReferenceData, load_reference
 from core.data.registry import ADAPTERS, CANONICAL_ORDER
+from core.data.reranker import load_reranker
 from core.services.conversations import ConversationStore
 from core.services.exports import ExportStore
 
@@ -49,6 +50,10 @@ def build_context(
         max_turns=settings.conversation_max_turns,
     )
     table_count = sum(1 for _ in settings.data_processed_dir.rglob("*.csv"))
+    if settings.reranker_enabled:
+        # Warm the optional model so the first search does not pay the load
+        # cost. A missing model only logs a warning and leaves BM25 active.
+        load_reranker(settings.reranker_model_dir)
     return AppContext(
         settings=settings,
         reference=reference,

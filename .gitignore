@@ -37,6 +37,10 @@ data/raw/**/*.csv
 data/raw/**/*.xlsx
 data/raw/psi-catalog/
 
+# locally exported reranker model artifacts
+models/*
+!models/.gitkeep
+
 # Personal Claude Code overrides - never commit
 CLAUDE.local.md
 .claude/settings.local.json

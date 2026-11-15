@@ -30,6 +30,16 @@ class Settings(BaseSettings):
         default=REPO_ROOT / "data" / "reference" / "psi_catalog.json",
         validation_alias="FLAME_PSI_CATALOG_PATH",
     )
+    reranker_enabled: bool = Field(
+        default=False, validation_alias="FLAME_RERANKER_ENABLED"
+    )
+    reranker_model_dir: Path = Field(
+        default=REPO_ROOT / "models" / "reranker-onnx",
+        validation_alias="FLAME_RERANKER_MODEL_DIR",
+    )
+    reranker_pool_size: int = Field(
+        default=30, ge=1, le=200, validation_alias="FLAME_RERANKER_POOL_SIZE"
+    )
 
     cors_origins: str = Field(
         default="http://localhost:5173,http://127.0.0.1:5173",

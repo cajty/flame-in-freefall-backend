@@ -11,10 +11,14 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 COPY pyproject.toml ./
 COPY src ./src
-RUN pip install --no-cache-dir --editable .
+# The reranker stays disabled unless FLAME_RERANKER_ENABLED is set; the
+# onnxruntime and tokenizers wheels are installed so enabling it needs only a
+# model directory, not a rebuild.
+RUN pip install --no-cache-dir --editable ".[rerank]"
 COPY --from=data /build/generated.json ./generated.json
 COPY data/processed ./data/processed
 COPY data/reference ./data/reference
+COPY models ./models
 RUN useradd --create-home appuser && chown -R appuser:appuser /app
 USER appuser
 EXPOSE 8080

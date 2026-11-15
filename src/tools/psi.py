@@ -1,9 +1,18 @@
 from __future__ import annotations
 
+import logging
+
 from core.data.catalog import ScopedCatalog
-from core.data.psi_catalog import PsiCatalogMatch, load_psi_catalog, snippet, tokenize
+from core.data.psi_catalog import (
+    PsiCatalogMatch,
+    load_psi_catalog,
+    rerank_matches,
+    snippet,
+    tokenize,
+)
 from core.data.reference import PSI_ID_RE
 from core.data.registry import METRIC_NAMES
+from core.data.reranker import load_reranker
 from core.errors import ToolFault
 from models import (
     Envelope,
@@ -15,6 +24,33 @@ from models import (
 )
 from tools.common import provenance
 from tools.context import AppContext
+
+logger = logging.getLogger("flame_atlas.psi_catalog")
+
+
+def _apply_reranker(
+    ctx: AppContext, query: str, matches: list[PsiCatalogMatch]
+) -> tuple[list[PsiCatalogMatch], str | None]:
+    if not ctx.settings.reranker_enabled or not matches:
+        return matches, None
+    reranker = load_reranker(ctx.settings.reranker_model_dir)
+    if reranker is None:
+        return matches, (
+            "Reranker is enabled but its model is unavailable; results use BM25 order."
+        )
+    try:
+        return (
+            rerank_matches(
+                query,
+                matches,
+                reranker,
+                pool_size=ctx.settings.reranker_pool_size,
+            ),
+            None,
+        )
+    except (OSError, RuntimeError, ValueError) as error:
+        logger.warning("Reranker failed; using BM25 order: %s", error)
+        return matches, "Reranker failed; results use BM25 order."
 
 
 def _curated_investigations(ctx: AppContext) -> dict[str, list[str]]:
@@ -57,7 +93,8 @@ def search_psi_catalog(
         else None
     )
     normalized = query.strip().upper()
-    if PSI_ID_RE.match(normalized):
+    accession_query = PSI_ID_RE.match(normalized) is not None
+    if accession_query:
         matches = [
             PsiCatalogMatch(
                 record=document.record,
@@ -69,6 +106,9 @@ def search_psi_catalog(
         ]
     else:
         matches = index.search(query)
+
+    # Scope first, then rerank: a scoped query must reorder only the records
+    # the caller is allowed to see, not spend the pool on records it drops.
     filtered: list[tuple[PsiCatalogMatch, list[str]]] = []
     for match in matches:
         investigation_ids = curated.get(match.record.psi_id, [])
@@ -82,9 +122,18 @@ def search_psi_catalog(
                 continue
         filtered.append((match, investigation_ids))
 
-    total = len(filtered)
+    investigation_ids_by_psi = {
+        match.record.psi_id: investigation_ids for match, investigation_ids in filtered
+    }
+    matches = [match for match, _ in filtered]
+    rerank_warning: str | None = None
+    if not accession_query:
+        matches, rerank_warning = _apply_reranker(ctx, query, matches)
+
+    total = len(matches)
     hits: list[PsiCatalogHit] = []
-    for match, investigation_ids in filtered[: request.limit]:
+    for match in matches[: request.limit]:
+        investigation_ids = investigation_ids_by_psi[match.record.psi_id]
         record = match.record
         hits.append(
             PsiCatalogHit(
@@ -99,6 +148,7 @@ def search_psi_catalog(
                 investigation_ids=investigation_ids,
                 restricted=record.restricted,
                 score=match.score,
+                rerank_score=match.rerank_score,
                 matched_terms=match.matched_terms,
                 modified_date=record.modified_date,
             )
@@ -107,6 +157,8 @@ def search_psi_catalog(
     warnings = [
         "PSI catalog results are metadata only; they do not carry measured data in this project."
     ]
+    if rerank_warning is not None:
+        warnings.append(rerank_warning)
     uncurated = sum(1 for hit in hits if not hit.curated)
     if uncurated:
         warnings.append(

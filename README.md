@@ -12,6 +12,7 @@ flame-in-freefall-backend/
     raw/                    downloaded PSI files (ignored), one folder per investigation
     raw/psi/<PSI-ID>/       metadata ZIP plus source.json per PSI record
     processed/              cleaned tables used by the build and row-level tools
+    eval/                   labeled queries for the optional reranker evaluation
     reference/              canonical dashboard metadata (investigations, environments, PSI, pillars)
     reference/psi_metadata_manifest.json  downloaded metadata checksums and source links
   scripts/
@@ -19,6 +20,7 @@ flame-in-freefall-backend/
     build-dashboard.mjs     combines reference + processed into the frontend dashboard.json
     fetch-psi-metadata.mjs  downloads PSI investigation metadata ZIPs
     fetch_psi_catalog.py    builds the offline PSI investigation catalog
+    evaluate_reranker.py    compares BM25 and the reranker on labeled queries
     lib/csv.js              CSV parser
     lib/adapters.js         per-investigation column mapping
     lib/psi-metadata.js     metadata ZIP selection and ZIP validation
@@ -85,6 +87,56 @@ The `search_psi_catalog` agent tool ranks the index with BM25 over title,
 acronym, research area, objective and related metadata. Results outside the 15
 curated investigations are metadata-only leads: they carry no cleaned measured
 data here and must not be cited as evidence.
+
+### Optional ONNX reranker
+
+BM25 remains the default. A cross-encoder can reorder the top
+`FLAME_RERANKER_POOL_SIZE` hits; it never adds or drops records. The model is
+loaded with `onnxruntime`, which runs on the AMD OCI shapes used for
+`CI.Standard.E5.Flex`; OpenVINO is not used.
+
+Export the model once, outside the running API:
+
+```bash
+uv run --with "optimum-onnx[onnxruntime]" optimum-cli export onnx \
+  --model cross-encoder/ms-marco-MiniLM-L-6-v2 \
+  --task text-classification models/reranker-onnx
+uv sync --extra rerank
+```
+
+The export writes `model.onnx` and `tokenizer.json` into
+`models/reranker-onnx/`. A pre-exported quantized build such as
+`Xenova/ms-marco-MiniLM-L-6-v2` (`onnx/model_quantized.onnx` renamed to
+`model.onnx`, plus its `tokenizer.json`) also works and is about 23 MB. Then
+enable it:
+
+```bash
+FLAME_RERANKER_ENABLED=1
+FLAME_RERANKER_MODEL_DIR=models/reranker-onnx
+FLAME_RERANKER_POOL_SIZE=30
+```
+
+Each hit keeps the BM25 `score` and adds `rerankScore`. Hits outside the pool
+keep BM25 order after the reranked pool. If the model directory, runtime or
+inference fails, the tool logs a warning, returns BM25 order and adds a warning
+to the response; the request does not fail. Citations are unaffected because
+the reranker only reorders existing records.
+
+### Reranker evaluation
+
+`data/eval/psi_catalog_queries.json` holds 29 queries with graded relevance
+labels derived from catalog metadata. The labels are not a fire-safety expert
+review. Recheck them when the catalog changes.
+
+```bash
+uv run python scripts/evaluate_reranker.py --baseline-only
+uv run python scripts/evaluate_reranker.py --model-dir models/reranker-onnx
+```
+
+Recall@5 counts only direct matches (grade 2). nDCG@10 uses direct and related
+(grade 1) records. The script prints per-query values, means, and how many
+queries improved or regressed. Enable the reranker only when the mean improves;
+otherwise keep `FLAME_RERANKER_ENABLED=0`.
 
 Generate the file the frontend imports:
 

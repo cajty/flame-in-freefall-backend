@@ -1,0 +1,282 @@
+{
+  "generatedAt": "2026-11-15",
+  "source": "Manual relevance labels from the local PSI catalog metadata. Not reviewed by a fire-safety domain expert.",
+  "grades": {
+    "2": "direct match: the investigation is about the thing asked",
+    "1": "related context: same phenomenon or system, not the direct answer"
+  },
+  "queries": [
+    {
+      "query": "putting out a fire in orbit",
+      "relevant": {
+        "PSI-25": 2,
+        "PSI-26": 2,
+        "PSI-68": 2,
+        "PSI-69": 2,
+        "PSI-98": 1,
+        "PSI-99": 1,
+        "PSI-100": 1
+      }
+    },
+    {
+      "query": "stopping flames without gravity",
+      "relevant": {
+        "PSI-25": 2,
+        "PSI-26": 2,
+        "PSI-68": 2,
+        "PSI-69": 2,
+        "PSI-62": 1,
+        "PSI-142": 1
+      }
+    },
+    {
+      "query": "smoke detectors for a spaceship cabin",
+      "relevant": {
+        "PSI-98": 2,
+        "PSI-101": 2,
+        "PSI-102": 2,
+        "PSI-47": 2,
+        "PSI-115": 1,
+        "PSI-179": 1
+      }
+    },
+    {
+      "query": "how big are smoke particles in low gravity",
+      "relevant": {
+        "PSI-101": 2,
+        "PSI-102": 2,
+        "PSI-115": 2,
+        "PSI-47": 1,
+        "PSI-98": 1
+      }
+    },
+    {
+      "query": "soot formation in microgravity flames",
+      "relevant": {
+        "PSI-10": 2,
+        "PSI-23": 2,
+        "PSI-107": 2,
+        "PSI-115": 1,
+        "PSI-39": 1
+      }
+    },
+    {
+      "query": "cool flames at low temperature",
+      "relevant": {
+        "PSI-39": 2,
+        "PSI-117": 2,
+        "PSI-142": 2,
+        "PSI-159": 2
+      }
+    },
+    {
+      "query": "fire growth on a large scale in space",
+      "relevant": {
+        "PSI-98": 2,
+        "PSI-99": 2,
+        "PSI-100": 2,
+        "PSI-25": 1
+      }
+    },
+    {
+      "query": "flame spread over solid fuel in slow air",
+      "relevant": {
+        "PSI-25": 2,
+        "PSI-26": 2,
+        "PSI-62": 2,
+        "PSI-98": 1,
+        "PSI-99": 1,
+        "PSI-100": 1
+      }
+    },
+    {
+      "query": "boiling water in weightlessness",
+      "relevant": {
+        "PSI-4": 2,
+        "PSI-81": 2,
+        "PSI-85": 2,
+        "PSI-87": 2,
+        "PSI-138": 2,
+        "PSI-50": 1,
+        "PSI-184": 1,
+        "PSI-9": 1
+      }
+    },
+    {
+      "query": "bubbles during boiling in low gravity",
+      "relevant": {
+        "PSI-81": 2,
+        "PSI-85": 2,
+        "PSI-87": 2,
+        "PSI-4": 1,
+        "PSI-50": 1,
+        "PSI-138": 1
+      }
+    },
+    {
+      "query": "two phase flow and condensation",
+      "relevant": {
+        "PSI-4": 2,
+        "PSI-45": 1,
+        "PSI-46": 1,
+        "PSI-184": 1,
+        "PSI-138": 1
+      }
+    },
+    {
+      "query": "cement hardening in microgravity",
+      "relevant": {
+        "PSI-83": 2,
+        "PSI-84": 2,
+        "PSI-174": 2,
+        "PSI-148": 1
+      }
+    },
+    {
+      "query": "coarsening in solid liquid mixtures",
+      "relevant": {
+        "PSI-40": 2,
+        "PSI-41": 2,
+        "PSI-42": 2,
+        "PSI-43": 2,
+        "PSI-44": 2,
+        "PSI-185": 1
+      }
+    },
+    {
+      "query": "dendritic crystal growth in undercooled metal",
+      "relevant": {
+        "PSI-71": 2,
+        "PSI-72": 2,
+        "PSI-73": 2,
+        "PSI-48": 1,
+        "PSI-64": 1
+      }
+    },
+    {
+      "query": "packed bed reactor for life support",
+      "relevant": {
+        "PSI-88": 2,
+        "PSI-89": 2,
+        "PSI-90": 2,
+        "PSI-189": 1
+      }
+    },
+    {
+      "query": "water recovery for astronauts",
+      "relevant": {
+        "PSI-89": 2,
+        "PSI-78": 1,
+        "PSI-88": 1,
+        "PSI-90": 1
+      }
+    },
+    {
+      "query": "protein crystal growth in space",
+      "relevant": {
+        "PSI-12": 2,
+        "PSI-79": 2,
+        "PSI-80": 2,
+        "PSI-125": 2,
+        "PSI-97": 1
+      }
+    },
+    {
+      "query": "colloidal crystal alloys",
+      "relevant": {
+        "PSI-27": 2,
+        "PSI-28": 2,
+        "PSI-29": 2,
+        "PSI-30": 2,
+        "PSI-91": 2,
+        "PSI-94": 1
+      }
+    },
+    {
+      "query": "dusty plasma crystals",
+      "relevant": {
+        "PSI-5": 2,
+        "PSI-95": 2
+      }
+    },
+    {
+      "query": "soldering and brazing in orbit",
+      "relevant": {
+        "PSI-77": 2,
+        "PSI-111": 2,
+        "PSI-181": 2
+      }
+    },
+    {
+      "query": "capillary flow in narrow channels",
+      "relevant": {
+        "PSI-37": 2,
+        "PSI-38": 2,
+        "PSI-57": 2,
+        "PSI-58": 2,
+        "PSI-59": 2,
+        "PSI-119": 1
+      }
+    },
+    {
+      "query": "surface tension driven convection",
+      "relevant": {
+        "PSI-108": 2,
+        "PSI-109": 2,
+        "PSI-70": 1,
+        "PSI-112": 1
+      }
+    },
+    {
+      "query": "thermophysical properties of molten metals",
+      "relevant": {
+        "PSI-1": 2,
+        "PSI-51": 2,
+        "PSI-114": 2,
+        "PSI-166": 2,
+        "PSI-178": 2,
+        "PSI-153": 1
+      }
+    },
+    {
+      "query": "regolith soil behavior in space",
+      "relevant": {
+        "PSI-110": 2
+      }
+    },
+    {
+      "query": "aerosol sampling in the space station",
+      "relevant": {
+        "PSI-179": 2,
+        "PSI-101": 2,
+        "PSI-102": 2,
+        "PSI-47": 2,
+        "PSI-115": 1
+      }
+    },
+    {
+      "query": "BASS-II",
+      "relevant": {
+        "PSI-25": 2
+      }
+    },
+    {
+      "query": "FLEX-2",
+      "relevant": {
+        "PSI-68": 2
+      }
+    },
+    {
+      "query": "SAFFIRE-III",
+      "relevant": {
+        "PSI-100": 2
+      }
+    },
+    {
+      "query": "PK-4",
+      "relevant": {
+        "PSI-5": 2
+      }
+    }
+  ]
+}

@@ -490,6 +490,7 @@ class PsiCatalogHit(BaseSchema):
     score: float
     matched_terms: list[str]
     modified_date: str
+    rerank_score: float | None = None
 
 
 class PsiCatalogSearchData(BaseSchema):

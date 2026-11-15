@@ -1030,7 +1030,14 @@ Request:
 
 `limit` is 1-50, default 10. Each item carries `psiId`, `title`, `acronym`,
 `researchArea`, `subResearchArea`, `snippet`, `url`, `curated`,
-`investigationIds`, `restricted`, `score`, `matchedTerms` and `modifiedDate`.
+`investigationIds`, `restricted`, `score`, `rerankScore`, `matchedTerms` and
+`modifiedDate`.
+
+When `FLAME_RERANKER_ENABLED` is set, an optional ONNX cross-encoder reorders
+the top `FLAME_RERANKER_POOL_SIZE` BM25 hits. `score` remains the BM25 score and
+`rerankScore` is null otherwise. The reranker only reorders existing catalog
+records; it does not add records or citations, and any load or inference failure
+falls back to BM25 order with a warning.
 
 `curated` is true only for PSI IDs mapped in `data/reference/psi.json`. Every
 other record is a metadata-only lead: it has no cleaned measured data in this
