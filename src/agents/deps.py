@@ -42,11 +42,23 @@ class ToolDeps:
         return self.current_provenance | set(self.history_provenance)
 
     def repeated(self, name: str, arguments: dict[str, Any] | None) -> bool:
-        """True when the previous tool call used the same name and arguments."""
-        if not self.calls:
-            return False
-        previous = self.calls[-1]
-        return previous.name == name and previous.arguments == arguments
+        """True when this run already called the tool with the same arguments."""
+        return any(
+            call.name == name and call.arguments == arguments for call in self.calls
+        )
+
+    def repeated_rejections(
+        self, name: str, arguments: dict[str, Any] | None
+    ) -> int:
+        """Count earlier repeat-guard rejections for this exact call."""
+        return sum(
+            1
+            for call in self.calls
+            if call.name == name
+            and call.arguments == arguments
+            and call.error is not None
+            and call.error.get("code") == "REPEATED_TOOL_CALL"
+        )
 
     def record(
         self,

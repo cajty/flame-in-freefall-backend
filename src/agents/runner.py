@@ -140,6 +140,21 @@ async def run_analysis(
             timeout=settings.analyze_timeout_seconds,
         )
     except TimeoutError as error:
+        logger.error(
+            "analysis timeout request_id=%s timeout_seconds=%s tool_calls=%s recent=%s",
+            request_id,
+            settings.analyze_timeout_seconds,
+            len(deps.calls),
+            [
+                (
+                    call.name,
+                    call.arguments,
+                    call.error.get("code") if call.error else None,
+                    call.duration_ms,
+                )
+                for call in deps.calls[-3:]
+            ],
+        )
         raise ToolFault(
             "ANALYZE_TIMEOUT",
             "The analysis request timed out.",

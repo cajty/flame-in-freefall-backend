@@ -405,7 +405,82 @@ def test_agent_repeated_identical_tool_call_is_rejected(context):
 
     assert error.value.code == "REPEATED_TOOL_CALL"
     assert error.value.status_code == 422
-    assert calls["count"] == 2
+    assert calls["count"] == 3
+
+
+def test_agent_repeat_guard_allows_one_self_correction(context):
+    calls = {"count": 0}
+
+    def model_function(messages, info):
+        calls["count"] += 1
+        if calls["count"] < 3:
+            return ModelResponse(
+                parts=[
+                    ToolCallPart(
+                        "get_environments",
+                        {},
+                        tool_call_id=f"call-{calls['count']}",
+                    )
+                ]
+            )
+        return ModelResponse(
+            parts=[
+                ToolCallPart(
+                    "final_result",
+                    {
+                        "answer": "Used the earlier tool result.",
+                        "citations": [],
+                        "warnings": [],
+                    },
+                    tool_call_id="final",
+                )
+            ]
+        )
+
+    envelope = asyncio.run(
+        run_analysis(
+            context,
+            AnalyzeInput(question="Which environments exist?"),
+            model_override=FunctionModel(model_function),
+        )
+    )
+
+    assert calls["count"] == 3
+    assert envelope.data.plan["tools"] == ["get_environments"]
+
+
+def test_repeat_guard_detects_non_consecutive_loop(context):
+    calls = {"count": 0}
+
+    def model_function(messages, info):
+        calls["count"] += 1
+        name = "get_environments" if calls["count"] % 2 else "get_schema"
+        return ModelResponse(
+            parts=[
+                ToolCallPart(name, {}, tool_call_id=f"call-{calls['count']}")
+            ]
+        )
+
+    with pytest.raises(ToolFault) as error:
+        asyncio.run(
+            run_analysis(
+                context,
+                AnalyzeInput(question="Which environments exist?"),
+                model_override=FunctionModel(model_function),
+            )
+        )
+
+    assert error.value.code == "REPEATED_TOOL_CALL"
+    assert calls["count"] == 5
+
+
+def test_tool_deps_repeated_checks_full_run(context):
+    deps = ToolDeps(ctx=context, timeout_seconds=1)
+
+    deps.record("get_environments", arguments=None)
+    deps.record("get_schema", arguments=None)
+
+    assert deps.repeated("get_environments", None)
 
 
 def test_analysis_timeout(context):
