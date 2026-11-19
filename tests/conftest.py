@@ -7,18 +7,7 @@ from fastapi.testclient import TestClient
 
 from api.app import create_app
 from config import Settings
-from tools.context import AppContext, build_context
-
-
-class FakeClock:
-    def __init__(self, start: float = 1_000_000.0) -> None:
-        self.now = start
-
-    def __call__(self) -> float:
-        return self.now
-
-    def advance(self, seconds: float) -> None:
-        self.now += seconds
+from core.context import AppContext, build_context
 
 
 @pytest.fixture(scope="session")

@@ -91,8 +91,8 @@ class CsvRepository:
             if spec.pick.fuel is not None:
                 required.add(spec.pick.fuel)
             required.update(column for column, _ in spec.pick.o2)
-            required.update(spec.pick.airflow)
-            required.update(spec.pick.pressure)
+            required.update(column for column, _ in spec.pick.airflow)
+            required.update(column for column, _ in spec.pick.pressure)
             required.update(column for column, _ in spec.canonical.values())
             missing = sorted(required - headers)
             if missing:

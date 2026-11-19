@@ -1,0 +1,344 @@
+{
+  "adapters": {
+    "bass": {
+      "files": [
+        {
+          "path": "bass/BASS_clean.csv",
+          "pick": {
+            "date": "date",
+            "fuel": "material"
+          }
+        }
+      ],
+      "variables": ["material", "form", "size_cm", "config", "material_class"]
+    },
+    "bass2": {
+      "files": [
+        {
+          "path": "bass2/BASS-II_clean.csv",
+          "pick": {
+            "date": "date",
+            "o2": [{"column": "o2_initial_pct", "scale": 1.0}],
+            "airflow": [
+              {"column": "air_cm_s_min", "scale": 1.0},
+              {"column": "air_cm_s_max", "scale": 1.0}
+            ],
+            "fuel": "material"
+          },
+          "canonical": {
+            "o2_pct": {"column": "o2_initial_pct", "scale": 1.0},
+            "airflow_cm_s": {"column": "air_cm_s_min", "scale": 1.0}
+          }
+        }
+      ],
+      "variables": [
+        "material",
+        "geometry",
+        "thickness_mm",
+        "size_cm",
+        "air_cm_s_min",
+        "air_cm_s_max",
+        "o2_initial_pct"
+      ]
+    },
+    "bre": {
+      "testLabel": "test days",
+      "files": [
+        {
+          "path": "bre/BRE_clean.csv",
+          "pick": {
+            "date": "date",
+            "o2": [
+              {"column": "o2_min", "scale": 1.0},
+              {"column": "o2_max", "scale": 1.0}
+            ],
+            "fuel": "fuel"
+          },
+          "canonical": {
+            "o2_pct": {"column": "o2_min", "scale": 1.0}
+          }
+        }
+      ],
+      "variables": ["burner_size_mm", "fuel_pct", "o2_levels", "flames_ignited"]
+    },
+    "cfi": {
+      "files": [
+        {
+          "path": "cfi/CFI_clean.csv",
+          "pick": {
+            "date": "date",
+            "o2": [{"column": "x_o2", "scale": 100.0}],
+            "pressure": [{"column": "p_atm", "scale": 1.0}],
+            "fuel": "fuel_raw"
+          },
+          "canonical": {
+            "o2_pct": {"column": "x_o2", "scale": 100.0},
+            "pressure_atm": {"column": "p_atm", "scale": 1.0}
+          }
+        }
+      ],
+      "variables": ["p_atm", "x_o2", "x_he", "fiber", "fuel_is_blend", "same_condition_count"]
+    },
+    "cfig": {
+      "pressureUnit": "bar",
+      "files": [
+        {
+          "path": "cfig/cfi-g_normal_clean.csv",
+          "pick": {
+            "o2": [{"column": "o2_before_test", "scale": 100.0}],
+            "pressure": [{"column": "pressure_bar", "scale": 1.0}],
+            "fuel": "fuel"
+          },
+          "canonical": {
+            "o2_pct": {"column": "o2_before_test", "scale": 100.0},
+            "pressure_atm": {"column": "pressure_bar", "scale": 0.9869232667160128}
+          }
+        },
+        {
+          "path": "cfig/cfi-g_inverse_clean.csv",
+          "pick": {
+            "o2": [{"column": "o2_mole_fraction", "scale": 100.0}],
+            "pressure": [{"column": "pressure_bar", "scale": 1.0}],
+            "fuel": "fuel"
+          },
+          "canonical": {
+            "o2_pct": {"column": "o2_mole_fraction", "scale": 100.0},
+            "pressure_atm": {"column": "pressure_bar", "scale": 0.9869232667160128}
+          }
+        }
+      ],
+      "variables": ["o2_before_test", "pressure_bar", "fuel", "burn_time_s", "outcome", "cool_flame"]
+    },
+    "cld": {
+      "testLabel": "test days",
+      "files": [
+        {
+          "path": "cld/cld_flame_clean.csv",
+          "pick": {
+            "date": "date",
+            "fuel": "fuel_species"
+          }
+        }
+      ],
+      "variables": ["fuel_species", "bottle_fuel_pct", "conc_min_pct", "conc_max_pct", "flames_ignited"]
+    },
+    "efield": {
+      "testLabel": "test days",
+      "files": [
+        {
+          "path": "efield/efield_clean.csv",
+          "pick": {
+            "date": "test_date",
+            "fuel": "fuel_name"
+          }
+        }
+      ],
+      "variables": ["burner_type", "mesh_polarity", "bottle_fuel_pct", "conc_levels_pct", "flames_ignited"]
+    },
+    "flamedesign": {
+      "files": [
+        {
+          "path": "flamedesign/flame_design_normal_clean.csv",
+          "pick": {
+            "date": "date",
+            "o2": [{"column": "x_o2_init", "scale": 100.0}],
+            "pressure": [{"column": "p_mean_ref_atm", "scale": 1.0}],
+            "fuel": "fuel"
+          },
+          "canonical": {
+            "o2_pct": {"column": "x_o2_init", "scale": 100.0},
+            "pressure_atm": {"column": "p_mean_ref_atm", "scale": 1.0}
+          }
+        },
+        {
+          "path": "flamedesign/flame_design_inverse_clean.csv",
+          "pick": {
+            "date": "date",
+            "o2": [{"column": "x_o2_burner", "scale": 100.0}],
+            "pressure": [{"column": "p_mean_atm", "scale": 1.0}],
+            "fuel": "fuel"
+          },
+          "canonical": {
+            "o2_pct": {"column": "x_o2_burner", "scale": 100.0},
+            "pressure_atm": {"column": "p_mean_atm", "scale": 1.0}
+          }
+        }
+      ],
+      "variables": [
+        "flame_type",
+        "test_type",
+        "x_o2",
+        "p_mean_atm",
+        "z_st_mean",
+        "t_ad_k",
+        "same_condition_count"
+      ]
+    },
+    "flex": {
+      "pressureUnit": "kPa",
+      "files": [
+        {
+          "path": "flex/FLEX_clean.csv",
+          "pick": {
+            "date": "date",
+            "o2": [{"column": "o2_percent", "scale": 1.0}],
+            "pressure": [{"column": "pressure_kpa", "scale": 1.0}],
+            "fuel": "fuel"
+          },
+          "canonical": {
+            "o2_pct": {"column": "o2_percent", "scale": 1.0},
+            "pressure_atm": {"column": "pressure_kpa", "scale": 0.009869232667160128}
+          }
+        }
+      ],
+      "variables": ["fuel", "o2_percent", "pressure_kpa", "diluent_frac", "d0_mm", "burn_rate", "extinguished"]
+    },
+    "flex2": {
+      "testLabel": "planned fuel cases",
+      "plannedOnly": true,
+      "files": [
+        {
+          "path": "flex2/FLEX2_clean.csv",
+          "pick": {
+            "o2": [
+              {"column": "o2_mole_fraction_min", "scale": 100.0},
+              {"column": "o2_mole_fraction_max", "scale": 100.0}
+            ],
+            "airflow": [
+              {"column": "flow_velocity_cm_s_min", "scale": 1.0},
+              {"column": "flow_velocity_cm_s_max", "scale": 1.0}
+            ],
+            "pressure": [
+              {"column": "pressure_atm_min", "scale": 1.0},
+              {"column": "pressure_atm_max", "scale": 1.0}
+            ],
+            "fuel": "fuel_raw"
+          },
+          "canonical": {
+            "o2_pct": {"column": "o2_mole_fraction_min", "scale": 100.0},
+            "airflow_cm_s": {"column": "flow_velocity_cm_s_min", "scale": 1.0},
+            "pressure_atm": {"column": "pressure_atm_min", "scale": 1.0}
+          }
+        }
+      ],
+      "variables": [
+        "droplet_diameter_mm_min",
+        "droplet_diameter_mm_max",
+        "flow_velocity_cm_s_min",
+        "flow_velocity_cm_s_max",
+        "o2_mole_fraction_levels",
+        "pressure_atm_levels",
+        "data_kind"
+      ]
+    },
+    "saffire": {
+      "testLabel": "burns",
+      "o2Partial": true,
+      "countRule": {"column": "record_type", "value": "burn"},
+      "files": [
+        {
+          "path": "saffire/SAFFIRE-I_clean.csv",
+          "pick": {
+            "date": "burn_date",
+            "o2": [
+              {"column": "o2_percent_min", "scale": 1.0},
+              {"column": "o2_percent_max", "scale": 1.0}
+            ],
+            "airflow": [{"column": "air_flow_cms", "scale": 1.0}],
+            "fuel": "material"
+          },
+          "canonical": {
+            "o2_pct": {"column": "o2_percent_min", "scale": 1.0},
+            "airflow_cm_s": {"column": "air_flow_cms", "scale": 1.0}
+          }
+        }
+      ],
+      "variables": [
+        "material",
+        "flow_direction",
+        "air_flow_cms",
+        "o2_percent_min",
+        "o2_percent_max",
+        "burn_time_s",
+        "length_cm",
+        "width_cm"
+      ]
+    },
+    "same": {
+      "files": [
+        {
+          "path": "same/SAME_clean.csv",
+          "pick": {
+            "airflow": [{"column": "air_flow_cms", "scale": 1.0}],
+            "fuel": "material"
+          },
+          "canonical": {
+            "airflow_cm_s": {"column": "air_flow_cms", "scale": 1.0}
+          }
+        }
+      ],
+      "variables": ["material", "air_flow_cms", "weight_loss_rate_mg_min", "aging_min", "varied_factor"]
+    },
+    "samer": {
+      "files": [
+        {
+          "path": "samer/SAME-R_clean.csv",
+          "pick": {
+            "airflow": [{"column": "inlet_velocity_cms", "scale": 1.0}],
+            "fuel": "material"
+          },
+          "canonical": {
+            "airflow_cm_s": {"column": "inlet_velocity_cms", "scale": 1.0}
+          }
+        }
+      ],
+      "variables": [
+        "material",
+        "inlet_velocity_cms",
+        "temp_class",
+        "is_aging_run",
+        "rt_r0",
+        "duration_s",
+        "net_aging_min"
+      ]
+    },
+    "sflame": {
+      "testLabel": "test days",
+      "files": [
+        {
+          "path": "sflame/sflame_clean.csv",
+          "pick": {
+            "date": "test_date",
+            "o2": [
+              {"column": "o2_min_pct", "scale": 1.0},
+              {"column": "o2_max_pct", "scale": 1.0}
+            ],
+            "fuel": "fuel_list"
+          },
+          "canonical": {
+            "o2_pct": {"column": "o2_min_pct", "scale": 1.0}
+          }
+        }
+      ],
+      "variables": ["round_diluent", "o2_levels_pct", "fuel_list", "bottle_inert_pct", "flames_ignited"]
+    },
+    "spice": {
+      "testLabel": "analysed flames",
+      "countRule": {"column": "is_analysis_row", "value": "True"},
+      "files": [
+        {
+          "path": "spice/SPICE_clean.csv",
+          "pick": {
+            "date": "date",
+            "airflow": [{"column": "air_rate_cm_s", "scale": 1.0}],
+            "fuel": "fuel_label"
+          },
+          "canonical": {
+            "airflow_cm_s": {"column": "air_rate_cm_s", "scale": 1.0}
+          }
+        }
+      ],
+      "variables": ["fuel_label", "nozzle_mm", "air_rate_cm_s", "burn_duration_s", "ignition_status"]
+    }
+  }
+}

@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import Protocol
 
 from core.data.reference import ReferenceData
 from core.data.registry import ADAPTERS, CANONICAL_ORDER
-from core.errors import ToolFault
+from core.errors import NotFound, OutOfScope
 from models import (
+    EnvironmentRecord,
     GapItem,
     InvestigationMeta,
     InvestigationRecord,
@@ -14,8 +16,29 @@ from models import (
 )
 
 
+class CatalogView(Protocol):
+    @property
+    def generated_at(self) -> str: ...
+
+    @property
+    def allowed_investigation_ids(self) -> frozenset[str] | None: ...
+
+    @property
+    def summaries(self) -> dict[str, SummaryRecord]: ...
+
+    def all(self) -> tuple[InvestigationRecord, ...]: ...
+
+    def get(self, investigation_id: str) -> InvestigationRecord: ...
+
+    def environment(self, environment_id: str) -> EnvironmentRecord: ...
+
+    def coverage(self) -> dict[str, dict[str, bool]]: ...
+
+    def gaps(self, ids: list[str] | None = None) -> list[GapItem]: ...
+
+
 @dataclass(frozen=True)
-class Catalog:
+class InvestigationCatalog:
     reference: ReferenceData
     summaries: dict[str, SummaryRecord]
     generated_at: str
@@ -33,20 +56,20 @@ class Catalog:
             records[investigation_id] = InvestigationRecord(
                 id=meta.id,
                 name=meta.name,
-                full=meta.full,
+                full_name=meta.full_name,
                 theme=meta.theme,
                 phase=meta.phase,
                 gravity=meta.gravity,
                 scale=meta.scale,
                 data_quality=meta.data_quality,
                 o2=o2,
-                o2known=True if derived else meta.o2known,
-                o2src=meta.o2src,
-                hw=meta.hw,
-                obj=meta.obj,
+                o2_known=True if derived else meta.o2_known,
+                o2_source=meta.o2_source,
+                hardware=meta.hardware,
+                objective=meta.objective,
                 fuel=meta.fuel,
-                cond=meta.cond,
-                meas=meta.meas,
+                conditions=meta.conditions,
+                measurements=meta.measurements,
                 data=summary,
                 psi=PsiLinks(
                     ids=list(self.reference.psi_ids[investigation_id]),
@@ -62,27 +85,29 @@ class Catalog:
 
     records: dict[str, InvestigationRecord] = field(init=False)
 
+    @property
+    def allowed_investigation_ids(self) -> None:
+        return None
+
     def all(self) -> tuple[InvestigationRecord, ...]:
         return tuple(self.records[investigation_id] for investigation_id in CANONICAL_ORDER)
 
     def get(self, investigation_id: str) -> InvestigationRecord:
         record = self.records.get(investigation_id)
         if record is None:
-            raise ToolFault(
-                "INVESTIGATION_NOT_FOUND",
+            raise NotFound(
                 f"Unknown investigation: {investigation_id}",
-                status_code=404,
+                code="INVESTIGATION_NOT_FOUND",
             )
         return record
 
-    def environment(self, environment_id: str):
+    def environment(self, environment_id: str) -> EnvironmentRecord:
         for environment in self.reference.environments:
             if environment.id == environment_id:
                 return environment
-        raise ToolFault(
-            "ENVIRONMENT_NOT_FOUND",
+        raise NotFound(
             f"Unknown environment: {environment_id}",
-            status_code=404,
+            code="ENVIRONMENT_NOT_FOUND",
         )
 
     def coverage(self) -> dict[str, dict[str, bool]]:
@@ -128,10 +153,10 @@ class Catalog:
         return items
 
 
-class ScopedCatalog:
+class ScopedInvestigationCatalog:
     """Catalog view limited to the investigations selected by the request."""
 
-    def __init__(self, catalog: Catalog, allowed_ids: set[str]) -> None:
+    def __init__(self, catalog: InvestigationCatalog, allowed_ids: set[str]) -> None:
         self._catalog = catalog
         self._allowed = frozenset(allowed_ids)
 
@@ -144,7 +169,7 @@ class ScopedCatalog:
         return self._catalog.generated_at
 
     @property
-    def summaries(self):
+    def summaries(self) -> dict[str, SummaryRecord]:
         return {
             investigation_id: summary
             for investigation_id, summary in self._catalog.summaries.items()
@@ -159,17 +184,15 @@ class ScopedCatalog:
     def get(self, investigation_id: str) -> InvestigationRecord:
         if investigation_id not in self._allowed:
             allowed = ", ".join(sorted(self._allowed))
-            raise ToolFault(
-                "OUT_OF_SCOPE",
+            raise OutOfScope(
                 (
                     f"{investigation_id} is outside the PSI scope supplied with the request. "
                     f"Allowed investigations: {allowed}."
-                ),
-                status_code=400,
+                )
             )
         return self._catalog.get(investigation_id)
 
-    def environment(self, environment_id: str):
+    def environment(self, environment_id: str) -> EnvironmentRecord:
         return self._catalog.environment(environment_id)
 
     def coverage(self) -> dict[str, dict[str, bool]]:

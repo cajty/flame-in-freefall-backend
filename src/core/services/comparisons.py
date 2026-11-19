@@ -3,8 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 from core.errors import ToolFault
-from models import CompareData, CompareInput, Envelope, MetricName
-from tools.common import (
+from core.services.metrics import (
     citation_context,
     combined_warnings,
     metric_value,
@@ -12,7 +11,8 @@ from tools.common import (
     record_warnings,
     validate_metric,
 )
-from tools.context import AppContext
+from models import CompareData, CompareInput, Envelope, MetricName
+from core.context import AppContext
 
 
 def compare_investigations(

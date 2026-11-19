@@ -154,7 +154,3 @@ class FixedWindowRateLimiter:
             return False
         self._windows[key] = (window, current[1] + 1)
         return True
-
-    def retry_after(self) -> int:
-        now = int(self.clock())
-        return self.window_seconds - (now % self.window_seconds)

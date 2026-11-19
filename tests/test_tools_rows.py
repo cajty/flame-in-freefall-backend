@@ -4,7 +4,7 @@ import pytest
 
 from core.errors import ToolFault
 from models import AggregateTestsInput, QueryTestsInput
-from tools.rows import aggregate_tests, query_tests
+from core.services.row_queries import aggregate_tests, query_tests
 
 
 def test_query_tests_saffire_returns_burns_only(context):

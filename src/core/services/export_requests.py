@@ -17,11 +17,11 @@ from models import (
     RunQueryInput,
     ScoreInput,
 )
-from tools.common import provenance
-from tools.compare import compare_investigations
-from tools.context import AppContext
-from tools.query import run_query, score_investigations
-from tools.summary_tools import find_data_gaps
+from core.services.metrics import provenance
+from core.services.comparisons import compare_investigations
+from core.context import AppContext
+from core.services.queries import run_query, score_investigations
+from core.services.investigations import find_data_gaps
 
 REQUIRED_COLUMNS = ("source_file", "psi_id")
 

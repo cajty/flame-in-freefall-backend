@@ -83,10 +83,8 @@ def summarize_investigation(
     for source, spec in zip(frames, adapter.files, strict=True):
         frame = source.frame
         o2_values.extend(_numbers(frame, spec.pick.o2))
-        airflow_values.extend(_numbers(frame, tuple((c, 1.0) for c in spec.pick.airflow)))
-        pressure_values.extend(
-            _numbers(frame, tuple((c, 1.0) for c in spec.pick.pressure))
-        )
+        airflow_values.extend(_numbers(frame, spec.pick.airflow))
+        pressure_values.extend(_numbers(frame, spec.pick.pressure))
         if spec.pick.date is not None:
             dates.extend(_values(frame, spec.pick.date))
         if spec.pick.fuel is not None:

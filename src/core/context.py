@@ -5,7 +5,11 @@ from collections.abc import Callable
 from dataclasses import dataclass, replace
 
 from config import Settings, get_settings
-from core.data.catalog import Catalog, ScopedCatalog
+from core.data.catalog import (
+    CatalogView,
+    InvestigationCatalog,
+    ScopedInvestigationCatalog,
+)
 from core.data.generated import load_generated
 from core.data.loader import CsvRepository
 from core.data.reference import ReferenceData, load_reference
@@ -19,7 +23,7 @@ from core.services.exports import ExportStore
 class AppContext:
     settings: Settings
     reference: ReferenceData
-    catalog: Catalog | ScopedCatalog
+    catalog: CatalogView
     repo: CsvRepository
     exports: ExportStore
     conversations: ConversationStore
@@ -37,7 +41,7 @@ def build_context(
     summaries, generated_at = load_generated(
         settings.generated_json_path, CANONICAL_ORDER
     )
-    catalog = Catalog(reference, summaries, generated_at)
+    catalog = InvestigationCatalog(reference, summaries, generated_at)
     repo = CsvRepository(settings.data_processed_dir)
     if load_csv:
         for adapter in ADAPTERS.values():
@@ -67,4 +71,7 @@ def build_context(
 
 
 def with_scope(ctx: AppContext, investigation_ids: list[str]) -> AppContext:
-    return replace(ctx, catalog=ScopedCatalog(ctx.catalog, set(investigation_ids)))
+    return replace(
+        ctx,
+        catalog=ScopedInvestigationCatalog(ctx.catalog, set(investigation_ids)),
+    )

@@ -9,16 +9,15 @@ from core.data.registry import (
     METRIC_NAMES,
 )
 from core.data.summary import js_round
-from core.errors import ToolFault
+from core.errors import InvalidRequest
 from models import InvestigationRecord, MetricName, ProvenanceItem
-from tools.context import AppContext
 
 
 def validate_metric(metric: str) -> str:
     if metric not in METRIC_NAMES:
-        raise ToolFault(
-            "UNKNOWN_METRIC",
+        raise InvalidRequest(
             f"Unsupported metric: {metric}. Use get_schema for supported metrics.",
+            code="UNKNOWN_METRIC",
         )
     return metric
 
@@ -77,9 +76,9 @@ def metric_fields(record: InvestigationRecord, metrics: list[str]) -> list[Prove
             if metric == MetricName.o2_pct:
                 fields.extend(column for column, _ in spec.pick.o2)
             elif metric == MetricName.pressure_atm:
-                fields.extend(spec.pick.pressure)
+                fields.extend(column for column, _ in spec.pick.pressure)
             elif metric == MetricName.airflow_cm_s:
-                fields.extend(spec.pick.airflow)
+                fields.extend(column for column, _ in spec.pick.airflow)
             elif metric == MetricName.test_date:
                 if spec.pick.date is not None:
                     fields.append(spec.pick.date)
@@ -123,7 +122,7 @@ def record_warnings(record: InvestigationRecord, metrics: list[str]) -> list[str
             warnings.append(
                 f"{record.name} O2 range is partial: only Saffire-I is in the cleaned table."
             )
-        elif record.o2src == "air":
+        elif record.o2_source == "air":
             warnings.append(
                 f"{record.name} O2 is assumed to be air (21%) because the cleaned table has no O2 column."
             )
@@ -166,7 +165,3 @@ def citation_context(record: InvestigationRecord) -> dict[str, list[str]]:
         "psiIds": list(record.psi.ids),
         "psiUrls": list(record.psi.urls),
     }
-
-
-def require_investigations(ctx: AppContext, ids: list[str]) -> list[InvestigationRecord]:
-    return [ctx.catalog.get(investigation_id) for investigation_id in ids]

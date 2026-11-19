@@ -44,3 +44,22 @@ testpaths = ["tests"]
 pythonpath = ["src"]
 asyncio_mode = "auto"
 addopts = "-q --strict-markers"
+
+[tool.importlinter]
+root_packages = ["api", "agents", "tools", "core", "models", "config", "prompts"]
+
+[[tool.importlinter.contracts]]
+name = "Layered architecture"
+type = "layers"
+layers = [
+  "api",
+  "agents",
+  "tools",
+  "core",
+  "models | config | prompts",
+]
+
+[dependency-groups]
+dev = [
+    "import-linter>=2.17",
+]

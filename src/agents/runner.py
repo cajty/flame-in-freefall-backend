@@ -13,9 +13,9 @@ from agents.grounding import assemble
 from agents.tools import build_agent
 from config import Settings
 from core.data.reference import PSI_ID_RE
-from core.errors import ToolFault
+from core.errors import DomainError, ToolFault
 from models import AnalyzeInput, Envelope
-from tools.context import AppContext, with_scope
+from core.context import AppContext, with_scope
 
 logger = logging.getLogger("flame_atlas.agent")
 
@@ -93,7 +93,7 @@ async def run_analysis(
         prompt_parts.append(
             f"Selected environment: {environment.name} (id: {environment.id}); "
             f"O2 window {environment.o2[0]:g}-{environment.o2[1]:g}%; "
-            f"pressure {environment.psi}."
+            f"pressure {environment.pressure_label}."
         )
         prompt_parts.append(
             'Treat phrases such as "this habitat" as this selected environment.'
@@ -173,7 +173,7 @@ async def run_analysis(
             ),
             status_code=500,
         ) from error
-    except ToolFault:
+    except (DomainError, ToolFault):
         raise
     except Exception as error:
         logger.exception("analysis failed: %s", type(error).__name__)

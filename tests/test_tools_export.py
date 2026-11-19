@@ -2,19 +2,13 @@ from __future__ import annotations
 
 import pytest
 
-from core.errors import ToolFault
+from core.errors import DomainError, ToolFault
 from core.services.exports import ExportStore, escape_cell, write_csv
 from models import ExportInput
-from tools.context import build_context
-from tools.exports import export_csv
+from core.context import build_context
+from core.services.export_requests import export_csv
 
-
-class Clock:
-    def __init__(self) -> None:
-        self.now = 1_000_000.0
-
-    def __call__(self) -> float:
-        return self.now
+from helpers import Clock
 
 
 def test_export_store_ttl_and_unknown_id():
@@ -24,12 +18,11 @@ def test_export_store_ttl_and_unknown_id():
 
     assert store.get(artifact.id) is artifact
     clock.now += 901
-    with pytest.raises(ToolFault) as error:
+    with pytest.raises(DomainError) as error:
         store.get(artifact.id)
     assert error.value.code == "EXPORT_EXPIRED"
-    assert error.value.status_code == 410
 
-    with pytest.raises(ToolFault) as error:
+    with pytest.raises(DomainError) as error:
         store.get("missing")
     assert error.value.code == "EXPORT_NOT_FOUND"
 

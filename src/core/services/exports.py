@@ -9,7 +9,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime
 
-from core.errors import ToolFault
+from core.errors import ExportExpired, ExportNotFound
 
 FORMULA_PREFIXES = ("=", "+", "-", "@")
 
@@ -95,18 +95,10 @@ class ExportStore:
         with self._lock:
             artifact = self._items.get(export_id)
             if artifact is None:
-                raise ToolFault(
-                    "EXPORT_NOT_FOUND",
-                    f"Unknown export: {export_id}",
-                    status_code=404,
-                )
+                raise ExportNotFound(f"Unknown export: {export_id}")
             if artifact.expires_at <= now:
                 self._items.pop(export_id, None)
-                raise ToolFault(
-                    "EXPORT_EXPIRED",
-                    "This export has expired.",
-                    status_code=410,
-                )
+                raise ExportExpired("This export has expired.")
             return artifact
 
     def clear(self) -> None:

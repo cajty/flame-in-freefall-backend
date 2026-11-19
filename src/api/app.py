@@ -11,6 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from api.errors import (
+    domain_error_handler,
     http_handler,
     tool_fault_handler,
     unhandled_handler,
@@ -23,8 +24,8 @@ from api.middleware import (
 )
 from api.routes import router
 from config import Settings, get_settings
-from core.errors import ToolFault
-from tools.context import AppContext, build_context
+from core.errors import DomainError, ToolFault
+from core.context import AppContext, build_context
 
 
 def create_app(
@@ -68,6 +69,7 @@ def create_app(
         expose_headers=["Content-Disposition", "X-Request-ID"],
     )
 
+    app.add_exception_handler(DomainError, domain_error_handler)
     app.add_exception_handler(ToolFault, tool_fault_handler)
     app.add_exception_handler(RequestValidationError, validation_handler)
     app.add_exception_handler(StarletteHTTPException, http_handler)

@@ -22,5 +22,6 @@ scripts/clean_flex2.py     reads data/raw/flex2/...  writes data/processed/flex2
 scripts/clean_efield.py
 ```
 
-After a cleaning script writes a new table, add its column mapping to `lib/adapters.js` and run
-both build scripts.
+After a cleaning script writes a new table, add its column mapping to
+`data/reference/adapters.json` and run both build scripts. The Python API and the
+Node build read the same file.

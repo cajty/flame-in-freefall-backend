@@ -19,7 +19,7 @@ from agents.deps import ToolDeps
 from agents.runner import run_analysis
 from agents.tools import build_agent
 from api.app import create_app
-from core.errors import ToolFault
+from core.errors import DomainError, ToolFault
 from core.services.scoring import rank
 from models import AnalyzeInput
 
@@ -531,7 +531,7 @@ def test_analyze_endpoint_with_injected_model(context):
 
 
 def test_analyze_unknown_environment_is_rejected(context):
-    with pytest.raises(ToolFault) as error:
+    with pytest.raises(DomainError) as error:
         asyncio.run(
             run_analysis(
                 context,
@@ -540,4 +540,3 @@ def test_analyze_unknown_environment_is_rejected(context):
             )
         )
     assert error.value.code == "ENVIRONMENT_NOT_FOUND"
-    assert error.value.status_code == 404

@@ -23,7 +23,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from core.data.psi_catalog import PsiCatalogIndex, load_psi_catalog, rerank_matches
+from core.data.psi_catalog import PsiMetadataIndex, load_psi_catalog, rerank_matches
 from core.data.reranker import Reranker, load_reranker
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -100,7 +100,7 @@ def load_queries(path: Path, valid_ids: set[str]) -> list[EvalQuery]:
 
 
 def evaluate(
-    index: PsiCatalogIndex,
+    index: PsiMetadataIndex,
     queries: list[EvalQuery],
     reranker: Reranker | None,
     pool_size: int,

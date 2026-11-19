@@ -7,8 +7,11 @@ RUN node scripts/build-data.mjs
 
 FROM python:3.12-slim
 WORKDIR /app
+# Langfuse export is off unless LANGFUSE_* env is supplied at runtime.
+# compose.yaml overrides this for the local Langfuse stack.
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    LANGFUSE_ENABLED=0
 COPY pyproject.toml ./
 COPY src ./src
 # The reranker stays disabled unless FLAME_RERANKER_ENABLED is set; the

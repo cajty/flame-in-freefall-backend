@@ -21,7 +21,6 @@ class ReferenceData:
     psi_url_template: str
     pillar_order: list[str]
     phases: dict[str, dict[str, str]]
-    pillars: dict[str, dict[str, str]]
 
 
 def _read_json(path: Path) -> object:
@@ -111,5 +110,4 @@ def load_reference(reference_dir: Path) -> ReferenceData:
         psi_url_template=str(psi_raw["urlTemplate"]),
         pillar_order=pillar_order,
         phases=phases,
-        pillars=dict(pillars_raw["pillars"]),
     )

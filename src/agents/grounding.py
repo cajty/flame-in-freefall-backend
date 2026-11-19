@@ -3,18 +3,18 @@ from __future__ import annotations
 from typing import Any
 
 from agents.deps import ToolDeps
-from core.errors import ToolFault
-from core.services.scoring import rank
-from models import AnalysisAnswer, AnalyzeData, Envelope, ProvenanceItem, ScoreItem
-from tools.common import citation_context, combined_warnings
-from tools.context import AppContext
+from core.errors import DomainError, ToolFault
+from core.services.scoring import rank, to_score_items
+from models import AnalysisAnswer, AnalyzeData, Envelope, ProvenanceItem
+from core.services.metrics import combined_warnings
+from core.context import AppContext
 
 
 def _validate_citations(ctx: AppContext, answer: AnalysisAnswer) -> None:
     for citation in answer.citations:
         try:
             record = ctx.catalog.get(citation.investigation_id)
-        except ToolFault as error:
+        except DomainError as error:
             raise ToolFault(
                 "INVALID_CITATION",
                 f"Citation names an unknown investigation: {citation.investigation_id}",
@@ -73,31 +73,11 @@ def _dedupe_provenance(items: list[ProvenanceItem]) -> list[ProvenanceItem]:
     return result
 
 
-def _ranking(ctx: AppContext, environment_id: str) -> list[ScoreItem]:
+def _ranking(ctx: AppContext, environment_id: str) -> list:
     environment = ctx.catalog.environment(environment_id)
     weights = ctx.reference.theme_weights[environment.id]
     ranked = rank(list(ctx.catalog.all()), environment, weights)
-    return [
-        ScoreItem(
-            investigation_id=record.id,
-            name=record.name,
-            score=details.total,
-            o2_overlap=details.o2_overlap,
-            gravity_match=details.gravity_match,
-            scale_match=details.scale_match,
-            data_quality_factor=details.data_quality_factor,
-            theme_fraction=details.theme_fraction,
-            theme_weight=details.theme_weight,
-            gravity=record.gravity,
-            scale=record.scale,
-            data_quality=record.data_quality,
-            o2=record.o2,
-            theme=record.theme,
-            phase=record.phase,
-            **citation_context(record),
-        )
-        for record, details in ranked
-    ]
+    return to_score_items(ranked)
 
 
 def _covers(ctx: AppContext, probe: float) -> list[str]:

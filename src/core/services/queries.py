@@ -4,7 +4,15 @@ from typing import Any
 
 from core.errors import ToolFault
 from core.query_filters import matches_filter
-from core.services.scoring import rank
+from core.services.metrics import (
+    combined_warnings,
+    metric_value,
+    provenance,
+    record_warnings,
+    validate_metric,
+)
+from core.services.scoring import rank, to_score_items
+from core.services.validation import validate_theme_phase
 from models import (
     Envelope,
     MetricName,
@@ -12,18 +20,8 @@ from models import (
     RunQueryInput,
     ScoreData,
     ScoreInput,
-    ScoreItem,
 )
-from tools.common import (
-    citation_context,
-    combined_warnings,
-    metric_value,
-    provenance,
-    record_warnings,
-    validate_metric,
-)
-from tools.context import AppContext
-from tools.summary_tools import _validate_theme_phase
+from core.context import AppContext
 
 GROUP_KEYS = {"investigation_id", "theme", "phase"}
 
@@ -184,7 +182,7 @@ def run_query(ctx: AppContext, request: RunQueryInput) -> Envelope[QueryData]:
 
 def score_investigations(ctx: AppContext, request: ScoreInput) -> Envelope[ScoreData]:
     environment = ctx.catalog.environment(request.environment_id)
-    _validate_theme_phase(ctx, request.filters.theme, request.filters.phase)
+    validate_theme_phase(ctx, request.filters.theme, request.filters.phase)
     weights = ctx.reference.theme_weights[environment.id]
 
     records = [
@@ -193,28 +191,7 @@ def score_investigations(ctx: AppContext, request: ScoreInput) -> Envelope[Score
         if (request.filters.theme is None or record.theme == request.filters.theme)
         and (request.filters.phase is None or record.phase == request.filters.phase)
     ]
-    ranked = rank(records, environment, weights)
-    items = [
-        ScoreItem(
-            investigation_id=record.id,
-            name=record.name,
-            score=details.total,
-            o2_overlap=details.o2_overlap,
-            gravity_match=details.gravity_match,
-            scale_match=details.scale_match,
-            data_quality_factor=details.data_quality_factor,
-            theme_fraction=details.theme_fraction,
-            theme_weight=details.theme_weight,
-            gravity=record.gravity,
-            scale=record.scale,
-            data_quality=record.data_quality,
-            o2=record.o2,
-            theme=record.theme,
-            phase=record.phase,
-            **citation_context(record),
-        )
-        for record, details in ranked
-    ]
+    items = to_score_items(rank(records, environment, weights))
 
     warnings: list[str] = []
     for record in records:

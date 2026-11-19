@@ -15,6 +15,7 @@ Desktop.ini
 __pycache__/
 .pytest_cache/
 .ruff_cache/
+.import_linter_cache/
 *.pyc
 artifacts/
 .mypy_cache/

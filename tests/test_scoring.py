@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from core.errors import ToolFault
+from core.errors import DomainError
 from core.query_filters import matches_filter
 from core.services.scoring import o2_overlap, rank, score
 from models import QueryFilter
@@ -99,6 +99,6 @@ def test_query_filter_normalizes_pressure(context):
 
 def test_query_filter_rejects_unknown_metric(context):
     bass = _record(context, "bass")
-    with pytest.raises(ToolFault) as error:
+    with pytest.raises(DomainError) as error:
         matches_filter(bass, QueryFilter(metric="burn_rate", op="eq", min=1))
     assert error.value.code == "UNKNOWN_METRIC"

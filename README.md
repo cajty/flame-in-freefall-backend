@@ -14,6 +14,7 @@ flame-in-freefall-backend/
     processed/              cleaned tables used by the build and row-level tools
     eval/                   labeled queries for the optional reranker evaluation
     reference/              canonical dashboard metadata (investigations, environments, PSI, pillars)
+    reference/adapters.json per-investigation CSV column mapping shared by Python and Node
     reference/psi_metadata_manifest.json  downloaded metadata checksums and source links
   scripts/
     build-data.mjs          reads data/processed, writes generated.json for the API
@@ -22,7 +23,7 @@ flame-in-freefall-backend/
     fetch_psi_catalog.py    builds the offline PSI investigation catalog
     evaluate_reranker.py    compares BM25 and the reranker on labeled queries
     lib/csv.js              CSV parser
-    lib/adapters.js         per-investigation column mapping
+    lib/adapters.js         loads data/reference/adapters.json for the build
     lib/psi-metadata.js     metadata ZIP selection and ZIP validation
     lib/summary.js          counts, ranges, dates and variable profiles
     lib/dashboard.js        canonical artifact builder
@@ -30,10 +31,11 @@ flame-in-freefall-backend/
     agents/                 Pydantic AI agent and tool wiring
     api/                    FastAPI app, routes and middleware
     config/                 environment-backed settings
-    core/                   CSV/data layer, errors, scoring and exports
-    models/                 Pydantic schemas
+    core/                   data layer, domain errors and application services
+    core/services/          read-only use cases (search, query, scoring, exports)
+    models/                 Pydantic request, response and domain schemas
     prompts/                agent system prompt
-    tools/                  read-only tool functions
+    tools/                  agent-facing adapters and the shared tool runner
   tests/                    Node data tests and Python API/tool tests
   generated.json            summary consumed by the Python API
 ```
@@ -157,19 +159,53 @@ uv venv --python 3.12 .venv
 uv sync --extra dev
 npm run data              # generated.json must exist before starting the API
 uv run pytest
+uv run lint-imports       # enforces api -> agents/tools -> core -> models
 uv run uvicorn api.main:app --host 127.0.0.1 --port 8000
 ```
 
 The API prints Pydantic AI agent and tool spans to the server terminal through
 Logfire in local mode (`send_to_logfire=False`); nothing is sent to Logfire.
 
-Local trace UI: start Jaeger, run the API, then open `http://localhost:16686`
-and select the `flame-atlas-backend` service.
+### Local Langfuse tracing
+
+`compose.yaml` runs the backend and a local Langfuse stack: Langfuse web and
+worker, Postgres, ClickHouse, Redis and MinIO.
 
 ```bash
-docker compose up -d
+docker compose up -d --build
+```
+
+- API: `http://127.0.0.1:8000`
+- Langfuse: `http://127.0.0.1:3000`
+- Local dev login: `admin@example.com` / `flame-atlas-local`
+- Local dev project keys: `pk-lf-flame-atlas-local` / `sk-lf-flame-atlas-local`
+
+The backend exports spans to `http://langfuse-web:3000/api/public/otel` inside
+compose. It reads `.env` when present for `GEMINI_API_KEY`; without a key the
+agent is unavailable but the rest of the API works. Change the local passwords
+and init keys through the environment variables in `compose.yaml` before using
+this beyond a local machine.
+
+To run the API on the host while Langfuse runs in compose:
+
+```bash
+LANGFUSE_ENABLED=1
+LANGFUSE_OTLP_ENDPOINT=http://localhost:3000/api/public/otel
+LANGFUSE_PUBLIC_KEY=pk-lf-flame-atlas-local
+LANGFUSE_SECRET_KEY=sk-lf-flame-atlas-local
 uv run uvicorn api.main:app --host 127.0.0.1 --port 8000
-docker compose down      # stop Jaeger when done
+```
+
+Langfuse Cloud works with
+`LANGFUSE_OTLP_ENDPOINT=https://cloud.langfuse.com/api/public/otel`
+(`https://us.cloud.langfuse.com/api/public/otel` for the US region). If the
+flag is on but either key is missing, the API logs a warning and keeps terminal
+tracing only; startup does not fail. Keys are used only to build the OTLP
+Authorization header and are never logged.
+
+```bash
+docker compose down      # stop Langfuse and remove containers
+docker compose down -v   # also delete Langfuse data volumes
 ```
 
 The public API is read-only. The agent calls the 13 tools from

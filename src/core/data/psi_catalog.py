@@ -106,7 +106,7 @@ class _IndexedDocument:
 
 
 @dataclass(frozen=True)
-class PsiCatalogIndex:
+class PsiMetadataIndex:
     generated_at: str
     documents: tuple[_IndexedDocument, ...]
     document_frequency: dict[str, int]
@@ -232,7 +232,7 @@ def _document(record: PsiCatalogRecord) -> _IndexedDocument:
 
 
 @lru_cache(maxsize=4)
-def load_psi_catalog(path: Path) -> PsiCatalogIndex:
+def load_psi_catalog(path: Path) -> PsiMetadataIndex:
     """Load and index the local catalog. Raises when the file is unusable."""
     raw = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(raw, dict):
@@ -265,7 +265,7 @@ def load_psi_catalog(path: Path) -> PsiCatalogIndex:
         if documents
         else 0.0
     )
-    return PsiCatalogIndex(
+    return PsiMetadataIndex(
         generated_at=str(raw.get("generatedAt", "")),
         documents=documents,
         document_frequency=document_frequency,

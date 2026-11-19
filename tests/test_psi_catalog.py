@@ -10,7 +10,7 @@ from core.data.psi_catalog import load_psi_catalog, rerank_matches
 from core.data.reranker import load_reranker
 from core.errors import ToolFault
 from models import PsiCatalogSearchInput
-from tools.context import with_scope
+from core.context import with_scope
 from tools.psi import search_psi_catalog
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
@@ -231,7 +231,7 @@ def test_reranker_reorders_matches_and_keeps_bm25_score(
     context.settings.reranker_enabled = True
     context.settings.reranker_pool_size = 10
     monkeypatch.setattr(
-        "tools.psi.load_reranker", lambda model_dir: _FakeReranker()
+        "core.services.psi_search.load_reranker", lambda model_dir: _FakeReranker()
     )
 
     result = search_psi_catalog(
@@ -248,7 +248,7 @@ def test_reranker_runs_after_scope_filter(context, catalog_path, monkeypatch):
     context.settings.reranker_enabled = True
     context.settings.reranker_pool_size = 1
     monkeypatch.setattr(
-        "tools.psi.load_reranker", lambda model_dir: _FakeReranker()
+        "core.services.psi_search.load_reranker", lambda model_dir: _FakeReranker()
     )
     scoped = with_scope(context, ["bass2"])
 
@@ -274,7 +274,7 @@ def test_reranker_disabled_keeps_bm25_order(context, catalog_path):
 def test_missing_reranker_falls_back_to_bm25(context, catalog_path, monkeypatch):
     _use_catalog(context, catalog_path)
     context.settings.reranker_enabled = True
-    monkeypatch.setattr("tools.psi.load_reranker", lambda model_dir: None)
+    monkeypatch.setattr("core.services.psi_search.load_reranker", lambda model_dir: None)
 
     result = search_psi_catalog(
         context, PsiCatalogSearchInput(q="flame spread oxygen")
@@ -288,7 +288,7 @@ def test_reranker_failure_falls_back_to_bm25(context, catalog_path, monkeypatch)
     _use_catalog(context, catalog_path)
     context.settings.reranker_enabled = True
     monkeypatch.setattr(
-        "tools.psi.load_reranker",
+        "core.services.psi_search.load_reranker",
         lambda model_dir: _FakeReranker(RuntimeError("inference failed")),
     )
 

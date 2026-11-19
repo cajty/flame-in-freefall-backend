@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import pytest
 
-from core.errors import ToolFault
+from core.errors import DomainError, ToolFault
 from models import GapsInput, GetInvestigationInput, SearchInput
-from tools.summary_tools import (
+from core.services.investigations import (
     find_data_gaps,
     get_environments,
     get_investigation,
@@ -42,7 +42,7 @@ def test_search_o2_fuel_and_has_data_filters(context):
 
 
 def test_search_rejects_unknown_theme_and_inverted_window(context):
-    with pytest.raises(ToolFault) as error:
+    with pytest.raises(DomainError) as error:
         search_investigations(context, SearchInput(theme="science"))
     assert error.value.code == "INVALID_QUERY"
 
@@ -57,9 +57,8 @@ def test_get_investigation_and_missing_id(context):
     assert result.data.psi.ids == ["PSI-25"]
     assert any("pressure" in warning for warning in result.warnings)
 
-    with pytest.raises(ToolFault) as error:
+    with pytest.raises(DomainError) as error:
         get_investigation(context, GetInvestigationInput(id="nope"))
-    assert error.value.status_code == 404
     assert error.value.code == "INVESTIGATION_NOT_FOUND"
 
 
@@ -85,5 +84,5 @@ def test_gaps_match_contract_examples(context):
 
 
 def test_gaps_unknown_id_raises(context):
-    with pytest.raises(ToolFault):
+    with pytest.raises(DomainError):
         find_data_gaps(context, GapsInput(ids=["nope"]))

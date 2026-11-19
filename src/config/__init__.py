@@ -48,7 +48,6 @@ class Settings(BaseSettings):
 
     max_request_body_bytes: int = Field(default=65_536, validation_alias="FLAME_MAX_BODY_BYTES")
     investigations_limit_max: int = 200
-    query_limit_default: int = 500
     query_limit_max: int = 5_000
     compare_max_ids: int = 5
     export_max_rows: int = 10_000
@@ -71,6 +70,20 @@ class Settings(BaseSettings):
         default=10, validation_alias="FLAME_ANALYZE_RATE_LIMIT_PER_MINUTE"
     )
 
+    langfuse_enabled: bool = Field(
+        default=False, validation_alias="LANGFUSE_ENABLED"
+    )
+    langfuse_otlp_endpoint: str = Field(
+        default="https://cloud.langfuse.com/api/public/otel",
+        validation_alias="LANGFUSE_OTLP_ENDPOINT",
+    )
+    langfuse_public_key: SecretStr | None = Field(
+        default=None, validation_alias="LANGFUSE_PUBLIC_KEY"
+    )
+    langfuse_secret_key: SecretStr | None = Field(
+        default=None, validation_alias="LANGFUSE_SECRET_KEY"
+    )
+
     @property
     def cors_origin_list(self) -> list[str]:
         return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
@@ -79,6 +92,16 @@ class Settings(BaseSettings):
     def model_configured(self) -> bool:
         return self.gemini_api_key is not None and bool(
             self.gemini_api_key.get_secret_value()
+        )
+
+    @property
+    def langfuse_configured(self) -> bool:
+        return bool(
+            self.langfuse_enabled
+            and self.langfuse_public_key
+            and self.langfuse_secret_key
+            and self.langfuse_public_key.get_secret_value()
+            and self.langfuse_secret_key.get_secret_value()
         )
 
 

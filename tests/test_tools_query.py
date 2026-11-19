@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from core.errors import ToolFault
+from core.errors import DomainError, ToolFault
 from models import (
     CompareInput,
     QueryFilter,
@@ -10,8 +10,8 @@ from models import (
     ScoreInput,
     SortSpec,
 )
-from tools.compare import compare_investigations
-from tools.query import run_query, score_investigations
+from core.services.comparisons import compare_investigations
+from core.services.queries import run_query, score_investigations
 
 
 def test_compare_bass2_and_flex2(context):
@@ -69,12 +69,12 @@ def test_compare_validation(context):
         compare_investigations(
             context, CompareInput(ids=["bass2", "bass2"], metrics=["o2_pct"])
         )
-    with pytest.raises(ToolFault) as error:
+    with pytest.raises(DomainError) as error:
         compare_investigations(
             context, CompareInput(ids=["bass2", "flex2"], metrics=["burn_rate"])
         )
     assert error.value.code == "UNKNOWN_METRIC"
-    with pytest.raises(ToolFault):
+    with pytest.raises(DomainError):
         compare_investigations(context, CompareInput(ids=["nope", "bass2"], metrics=["o2_pct"]))
 
 
@@ -137,9 +137,9 @@ def test_run_query_date_filter(context):
 def test_run_query_rejects_bad_group_and_metric(context):
     with pytest.raises(ToolFault):
         run_query(context, RunQueryInput(group_by=["name"]))
-    with pytest.raises(ToolFault):
+    with pytest.raises(DomainError):
         run_query(context, RunQueryInput(metrics=["nope"]))
-    with pytest.raises(ToolFault):
+    with pytest.raises(DomainError):
         run_query(context, RunQueryInput(investigation_ids=["nope"]))
 
 
@@ -164,6 +164,6 @@ def test_score_investigations_filters_and_unknown_environment(context):
     )
     assert {item.investigation_id for item in result.data.items} == {"same", "samer"}
 
-    with pytest.raises(ToolFault) as error:
+    with pytest.raises(DomainError) as error:
         score_investigations(context, ScoreInput(environment_id="space"))
     assert error.value.code == "ENVIRONMENT_NOT_FOUND"

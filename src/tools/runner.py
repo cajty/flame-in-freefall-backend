@@ -5,7 +5,7 @@ from collections.abc import Callable
 from typing import Any
 
 from core.errors import ToolFault
-from tools.context import AppContext
+from core.context import AppContext
 
 
 async def run_tool(

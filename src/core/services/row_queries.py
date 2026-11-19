@@ -16,10 +16,9 @@ from models import (
     QueryTestsInput,
     TestRowsData,
 )
-from tools.common import combined_warnings, provenance
-from tools.context import AppContext
+from core.services.metrics import combined_warnings, provenance
+from core.context import AppContext
 
-CANONICAL_ROW_METRICS = {"o2_pct", "pressure_atm", "airflow_cm_s"}
 MAX_GROUPS = 1_000
 
 
@@ -65,10 +64,6 @@ def _metric_value_for_row(spec, frame_columns: set[str], row, metric: str) -> fl
     if metric in frame_columns:
         return row[metric] if row[metric] != "" else None
     return None
-
-
-def _is_canonical(metric: str) -> bool:
-    return metric in CANONICAL_ROW_METRICS
 
 
 def _validate_metric(adapter: InvestigationAdapter, frames, metric: str) -> None:

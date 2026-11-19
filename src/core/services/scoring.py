@@ -3,7 +3,15 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from core.data.summary import js_round
-from models import DataQuality, EnvironmentRecord, Gravity, InvestigationRecord, Scale
+from core.services.metrics import citation_context
+from models import (
+    DataQuality,
+    EnvironmentRecord,
+    Gravity,
+    InvestigationRecord,
+    Scale,
+    ScoreItem,
+)
 
 # Starting weights. They are provisional and should be calibrated with a fire-safety
 # domain expert; the dashboard shows the same weights so a ranking can be explained.
@@ -141,3 +149,29 @@ def rank(
         )
     )
     return scored
+
+
+def to_score_items(
+    ranked: list[tuple[InvestigationRecord, ScoreDetails]],
+) -> list[ScoreItem]:
+    return [
+        ScoreItem(
+            investigation_id=record.id,
+            name=record.name,
+            score=details.total,
+            o2_overlap=details.o2_overlap,
+            gravity_match=details.gravity_match,
+            scale_match=details.scale_match,
+            data_quality_factor=details.data_quality_factor,
+            theme_fraction=details.theme_fraction,
+            theme_weight=details.theme_weight,
+            gravity=record.gravity,
+            scale=record.scale,
+            data_quality=record.data_quality,
+            o2=record.o2,
+            theme=record.theme,
+            phase=record.phase,
+            **citation_context(record),
+        )
+        for record, details in ranked
+    ]

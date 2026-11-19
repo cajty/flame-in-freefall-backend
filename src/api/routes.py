@@ -1,25 +1,41 @@
 from __future__ import annotations
 
 import secrets
+from typing import TypeVar
 
 from fastapi import APIRouter, Depends, Query, Request, Response
 from fastapi.responses import JSONResponse
-from pydantic import ValidationError
+from pydantic import BaseModel, ValidationError
 
+from agents.runner import run_analysis
+from core.context import AppContext
 from core.data.registry import CANONICAL_ORDER
-from core.errors import ToolFault
-from models import AnalyzeInput, GapsInput, GetInvestigationInput, SearchInput
-from tools.context import AppContext
-from tools.runner import run_tool
-from tools.summary_tools import (
+from core.errors import ErrorCode, ToolFault
+from core.services.investigations import (
     find_data_gaps,
     get_environments,
     get_investigation,
     get_schema,
     search_investigations,
 )
+from models import (
+    AnalyzeData,
+    AnalyzeInput,
+    Envelope,
+    EnvironmentsData,
+    GapsData,
+    GapsInput,
+    GetInvestigationInput,
+    HealthData,
+    InvestigationRecord,
+    SchemaData,
+    SearchData,
+    SearchInput,
+)
+from tools.runner import run_tool
 
 router = APIRouter(prefix="/api")
+ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 def context(request: Request) -> AppContext:
@@ -35,14 +51,14 @@ async def require_auth(request: Request) -> None:
     )
     header = request.headers.get("Authorization", "")
     if not configured or not secrets.compare_digest(header, f"Bearer {configured}"):
-        raise ToolFault("UNAUTHORIZED", "A valid bearer token is required.", 401)
+        raise ToolFault(ErrorCode.UNAUTHORIZED, "A valid bearer token is required.", 401)
 
 
 def _payload(envelope) -> dict:
     return envelope.model_dump(by_alias=True)
 
 
-def _model(model, **values):
+def _model(model: type[ModelT], **values) -> ModelT:
     try:
         return model(**values)
     except ValidationError as error:
@@ -50,25 +66,27 @@ def _model(model, **values):
             f"{'.'.join(str(part) for part in item.get('loc', ()))}: {item.get('msg', 'invalid value')}"
             for item in error.errors()
         ]
-        raise ToolFault("INVALID_REQUEST", "Request validation failed.", details=details) from error
+        raise ToolFault(
+            ErrorCode.INVALID_REQUEST,
+            "Request validation failed.",
+            details=details,
+        ) from error
 
 
-@router.get("/health")
-async def health(request: Request) -> dict:
+@router.get("/health", response_model=Envelope[HealthData])
+async def health(request: Request) -> Envelope[HealthData]:
     ctx = context(request)
-    return {
-        "ok": True,
-        "data": {
-            "status": "ok",
-            "generatedAt": ctx.catalog.generated_at,
-            "investigations": len(CANONICAL_ORDER),
-            "tables": ctx.table_count,
-        },
-        "warnings": [],
-    }
+    return Envelope(
+        data=HealthData(
+            status="ok",
+            generated_at=ctx.catalog.generated_at,
+            investigations=len(CANONICAL_ORDER),
+            tables=ctx.table_count,
+        )
+    )
 
 
-@router.get("/schema")
+@router.get("/schema", response_model=Envelope[SchemaData])
 async def schema(request: Request) -> JSONResponse:
     ctx = context(request)
     envelope = await run_tool(get_schema, ctx, None)
@@ -78,7 +96,7 @@ async def schema(request: Request) -> JSONResponse:
     )
 
 
-@router.get("/investigations")
+@router.get("/investigations", response_model=Envelope[SearchData])
 async def list_investigations(
     request: Request,
     q: str | None = None,
@@ -90,7 +108,7 @@ async def list_investigations(
     hasData: bool | None = Query(default=None),
     limit: int = Query(default=50),
     offset: int = Query(default=0),
-):
+) -> Envelope[SearchData]:
     ctx = context(request)
     request_model = _model(
         SearchInput,
@@ -104,30 +122,33 @@ async def list_investigations(
         limit=limit,
         offset=offset,
     )
-    return _payload(await run_tool(search_investigations, ctx, request_model))
+    return await run_tool(search_investigations, ctx, request_model)
 
 
-@router.get("/investigations/{investigation_id}")
-async def investigation(request: Request, investigation_id: str):
+@router.get(
+    "/investigations/{investigation_id}",
+    response_model=Envelope[InvestigationRecord],
+)
+async def investigation(
+    request: Request, investigation_id: str
+) -> Envelope[InvestigationRecord]:
     ctx = context(request)
-    return _payload(
-        await run_tool(
-            get_investigation, ctx, GetInvestigationInput(id=investigation_id)
-        )
+    return await run_tool(
+        get_investigation, ctx, GetInvestigationInput(id=investigation_id)
     )
 
 
-@router.get("/environments")
-async def environments(request: Request):
+@router.get("/environments", response_model=Envelope[EnvironmentsData])
+async def environments(request: Request) -> Envelope[EnvironmentsData]:
     ctx = context(request)
-    return _payload(await run_tool(get_environments, ctx, None))
+    return await run_tool(get_environments, ctx, None)
 
 
-@router.get("/gaps")
-async def gaps(request: Request, ids: str | None = None):
+@router.get("/gaps", response_model=Envelope[GapsData])
+async def gaps(request: Request, ids: str | None = None) -> Envelope[GapsData]:
     ctx = context(request)
     parsed = [item.strip() for item in ids.split(",") if item.strip()] if ids else None
-    return _payload(await run_tool(find_data_gaps, ctx, GapsInput(ids=parsed)))
+    return await run_tool(find_data_gaps, ctx, GapsInput(ids=parsed))
 
 
 @router.get("/exports/{export_id}")
@@ -144,14 +165,17 @@ async def download_export(request: Request, export_id: str) -> Response:
     )
 
 
-@router.post("/agent", dependencies=[Depends(require_auth)])
-async def analyze(request: Request, payload: AnalyzeInput):
+@router.post(
+    "/agent",
+    dependencies=[Depends(require_auth)],
+    response_model=Envelope[AnalyzeData],
+)
+async def analyze(request: Request, payload: AnalyzeInput) -> Envelope[AnalyzeData]:
     ctx = context(request)
     if ctx.settings.rate_limit_enabled:
         client = request.client.host if request.client else "unknown"
         if not request.app.state.rate_limiter.allow(client):
-            raise ToolFault("RATE_LIMITED", "Rate limit exceeded.", 429)
-    from agents.runner import run_analysis
+            raise ToolFault(ErrorCode.RATE_LIMITED, "Rate limit exceeded.", 429)
 
     result = await run_analysis(
         ctx,
@@ -159,4 +183,4 @@ async def analyze(request: Request, payload: AnalyzeInput):
         model_override=request.app.state.agent_model,
         request_id=getattr(request.state, "request_id", None),
     )
-    return _payload(result)
+    return result

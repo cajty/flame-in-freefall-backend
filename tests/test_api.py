@@ -5,16 +5,10 @@ from pydantic import SecretStr
 
 from api.app import create_app
 from models import ExportInput
-from tools.context import build_context
-from tools.exports import export_csv
+from core.context import build_context
+from core.services.export_requests import export_csv
 
-
-class Clock:
-    def __init__(self) -> None:
-        self.now = 1_000_000.0
-
-    def __call__(self) -> float:
-        return self.now
+from helpers import Clock
 
 
 def test_health_schema_and_contract_keys(client):

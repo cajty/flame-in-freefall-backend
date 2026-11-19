@@ -3,8 +3,8 @@ from __future__ import annotations
 import pytest
 
 from agents.runner import resolve_psi_scope
-from core.errors import ToolFault
-from tools.context import with_scope
+from core.errors import DomainError, ToolFault
+from core.context import with_scope
 
 
 def test_scope_filters_catalog(context):
@@ -14,12 +14,11 @@ def test_scope_filters_catalog(context):
     assert set(scoped.catalog.coverage()) == {"bass2"}
     assert scoped.catalog.get("bass2").name == "BASS-II"
 
-    with pytest.raises(ToolFault) as error:
+    with pytest.raises(DomainError) as error:
         scoped.catalog.get("flex2")
     assert error.value.code == "OUT_OF_SCOPE"
-    assert error.value.status_code == 400
 
-    with pytest.raises(ToolFault):
+    with pytest.raises(DomainError):
         scoped.catalog.gaps(["flex2"])
 
 

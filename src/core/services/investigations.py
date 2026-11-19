@@ -15,8 +15,9 @@ from models import (
     SearchData,
     SearchInput,
 )
-from tools.common import combined_warnings, provenance, record_warnings
-from tools.context import AppContext
+from core.services.metrics import combined_warnings, provenance, record_warnings
+from core.services.validation import validate_theme_phase
+from core.context import AppContext
 
 OPERATORS = ["eq", "neq", "lt", "lte", "gt", "gte", "between", "in"]
 
@@ -43,22 +44,10 @@ def get_schema(ctx: AppContext, _request: None = None) -> Envelope[SchemaData]:
     return Envelope(data=data)
 
 
-def _validate_theme_phase(ctx: AppContext, theme: str | None, phase: str | None) -> None:
-    if theme is not None and theme not in ctx.reference.pillar_order:
-        raise ToolFault(
-            "INVALID_QUERY",
-            f"Unsupported theme: {theme}. Use get_schema for supported themes.",
-        )
-    if phase is not None and phase not in ctx.reference.phases:
-        raise ToolFault(
-            "INVALID_QUERY",
-            f"Unsupported phase: {phase}. Use get_schema for supported phases.",
-        )
-
-
 def _matches_text(record: InvestigationRecord, tokens: list[str]) -> bool:
     haystack = (
-        f"{record.name} {record.full} {record.obj} {record.fuel} {record.cond} {record.meas}"
+        f"{record.name} {record.full_name} {record.objective} {record.fuel} "
+        f"{record.conditions} {record.measurements}"
     ).lower()
     return all(token in haystack for token in tokens)
 
@@ -66,7 +55,7 @@ def _matches_text(record: InvestigationRecord, tokens: list[str]) -> bool:
 def search_investigations(
     ctx: AppContext, request: SearchInput
 ) -> Envelope[SearchData]:
-    _validate_theme_phase(ctx, request.theme, request.phase)
+    validate_theme_phase(ctx, request.theme, request.phase)
     if (
         request.o2_min is not None
         and request.o2_max is not None
