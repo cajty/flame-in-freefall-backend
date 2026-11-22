@@ -88,7 +88,7 @@ def _fail(
     return {"ok": False, "error": error}
 
 
-async def _invoke(
+async def _execute_tool(
     run_context: RunContext[ToolDeps],
     name: str,
     function: Callable[[Any, Any], Any],
@@ -196,7 +196,7 @@ def _export_query(
 
 async def get_schema(run_context: RunContext[ToolDeps]) -> dict[str, Any]:
     """Return canonical metrics, units, themes, phases, investigation IDs, coverage and limits. Call this first."""
-    return await _invoke(run_context, "get_schema", schema_tool, lambda: None)
+    return await _execute_tool(run_context, "get_schema", schema_tool, lambda: None)
 
 
 async def search_investigations(
@@ -212,7 +212,7 @@ async def search_investigations(
     offset: int = 0,
 ) -> dict[str, Any]:
     """Search investigations by text, theme, phase, O2 window, fuel, or data availability."""
-    return await _invoke(
+    return await _execute_tool(
         run_context,
         "search_investigations",
         search_tool,
@@ -234,7 +234,7 @@ async def get_investigation(
     run_context: RunContext[ToolDeps], investigation_id: str
 ) -> dict[str, Any]:
     """Return one merged investigation record, its summary, PSI IDs, URLs, and source files."""
-    return await _invoke(
+    return await _execute_tool(
         run_context,
         "get_investigation",
         investigation_tool,
@@ -244,7 +244,7 @@ async def get_investigation(
 
 async def get_environments(run_context: RunContext[ToolDeps]) -> dict[str, Any]:
     """Return the four mission environments, their O2 windows, pressure strings, and theme weights."""
-    return await _invoke(
+    return await _execute_tool(
         run_context, "get_environments", environments_tool, lambda: None
     )
 
@@ -253,7 +253,7 @@ async def find_data_gaps(
     run_context: RunContext[ToolDeps], ids: list[str] | None = None
 ) -> dict[str, Any]:
     """Report missing, partial, and planned-only data for one or more investigations."""
-    return await _invoke(
+    return await _execute_tool(
         run_context,
         "find_data_gaps",
         gaps_tool,
@@ -268,7 +268,7 @@ async def compare_investigations(
     normalize_units: bool = True,
 ) -> dict[str, Any]:
     """Compare two to five investigations on canonical metrics with provenance and warnings."""
-    return await _invoke(
+    return await _execute_tool(
         run_context,
         "compare_investigations",
         compare_tool,
@@ -288,7 +288,7 @@ async def run_query(
     limit: int = 500,
 ) -> dict[str, Any]:
     """Filter, group, and aggregate dashboard summary rows across investigations. One row per investigation by default. Use this for cross-investigation ranges and counts. Does not return individual test rows; use query_tests or aggregate_tests for those."""
-    return await _invoke(
+    return await _execute_tool(
         run_context,
         "run_query",
         query_tool,
@@ -311,7 +311,7 @@ async def score_investigations(
     phase: str | None = None,
 ) -> dict[str, Any]:
     """Rank investigations by weighted O2 coverage, gravity, scale, data quality and theme. Planned-only data scores 0."""
-    return await _invoke(
+    return await _execute_tool(
         run_context,
         "score_investigations",
         score_tool,
@@ -338,7 +338,7 @@ async def export_csv(
     columns: list[str] | None = None,
 ) -> dict[str, Any]:
     """Export a query, comparison, score, or gap result as CSV with provenance. Returns a download URL."""
-    return await _invoke(
+    return await _execute_tool(
         run_context,
         "export_csv",
         export_tool,
@@ -377,7 +377,7 @@ async def query_tests(
     cursor: str | None = None,
 ) -> dict[str, Any]:
     """Query individual measured test rows for one investigation, with numeric, fuel, and date filters plus pagination. Use this for per-test values and dates. For cross-investigation summary metrics use run_query; for statistics over test rows use aggregate_tests."""
-    return await _invoke(
+    return await _execute_tool(
         run_context,
         "query_tests",
         rows_tool,
@@ -408,7 +408,7 @@ async def aggregate_tests(
     fuel: str | None = None,
 ) -> dict[str, Any]:
     """Aggregate individual test rows: count, min, max, mean, median, or p90, optionally grouped."""
-    return await _invoke(
+    return await _execute_tool(
         run_context,
         "aggregate_tests",
         aggregate_tool,
@@ -428,7 +428,7 @@ async def get_psi_record(
     run_context: RunContext[ToolDeps], psi_id: str
 ) -> dict[str, Any]:
     """Look up a NASA PSI accession number and the investigation it belongs to."""
-    return await _invoke(
+    return await _execute_tool(
         run_context,
         "get_psi_record",
         psi_tool,
@@ -440,7 +440,7 @@ async def search_psi_catalog(
     run_context: RunContext[ToolDeps], q: str, limit: int = 10
 ) -> dict[str, Any]:
     """Search the full NASA PSI investigation metadata catalog by free text. Use only to discover related PSI records outside the 15 curated investigations. Results are metadata-only leads, not measured evidence."""
-    return await _invoke(
+    return await _execute_tool(
         run_context,
         "search_psi_catalog",
         catalog_tool,
