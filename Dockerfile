@@ -3,6 +3,7 @@ WORKDIR /build
 COPY package.json ./
 COPY scripts ./scripts
 COPY data/processed ./data/processed
+COPY data/reference ./data/reference
 RUN node scripts/build-data.mjs
 
 FROM python:3.12-slim
