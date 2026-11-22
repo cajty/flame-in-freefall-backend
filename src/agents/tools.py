@@ -119,8 +119,11 @@ async def _execute_tool(
             ),
             status_code=422,
         )
-        _fail(deps, name, fault, started, arguments, level=logging.ERROR)
-        raise fault
+        if deps.repeated_rejections(name, arguments) > 0:
+            _fail(deps, name, fault, started, arguments, level=logging.ERROR)
+            raise fault
+        # Give the model one chance to recover before failing the request.
+        return _fail(deps, name, fault, started, arguments)
 
     try:
         envelope = await run_tool(function, deps.ctx, request, deps.timeout_seconds)
